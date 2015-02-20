@@ -1,5 +1,5 @@
 (define (domain network)
-  (:requirements :strips)
+  (:requirements :strips :equality :typing :conditional-effects)
   (:predicates
 	 (task ?x)
 	 (depends ?x ?y)

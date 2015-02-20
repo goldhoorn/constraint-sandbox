@@ -26,6 +26,11 @@ goals = Array.new
 actions = Array.new
 
 tasks = Array.new
+    #Initial knot for startin tasks
+    objects << "root" 
+    initial << "\t (task root)"
+    initial << "\t (is-running root)"
+    initial << "\t (depends root root)"
 
 
     Orocos.default_pkgconfig_loader.available_task_models.each do |name,project_name|
@@ -42,20 +47,21 @@ tasks = Array.new
         end
     end
     
-    
     predicates << "\t (task ?x)"
     predicates << "\t (depends ?x ?y)"
     predicates << "\t (is-running ?x)"
     
-    #file.puts "(:init"
+
     tasks.each do |t|
         initial << "\t (task #{t.name})"
     end
     
     
-    goals << "(and "
-    goals << "\t (and( (is-running t) (depends y t) ) )" #Running dependencies
-    goals << ")"
+#    goals << "(and "
+    #goals << "\t (and (is-running t) (depends y t) )" #Running dependencies
+    goals << "\t (is-running root)" #Running dependencies
+    goals << "\t (depends root lights-Lights)"
+#    goals << ")"
     
 #    actions <<  "(:action start :parameters (?r ?t)"
 #    actions <<  " :effect (and    (is-running ?t) (depends ?r ?t) )"
@@ -81,12 +87,12 @@ output_ports =Array.new
             if task = tasklib.self_tasks.find { |_, t| t.name == name }
                 task = task.last
                 task.output_ports.each do |p_name,p|
-#                    objects << "#{p.task.name}.#{p.name}"
-#                    output_ports << p
+                    objects << "#{p.task.name}.#{p.name}"
+                    output_ports << p
                 end
                 task.input_ports.each do |p_name,p|
-#                    objects << "#{p.task.name}.#{p.name}"
-#                    input_ports << p
+                    objects << "#{p.task.name}.#{p.name}"
+                    input_ports << p
                 end
             end
         end
@@ -110,9 +116,12 @@ output_ports =Array.new
     input_ports.each do |p|
     end
 
+    #TODO for testing
+#    goals << "\t (
+
 File.open('domain.pddl',File::CREAT|File::TRUNC|File::RDWR) do |file|
     file.puts "(define (domain network)"
-    file.puts "  (:requirements :strips)"
+    file.puts "  (:requirements :strips :equality :typing :conditional-effects)"
     file.puts "  (:predicates"
     predicates.each {|p|  file.puts "#{p}"}
     file.puts ")"
@@ -128,9 +137,9 @@ File.open('problem.pddl',File::CREAT|File::TRUNC|File::RDWR) do |file|
     file.puts "  (:init"
     initial.each {|p|  file.puts "      #{p.norm}"}
     file.puts "  )"
-    file.puts "  (:goal"
+    file.puts "  (:goal (and"
     goals.each {|p|  file.puts "      #{p.norm}"}
-    file.puts "  )"
+    file.puts "  ))"
     file.puts ")"
 end
 
