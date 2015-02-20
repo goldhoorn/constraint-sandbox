@@ -1,160 +1,89 @@
 (define (problem network001)
   (:domain network)
   (:objects
-      root - task
-      auv-rel-pos-controller-Task - task
-      pipeline-inspection-ColorFilter - task
-      pipeline-inspection-Inspection - task
-      pipeline-inspection-LaserSimulation - task
-      uw-particle-localization-FastFusion - task
-      uw-particle-localization-MotionModel - task
-      uw-particle-localization-OrientationCorrection - task
-      uw-particle-localization-Task - task
-      gps-BaseTask - task
-      gps-GPSDTask - task
-      gps-MB500Task - task
-      line-scanner-Task - task
-      message-producer-Task - task
-      buoy-Detector - task
-      buoy-Detector2 - task
-      buoy-ServoingOnWall - task
-      buoy-Survey - task
-      mars-Altimeter - task
-      mars-AuvController - task
-      mars-AuvMotion - task
-      mars-Camera - task
-      mars-CameraPlugin - task
-      mars-DepthCamera - task
-      mars-ForceApplier - task
-      mars-ForceTorque6DOF - task
-      mars-HighResRangeFinder - task
-      mars-IMU - task
-      mars-Joints - task
-      mars-LaserRangeFinder - task
-      mars-Plugin - task
-      mars-RotatingLaserRangeFinder - task
-      mars-Sonar - task
-      mars-Task - task
-      mars-Trigger - task
-      sonar-feature-estimator-Task - task
-      modem-can-Task - task
-      taskmon-Task - task
-      depth-reader-Task - task
-      raw-control-command-converter-Movement - task
-      raw-control-command-converter-Position - task
-      sonar-feature-detector-Task - task
-      frame-demultiplexer-Task - task
-      sonar-tritech-Echosounder - task
-      sonar-tritech-Micron - task
-      sonar-tritech-Profiling - task
-      battery-watcher-Task - task
-      orientation-estimator-BaseEstimator - task
-      orientation-estimator-IKF - task
-      orientation-estimator-IKFEstimator - task
-      orientation-estimator-UKFEstimator - task
-      hsv-mosaicing-Task - task
-      sonar-wall-hough-Task - task
-      pose-estimation-BaseTask - task
-      pose-estimation-UWPoseEstimator - task
-      pose-estimation-VehiclePoseEstimator - task
-      auv-waypoint-navigator-Task - task
-      camera-aravis-Task - task
-      gps-helper-GPSFaker - task
-      gps-helper-MapToGPS - task
-      gps-helper-WaypointNavigation - task
-      avalon-simulation-AsvNavigation - task
-      avalon-simulation-LineLaser - task
-      avalon-simulation-Modem - task
-      avalon-simulation-WhiteLight - task
-      avalon-control-FakeWriter - task
-      avalon-control-MotionControlTask - task
-      avalon-control-MotionFeedbackTask - task
-      avalon-control-PositionControlTask - task
-      avalon-control-RelFakeWriter - task
-      avalon-control-TrajectoryFollower - task
-      hbridge-CommandWriter - task
-      hbridge-SensorReader - task
-      sonar-structure-servoing-Task - task
-      depth-map-LaserToPoints - task
-      depth-map-Task - task
-      depth-map-frame-export - task
-      depth-map-sonar-ground-distance - task
-      wall-servoing-DualSonarServoing - task
-      wall-servoing-SingleSonarServoing - task
-      wall-servoing-SonarServoing - task
-      wall-servoing-WallDetector - task
-      wall-servoing-WallServoing - task
-      camera-unicap-CameraTask - task
-      task-scheduler-Task - task
-      sonar-blueview-Task - task
-      auv-helper-depth-and-orientation-fusion - task
-      sysmon-Task - task
-      logger-Logger - task
-      fog-kvh-Dsp3000Task - task
-      rear-sonar-distance-estimator-Task - task
-      transformer-Task - task
-      camera-base-Task - task
-      low-level-driver-LowLevelTask - task
-      wall-orientation-correction-OrientationInMap - task
-      wall-orientation-correction-Task - task
-      structure-servoing-Alignment - task
-      structure-servoing-Task - task
-      image-preprocessing-BaseTask - task
-      image-preprocessing-DepthImage2Pointcloud - task
-      image-preprocessing-HSVSegmentationAndBlur - task
-      image-preprocessing-MonoTask - task
-      image-preprocessing-StereoTask - task
-      offshore-pipeline-detector-SonarDetector - task
-      offshore-pipeline-detector-Task - task
-      interfaces-ActuatorCommandWriter - task
-      interfaces-ActuatorSensorReader - task
-      interfaces-IMU - task
-      interfaces-LaserRangeFinder - task
-      interfaces-Servo - task
-      canbus-InterfaceTask - task
-      canbus-Task - task
-      structured-light-Calibration - task
-      structured-light-Task - task
-      xsens-imu-Task - task
-      camera-prosilica-Task - task
-      dynamixel-Task - task
-      pddl-planner-Task - task
-      video-streamer-vlc-Capturer - task
-      video-streamer-vlc-Streamer - task
-      controldev-GenericRawToMotion2D - task
-      controldev-GenericTask - task
-      controldev-JoyPadTask - task
-      controldev-JoystickTask - task
-      controldev-Mouse3DTask - task
-      controldev-RawJoystickToMotion2D - task
-      controldev-RawWheelToMotion2D - task
-      controldev-Remote - task
-      controldev-SliderboxTask - task
-      controldev-SteeringWheelTask - task
-      structure-reconstruction-Task - task
-      lights-Lights - task
-      auv-control-AccelerationController - task
-      auv-control-AlignedToBody - task
-      auv-control-Base - task
-      auv-control-BasePIDController - task
-      auv-control-ConstantCommand - task
-      auv-control-ConstantCommandGroundAvoidance - task
-      auv-control-ConstantCommandGroundFollower - task
-      auv-control-MotionCommand2DConverter - task
-      auv-control-OptimalHeadingController - task
-      auv-control-PIDController - task
-      auv-control-WaypointNavigator - task
-      auv-control-WorldToAligned - task
-      modemdriver-Modem - task
-      modemdriver-ModemCanbus - task
-      modemdriver-ModemSerial - task
+      root - instance_req
+      mars-Altimeter - instance_req
+;      mars-AuvController - instance_req
+;      mars-AuvMotion - instance_req
+;      mars-CameraPlugin - instance_req
+;      mars-DepthCamera - instance_req
+;      mars-ForceApplier - instance_req
+;      mars-ForceTorque6DOF - instance_req
+;      mars-HighResRangeFinder - instance_req
+;      mars-Joints - instance_req
+;      mars-LaserRangeFinder - instance_req
+;      mars-Plugin - instance_req
+;      mars-RotatingLaserRangeFinder - instance_req
+;      mars-Sonar - instance_req
+;      mars-Trigger - instance_req
+      mars-Camera - instance_req
+      mars-IMU - instance_req
+      mars-Task - instance_req
+      TestCmp - instance_req
   )
   (:init
+      	 (is-running mars-Altimeter)
       	 (is-running root)
       	 (depends root root)
+      	 (requests root root)
+
+      	 (requests root mars-Camera)
+      	 (task mars-Altimeter)
+;      	 (task mars-AuvController)
+;      	 (task mars-AuvMotion)
+      	 (task mars-Camera)
+;      	 (task mars-CameraPlugin)
+;      	 (task mars-DepthCamera)
+;      	 (task mars-ForceApplier)
+;      	 (task mars-ForceTorque6DOF)
+;      	 (task mars-HighResRangeFinder)
+      	 (task mars-IMU)
+;      	 (task mars-Joints)
+;      	 (task mars-LaserRangeFinder)
+;      	 (task mars-Plugin)
+;      	 (task mars-RotatingLaserRangeFinder)
+;      	 (task mars-Sonar)
+      	 (task mars-Task)
+;      	 (task mars-Trigger)
+      (composition TestCmp)
+      (depends TestCmp mars-IMU)
+      (depends TestCmp mars-Task)
+
+;;Testfall composition läft aber keiner da
+      (is-running TestCmp)
+      (is-running mars-IMU)
+      (requests TestCmp mars-IMU)
+;;Testfall cmp starten
+      ;(requests root TestCmp)
   )
   (:goal (and
+
+    (forall (?t - instance_req)
+    (exists (?r - instance_req)
+            (imply
+            (is-running ?t)
+            (requests ?r ?t)
+            )
+            )
+            )
+  
+    (forall (?t - instance_req)
+    (forall (?r - instance_req)
+            (imply
+            (requests ?r ?t)
+            (is-running ?t)
+            )
+            )
+            )
+
+;    (forall (?t - instance_req)
+;        (imply (is-running ?t)
+;            (depends ?x_ ?t)
+;;            (is-running ?t)
+;        )
+;    )
       	 (is-running root)
-      	 (depends root lights-Lights)
+;      	 (depends root mars-Camera)
+;      	 (depends root TestCmp)
   ))
 )
