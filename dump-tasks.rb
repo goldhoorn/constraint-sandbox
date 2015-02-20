@@ -27,8 +27,8 @@ actions = Array.new
 
 tasks = Array.new
     #Initial knot for startin tasks
-    objects << "root" 
-    initial << "\t (task root)"
+    objects << "root - task" 
+#    initial << "\t (task root)"
     initial << "\t (is-running root)"
     initial << "\t (depends root root)"
 
@@ -39,7 +39,7 @@ tasks = Array.new
             if task = tasklib.self_tasks.find { |_, t| t.name == name }
                 task = task.last
                 tasks << task
-                objects << "#{task.name}"
+                objects << "#{task.name} - task"
             end
         end
         rescue Exception => e
@@ -47,14 +47,14 @@ tasks = Array.new
         end
     end
     
-    predicates << "\t (task ?x)"
-    predicates << "\t (depends ?x ?y)"
-    predicates << "\t (is-running ?x)"
+#    predicates << "\t (task ?x)"
+    predicates << "\t (depends ?x - task ?y - task)"
+    predicates << "\t (is-running ?x - task)"
     
 
-    tasks.each do |t|
-        initial << "\t (task #{t.name})"
-    end
+#    tasks.each do |t|
+#        initial << "\t (task #{t.name})"
+#    end
     
     
 #    goals << "(and "
@@ -67,12 +67,12 @@ tasks = Array.new
 #    actions <<  " :effect (and    (is-running ?t) (depends ?r ?t) )"
 #    actions <<  ")"
     
-    actions <<  "(:action start :parameters (?r ?t)"
-    actions <<  " :precondition (and (task ?t))"
+    actions <<  "(:action start :parameters (?r - task ?t - task)"
+    #actions <<  " :precondition (and (task ?t))"
     actions <<  " :effect (and    (is-running ?t) (depends ?r ?t) )"
     actions <<  ")"
    
-    actions <<  "(:action stop :parameters (?t)"
+    actions <<  "(:action stop :parameters (?t - task)"
     actions <<  " :precondition (not (depends _ ?t))"
     actions <<  " :effect (not    (is-running ?t))"
     actions <<  ")"
@@ -87,12 +87,12 @@ output_ports =Array.new
             if task = tasklib.self_tasks.find { |_, t| t.name == name }
                 task = task.last
                 task.output_ports.each do |p_name,p|
-                    objects << "#{p.task.name}.#{p.name}"
-                    output_ports << p
+#                    objects << "#{p.task.name}.#{p.name}"
+#                    output_ports << p
                 end
                 task.input_ports.each do |p_name,p|
-                    objects << "#{p.task.name}.#{p.name}"
-                    input_ports << p
+#                    objects << "#{p.task.name}.#{p.name}"
+#                    input_ports << p
                 end
             end
         end
@@ -102,12 +102,12 @@ output_ports =Array.new
     end
 
 
-    predicates <<  "\t (output-port ?x)"
-    predicates <<  "\t (input-port ?x)"
-    predicates <<  "\t (has-output ?x ?y)"
-    predicates <<  "\t (has-input ?x ?y)"
-    predicates <<  "\t (is-connected ?x ?y)"
-    predicates <<  "\t (should-connected ?x ?y ?z)"
+#    predicates <<  "\t (output-port ?x)"
+#    predicates <<  "\t (input-port ?x)"
+    predicates <<  "\t (has-output ?x - task ?y - output_port)"
+    predicates <<  "\t (has-input ?x - task ?y - input_port)"
+    predicates <<  "\t (is-connected ?x - output_port ?y - input_port)"
+    predicates <<  "\t (should-connected ?x - task ?y - input_port ?z - output_port)"
     
     output_ports.each do |p|
         initial << "\t (output-port #{p.task.name}.#{p.name})"
@@ -121,6 +121,7 @@ output_ports =Array.new
 
 File.open('domain.pddl',File::CREAT|File::TRUNC|File::RDWR) do |file|
     file.puts "(define (domain network)"
+    file.puts "  (:types task input_port output_port)" 
     file.puts "  (:requirements :strips :equality :typing :conditional-effects)"
     file.puts "  (:predicates"
     predicates.each {|p|  file.puts "#{p}"}
