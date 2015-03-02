@@ -765,6 +765,7 @@
         (task  mars::HighResRangeFinder)
         (task  mars::IMU)
         (task  mars::Joints)
+        (is-running mars::Joints)
         (task  mars::LaserRangeFinder)
         (task  mars::Plugin)
         (task  mars::RotatingLaserRangeFinder)

@@ -234,7 +234,12 @@ tasks = Array.new
   
 
     #Testing stuff
+
+    #Test for start
     objects['root'].addDependancy("mars::IMU")
+
+    #test for shutdown
+    objects['mars::Joints'].running = true
 
 
 
