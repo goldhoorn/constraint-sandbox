@@ -1,0 +1,82 @@
+(define (problem network001)
+  (:domain network)
+  (:objects
+<% objects.each do |o| %>
+        <%= o.name %> - <%= o.metatype %>
+<% end %>
+  )
+  (:init
+
+<% objects.each do |o| %>
+    <% if o.type %>
+        (<%= o.type %>  <%= o.name %>)
+    <% end %>
+    <%if o.is_running? %>
+        (is-running <%= o.name %>)
+    <% end %>
+<% end %>
+
+<% objects.each do |o| %>
+    <% o.depends.each do |d| %>
+        <%if d.disabled? %>
+;            (depends <%= o.name %>  <%= d.name %>)
+        <% else %>
+            (depends <%= o.name %>  <%= d.name %>)
+        <% end %>
+    <% end %>
+<% end %>
+
+<% objects.each do |o| %>
+    <% o.input_ports.each do |p| %>
+            (has_input <%= o.name %> <%=o.name %>.<%= p.name %>)
+    <% end %>
+<% end %>
+
+<% objects.each do |o| %>
+    <% o.output_ports.each do |p| %>
+            (has_output <%= o.name %> <%=o.name %>.<%= p.name %>)
+    <% end %>
+<% end %>
+
+
+<% objects.each do |o| %>
+    <% o.requires.each do |d| %>
+            (requests <%= o.name %>  <%= d.name %>)
+    <% end %>
+<% end %>
+
+  )
+  (:goal (and
+
+
+    (forall (?t - instance_req)
+    (exists (?r - instance_req)
+            (imply
+            (is-running ?t)
+            (requests ?r ?t)
+            )
+            )
+            )
+  
+    (forall (?t - instance_req)
+    (forall (?r - instance_req)
+            (imply
+            (requests ?r ?t)
+            (is-running ?t)
+            )
+            )
+            )
+
+;    (forall (?t - instance_req)
+;        (imply (is-running ?t)
+;            (depends ?x ?t)
+;            (is-running ?t)
+;        )
+;    )
+;      	 (is-running root)
+;      	 (depends root shouldRunning)
+;        (requests root TestCmp)
+;        (depends root TestCmp)
+;     	 (requests root TestCmp2)
+  ))
+)
