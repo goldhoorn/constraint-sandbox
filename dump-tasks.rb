@@ -14,17 +14,23 @@ class Binding
     end
 end
 
+class String
+    def escape
+        pattern = /(\'|\"|\*|\/|\-|\\|\)|\$|\+|\(|\^|\?|\!|\~|\`|\[|\]|<|>)/
+        self.gsub(pattern){|match| "_"}
+    end
+end
 class Requirement
 
     attr_writer :enabled
     attr_reader :name
 
     def disabled?
-        !@enabled
+        @disabled
     end
 
-    def initialize(dep, enabled= true)
-        @enabled = enabled
+    def initialize(dep, disabled= false)
+        @disabled=disabled 
         @name = dep
     end
 end
@@ -42,8 +48,8 @@ class RootObject
         true
     end
 
-    def addDependancy(name, enabled=true)
-        @requires<< Requirement.new(name,enabled)
+    def addDependancy(name, disabled=false)
+        @requires<< Requirement.new(name,disabled)
     end
 
     def type
@@ -92,7 +98,7 @@ class CObject
         @running
     end
 
-    def addDependancy(name, disabled)
+    def addDependancy(name, disabled=false)
         @depends << Requirement.new(name,disabled)
     end
 
@@ -103,6 +109,10 @@ class CObject
             "output_port"
         elsif task.instance_of? OroGen::Spec::InputPort
             "input_port"
+        elsif task.kind_of? Syskit::Models::Composition
+            "instance_req"
+        elsif task.kind_of? Syskit::Models::DataServiceModel
+            "instance_req"
         else
             binding.pry
             "Unknown"
@@ -117,6 +127,10 @@ class CObject
             nil
         elsif task.instance_of? OroGen::Spec::InputPort
             nil
+        elsif task.kind_of? Syskit::Models::Composition
+            "composition"
+        elsif task.kind_of? Syskit::Models::DataServiceModel
+            "data-service"
         else
             binding.pry
             "Unknown"
@@ -149,16 +163,29 @@ class CObject
     end
 
     def name
-        if task.instance_of? OroGen::Spec::TaskContext
-            task.name
+        if 
+        task.instance_of? OroGen::Spec::TaskContext or 
+        task.kind_of? Syskit::Models::DataServiceModel or
+        task.kind_of? Syskit::Models::Composition
+
+            task.name.gsub(' ','').escape
         elsif task.instance_of? OroGen::Spec::OutputPort or task.instance_of? OroGen::Spec::InputPort
-            "#{task.task.name}.#{task.name}" 
+            "#{task.task.name.to_s.gsub(' ','')}.#{task.name}".escape
         end
     end
 end
 
 
-Orocos.initialize
+    Roby.app.robot 'avalon'
+    Roby.app.using_plugins 'syskit'
+    Syskit.conf.only_load_models = true
+    Syskit.conf.disables_local_process_server = true
+    Roby.app.single = true
+    Syskit.conf.disable_logging
+    Syskit.conf.disable_conf_logging
+    
+    Roby.app.setup
+#Orocos.initialize
 
 class Objects < Array
 
@@ -167,7 +194,7 @@ class Objects < Array
             super[op]
         elsif (op.instance_of? String)
             self.each do |v|
-                if v.name == op
+                if v.name == op.escape
                     return v
                 end
             end
@@ -184,7 +211,7 @@ actions = Array.new
 
 tasks = Array.new
 
-
+    objects << RootObject.new
 
     Orocos.default_pkgconfig_loader.available_task_models.each do |name,project_name|
         begin
@@ -212,18 +239,39 @@ tasks = Array.new
         end
     end
 
-    Roby.app.robot 'avalon'
-    Roby.app.using_plugins 'syskit'
-    Syskit.conf.only_load_models = true
-    Syskit.conf.disables_local_process_server = true
-    Roby.app.single = true
-    Syskit.conf.disable_logging
-    Syskit.conf.disable_conf_logging
+
+    Syskit::Composition.each_submodel do |cmp|
+        o = CObject.new(cmp)
+        cmp.each_child do |child_name,child|
+#            name = child[0]
+#            binding.pry
+#            child = child[1] # composition child
+#            objects << CObject.new(child)
+            #o.addDependancy(name.escape)
+            o.addDependancy(child.model.name.gsub(" ","").escape)
+        end
+        
+        if(objects[o.name])
+            STDERR.puts "Warning Cmp #{cmp.name} already added" 
+            next
+        end
+        objects << o
+    end
     
-    Roby.app.setup
-   
-    a = Main.joystick_dev
-    binding.pry
+    Syskit::DataService.each_submodel do |ds|
+        name = ds.name
+        if(objects[name])
+            STDERR.puts "Warning DataService #{name} already added" 
+            next
+        end
+        objects <<  CObject.new(ds)
+        ds.ports.each do |port|
+            #TODO port typen handlen
+        end
+    end
+
+#    a = Main.joystick_dev
+#    binding.pry
 
 
     #Import Bundle definitions
