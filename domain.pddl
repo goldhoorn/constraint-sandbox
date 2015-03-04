@@ -9,6 +9,7 @@
 	 (requests ?x - instance_req ?y - instance_req)
 	 (depends ?x - instance_req ?y - instance_req)
 	 (is-running ?x - instance_req)
+	 (data-service ?x - instance_req)
 	 (task ?x - instance_req)
 	 (composition ?x - instance_req)
 )
