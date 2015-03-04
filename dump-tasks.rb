@@ -72,6 +72,10 @@ class RootObject
         []
     end
 
+    def each_fullfillment
+        [].each
+    end
+
     def depends 
         [Requirement.new("root")]
         #["root"]
@@ -85,6 +89,7 @@ class CObject
     attr_accessor :depends
     attr_accessor :requires
     attr_writer :running
+    attr_accessor :fullfills
 
     def initialize(task,type="")
         @depends = []
@@ -92,6 +97,7 @@ class CObject
         @task= task 
         @type = type
         @running = false
+        @fullfills = []
     end
 
     def is_running?
@@ -102,16 +108,26 @@ class CObject
         @depends << Requirement.new(name,disabled)
     end
 
+    def each_fullfillment
+        return enum_for(:each_fullfillment) unless block_given?
+        fullfills.each do |value|
+            yield(value.name.escape)
+        end
+    end
+
     def metatype
-        if task.instance_of? OroGen::Spec::TaskContext 
-            "instance_req"
-        elsif task.instance_of? OroGen::Spec::OutputPort
+        if task.kind_of? Syskit::Models::OutputPort 
+#        elsif task.instance_of? OroGen::Spec::OutputPort
             "output_port"
-        elsif task.instance_of? OroGen::Spec::InputPort
+        elsif task.kind_of? Syskit::Models::InputPort 
+        #elsif task.instance_of? OroGen::Spec::InputPort
             "input_port"
         elsif task.kind_of? Syskit::Models::Composition
             "instance_req"
         elsif task.kind_of? Syskit::Models::DataServiceModel
+            "instance_req"
+        elsif task < Syskit::TaskContext
+        #if task.instance_of? OroGen::Spec::TaskContext 
             "instance_req"
         else
             binding.pry
@@ -121,16 +137,19 @@ class CObject
     end
 
     def type
-        if task.instance_of? OroGen::Spec::TaskContext 
-            "task"
-        elsif task.instance_of? OroGen::Spec::OutputPort
+        if task.kind_of? Syskit::Models::OutputPort 
+        #elsif task.instance_of? OroGen::Spec::OutputPort
             nil
-        elsif task.instance_of? OroGen::Spec::InputPort
+        elsif task.kind_of? Syskit::Models::InputPort 
+        #elsif task.instance_of? OroGen::Spec::InputPort
             nil
         elsif task.kind_of? Syskit::Models::Composition
             "composition"
         elsif task.kind_of? Syskit::Models::DataServiceModel
             "data-service"
+        elsif task < Syskit::TaskContext
+        #if task.instance_of? OroGen::Spec::TaskContext 
+            "task"
         else
             binding.pry
             "Unknown"
@@ -138,39 +157,55 @@ class CObject
     end
     
     def input_ports
-        
-        if task.instance_of? OroGen::Spec::TaskContext
-            a = Hash.new
-            task.input_ports.each do |p|
-                a[p[1].name] = p[1]
+        begin
+            if task < Syskit::TaskContext
+            #if task.instance_of? OroGen::Spec::TaskContext
+                a = Hash.new
+                task.input_ports.each do |p|
+                    a[p[1].name] = p[1]
+                end
+                return a.values
             end
-            a.values
-        else
-            []
+        rescue Exception => e
+            ##Nothing
         end
+        
+        return []
     end
     
     def output_ports
-        if task.instance_of? OroGen::Spec::TaskContext
-            a = Hash.new
-            task.output_ports.each do |p|
-                a[p[1].name] = p[1]
+        begin
+            if task < Syskit::TaskContext
+    #        if task.instance_of? OroGen::Spec::TaskContext
+                a = Hash.new
+                task.output_ports.each do |p|
+                    a[p[1].name] = p[1]
+                end
+                return a.values
             end
-            a.values
-        else
-            [] 
+        rescue Exception => e
+            #nothing
         end
+        return [] 
     end
 
     def name
         if 
-        task.instance_of? OroGen::Spec::TaskContext or 
-        task.kind_of? Syskit::Models::DataServiceModel or
-        task.kind_of? Syskit::Models::Composition
-
+#        task.instance_of? OroGen::Spec::TaskContext or 
+        task.kind_of? Syskit::Models::DataServiceModel or 
+        task.kind_of? Syskit::Models::Composition 
             task.name.gsub(' ','').escape
-        elsif task.instance_of? OroGen::Spec::OutputPort or task.instance_of? OroGen::Spec::InputPort
-            "#{task.task.name.to_s.gsub(' ','')}.#{task.name}".escape
+        elsif 
+#            task.instance_of? OroGen::Spec::OutputPort
+#            task.instance_of? OroGen::Spec::InputPort
+            task.instance_of? Syskit::Models::InputPort or 
+            task.instance_of? Syskit::Models::OutputPort
+            "#{task.component_model.name.to_s.gsub(' ','')}.#{task.name}".escape
+        elsif
+        task < Syskit::TaskContext 
+            task.name.gsub(' ','').escape
+        else
+            binding.pry
         end
     end
 end
@@ -213,32 +248,28 @@ tasks = Array.new
 
     objects << RootObject.new
 
-    Orocos.default_pkgconfig_loader.available_task_models.each do |name,project_name|
-        begin
-        if tasklib = Orocos.default_loader.project_model_from_name(project_name)
-            if task = tasklib.self_tasks.find { |_, t| t.name == name }
-                task = task.last
-                
-                if(objects[task.name])
-                    STDERR.puts "Warning Task #{task.name} already added" 
-                    next
-                end
+    Syskit::TaskContext.each_submodel do |task|
+        if(objects[task.name])
+            STDERR.puts "Warning Task #{task.name} already added" 
+            next
+        end
+        object = CObject.new(task)
 
-                task.each_port do |port|
-                    if(objects["#{port.task.name}.#{port.name}"])
-                        STDERR.puts "Warning Port #{port.name} already added" 
-                        next
-                    end
-                    objects <<  CObject.new(port)
-                end
-                objects <<  CObject.new(task)
+        task.each_port do |port|
+            if(objects["#{port.component_model.name}.#{port.name}"])
+                STDERR.puts "Warning Port #{port.name} already added" 
+                next
+            end
+            objects <<  CObject.new(port)
+        end
+        task.each_data_service do |name,service|
+            service.each_fullfilled_model do |model|
+                object.fullfills << model
             end
         end
-        rescue Exception => e
-            STDOUT.puts "Error while loading #{project_name}"
-        end
-    end
 
+        objects << object
+    end
 
     Syskit::Composition.each_submodel do |cmp|
         o = CObject.new(cmp)
@@ -270,20 +301,17 @@ tasks = Array.new
         end
     end
 
-#    a = Main.joystick_dev
-#    binding.pry
-
-
-    #Import Bundle definitions
-
-
     #Testing stuff
 
     #Test for start
-    objects['root'].addDependancy("mars::IMU")
-
+    objects['root'].addDependancy("BatteryWatcher::Task")
     #test for shutdown
-    objects['mars::Joints'].running = true
+    objects['DepthReader::Task'].running = true
+
+#    STDOUT.puts "Size: #{objects['DepthReader::Task'].each_fullfillment.to_a.size}"
+#    objects['DepthReader::Task'].each_fullfillment do |v|
+#        binding.pry
+#    end
 
 
 

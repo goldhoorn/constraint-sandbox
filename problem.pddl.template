@@ -27,6 +27,12 @@
 <% end %>
 
 <% objects.each do |o| %>
+    <% o.each_fullfillment do |f| %>
+            (fullfills <%= o.name %>  <%= f %>)
+    <% end %>
+<% end %>
+
+<% objects.each do |o| %>
     <% o.input_ports.each do |p| %>
             (has_input <%= o.name %> <%=o.name %>.<%= p.name %>)
     <% end %>
