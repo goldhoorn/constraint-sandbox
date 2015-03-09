@@ -93,6 +93,7 @@ Roby.app.setup
 
     #Test for start
     objects['root'].addDependancy("BatteryWatcher::Task")
+    objects['root'].addDependancy("Base::SonarScanProviderSrv")
     #test for shutdown
     objects['DepthReader::Task'].running = true
 

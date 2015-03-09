@@ -7,6 +7,7 @@
 	 (is-connected ?x - output_port ?y - input_port)
 	 (should-connected ?x - instance_req ?y - input_port ?z - output_port)
 	 (requests ?x - instance_req ?y - instance_req)
+	 (fullfills ?x - instance_req ?y - instance_req)
 	 (depends ?x - instance_req ?y - instance_req)
 	 (is-running ?x - instance_req)
 	 (data-service ?x - instance_req)
@@ -18,10 +19,32 @@
  :precondition (and
     (not (is-running ?t)) ;;Unsure ob das rein soll
     (task ?t) 
-    (requests ?r ?t)
+    (or (requests ?r ?t) (fullfills ?t ?r))
   )
  :effect (and   (is-running ?t) (depends ?r ?t) )
 )
+
+;(:action startds :parameters (?r - instance_req ?ds - instance_req)
+;:precondition (and
+;;    (not (is-running ?ds)) ;;Unsure ob das rein soll
+;;    (data-service ?ds) 
+;;    (requests ?r ?ds)
+;;    (exists (?t - task) (and (fullfills ?t ?ds) ) ) ;(is-running ?t) ) )
+;)
+;:effect (and (is-running ?ds) (depends ?r ?ds) )
+;)
+
+(:action startds :parameters (?r - instance_req ?ds - instance_req)
+:precondition (and
+    (not (is-running ?ds)) ;;Unsure ob das rein soll
+    (data-service ?ds) 
+    (requests ?r ?ds)
+    (exists (?t - instance_req) (and (fullfills ?t ?ds) (is-running ?t) (depends ?ds ?t) ) ) 
+)
+:effect (and (is-running ?ds) (depends ?r ?ds))
+)
+
+
 
 (:action stop :parameters (?t - instance_req)
  :precondition (and
