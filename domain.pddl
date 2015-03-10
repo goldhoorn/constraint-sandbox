@@ -19,9 +19,9 @@
  :precondition (and
     (not (is-running ?t)) ;;Unsure ob das rein soll
     (task ?t) 
-    (or (requests ?r ?t) (fullfills ?t ?r))
+    (or (depends ?r ?t) (fullfills ?t ?r))
   )
- :effect (and   (is-running ?t) (depends ?r ?t) )
+ :effect (and  (is-running ?t) (requests ?r ?t) )
 )
 
 ;(:action startds :parameters (?r - instance_req ?ds - instance_req)
@@ -38,10 +38,10 @@
 :precondition (and
     (not (is-running ?ds)) ;;Unsure ob das rein soll
     (data-service ?ds) 
-    (requests ?r ?ds)
-    (exists (?t - instance_req) (and (fullfills ?t ?ds) (is-running ?t) (depends ?ds ?t) ) ) 
+    (depends ?r ?ds)
+    (exists (?t - instance_req) (and (fullfills ?t ?ds) (is-running ?t) (requests ?ds ?t) ) ) 
 )
-:effect (and (is-running ?ds) (depends ?r ?ds))
+:effect (and (is-running ?ds) (depends ?r ?ds) (requests ?r ?ds))
 )
 
 
@@ -60,26 +60,40 @@
   )
 )
 
+(:action start_root 
+ :precondition (and
+   (not (is-running root))
+   ;(forall (?dep - instance_req) (imply (depends root ?dep) (or (and  (is-running ?dep) (requests root ?dep)) (depends root ?dep) ) ) ) 
+   (forall (?dep - instance_req) (imply (depends root ?dep) 
+        (or     
+                (and (is-running ?dep) (requests root ?dep) )
+                (depends ?dep root)
+        ) )  
+    )
+  )
+ :effect (is-running root) 
+)
+
 (:action startc :parameters (?r - instance_req ?c - instance_req)
  :precondition (and
    (not (is-running ?c))
-   (requests ?r ?c)
+   (depends ?r ?c)
    (composition ?c)
    (forall (?dep - instance_req) 
-    (imply (depends ?c ?dep) (is-running ?dep)) 
+    (imply (depends?c ?dep) (and (is-running ?dep) (requests ?c ?dep) ) ) 
    )
   )
- :effect (and (is-running ?c) (depends ?r ?c) (forall (?dep - instance_req) (when (depends ?c ?dep) (requests ?c ?dep ))))
+ :effect (and (is-running ?c) (requests ?r ?c) ) ;(depends ?r ?c) (forall (?dep - instance_req) (when (depends ?c ?dep) (requests ?c ?dep ))))
 )
 
 ;;Needed interrim step to start tasks, make sure one of the previous elemtns is required before adding this constraint
 ;;Todo should be checked to match recursive constraints
-(:action addRequirement :parameters (?r2 - instance_req ?r - instance_req ?c - instance_req)
-    :precondition (and
-        (requests ?r2 ?r)
-        (depends ?r ?c)
-    )
-    :effect (requests ?r ?c)
-)
+;(:action addRequirement :parameters (?r2 - instance_req ?r - instance_req ?c - instance_req)
+;    :precondition (and
+;        (requests ?r2 ?r)
+;        (depends ?r ?c)
+;    )
+;    :effect (requests ?r ?c)
+;)
 
 )
