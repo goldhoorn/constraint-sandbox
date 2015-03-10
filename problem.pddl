@@ -2122,7 +2122,7 @@
             (fullfills Gps::GPSDTask  Dev::Sensors::GPS)
             (fullfills Gps::GPSDTask  Base::PositionSrv)
             (fullfills Gps::GPSDTask  Syskit::Device)
-            (fullfills Gps::GPSDTask  Syskit::DataService)
+            (fullfills Gps::GPSDTask  Base::OrientationWithZSrv)
             (fullfills BatteryWatcher::Task  Dev::Sensors::Battery)
             (fullfills BatteryWatcher::Task  Dev::Bus::CAN::ClientInSrv)
             (fullfills BatteryWatcher::Task  Syskit::Device)
@@ -2137,11 +2137,19 @@
             (fullfills SonarTritech::Echosounder  Syskit::Device)
             (fullfills SonarTritech::Echosounder  Syskit::DataService)
 
+;            (depends root  OffshorePipelineDetector::Task)
+;            (depends root  Base::ImageProviderSrv)
+;            (depends root  Base::OrientationWithZSrv)
 
+
+;            (depends root  Pipeline::Detector)
+;            (depends root  Base::ControlledSystemSrv)
+;            (depends root  Pipeline::Detector)
 
 
             (requests root  root)
-            (depends root PoseAuv::IKFOrientationEstimatorCmp)
+            (depends root Pipeline::Follower)
+;            (depends root PoseAuv::IKFOrientationEstimatorCmp)
 ;            (depends root  BatteryWatcher::Task)
 ;            (requests root  BatteryWatcher::Task)
 ;            (depends root  Base::SonarScanProviderSrv)
