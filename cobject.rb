@@ -29,6 +29,20 @@ class BaseObject
         @running = false
     end
     
+    def valid_model?(model)
+        if
+            model.name == "Roby::Task" or
+            model.name == "Syskit::Composition" or
+            model.name == "Syskit::Component" or 
+            model.name == "Syskit::DataService"
+            return false 
+        else
+#            binding.pry
+#            STDOUT.puts "Class: #{model.class.name}"
+            return true
+        end
+    end
+    
     def input_ports
         []
     end
@@ -48,7 +62,9 @@ class BaseObject
     def each_fullfillment
         return enum_for(:each_fullfillment) unless block_given?
         fullfills.each do |value|
-            yield(value.name.escape)
+            if valid_model?(value)
+                yield(value.name.escape)
+            end
         end
     end
 
@@ -58,8 +74,8 @@ class RootObject < BaseObject
 
     def initialize
         super
-        @requires << Requirement.new("root")
-        @depends = [Requirement.new("root")]
+#        @requires << Requirement.new("root")
+#        @depends = [Requirement.new("root")]
         @running = false 
     end
    

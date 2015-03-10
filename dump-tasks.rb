@@ -98,14 +98,14 @@ Roby.app.setup
     #Testing stuff
 
     #Test for start
-    objects['root'].addDependancy("BatteryWatcher::Task")
-    objects['root'].addDependancy("Base::SonarScanProviderSrv",true)
-    objects['root'].addDependancy("Pipeline::Follower")
-    objects['root'].addDependancy("PoseAuv::IKFOrientationEstimatorCmp",true)
-    objects['root'].addDependancy("BatteryWatcher::Task",true)
-    objects['root'].addDependancy("Base::SonarScanProviderSrv",true)
+#    objects['root'].addDependancy("BatteryWatcher::Task")
+#    objects['root'].addDependancy("Base::SonarScanProviderSrv",false)
+#    objects['root'].addDependancy("Pipeline::Follower")
+#    objects['root'].addDependancy("PoseAuv::IKFOrientationEstimatorCmp",false)
+#    objects['root'].addDependancy("BatteryWatcher::Task",false)
+#    objects['root'].addDependancy("Base::SonarScanProviderSrv",false)
     #test for shutdown
-    objects['DepthReader::Task'].running = true
+#    objects['DepthReader::Task'].running = true
 
 
 

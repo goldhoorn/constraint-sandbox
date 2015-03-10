@@ -13,6 +13,7 @@
 	 (data-service ?x - instance_req)
 	 (task ?x - instance_req)
 	 (composition ?x - instance_req)
+         (is-root ?x - instance_req)
 )
 
 (:action startt :parameters (?r - instance_req ?t - instance_req)
@@ -73,12 +74,13 @@
         ) )  
     )
   )
- :effect (is-running root) 
+ :effect (and (is-running root) (depends root root) (requests root root ) )
 )
 
 (:action startc :parameters (?r - instance_req ?c - instance_req)
  :precondition (and
    (not (is-running ?c))
+   (not (is-root ?c) )
    (or (depends ?r ?c) (fullfills ?c ?r))
    (composition ?c)
    (forall (?dep - instance_req) 
