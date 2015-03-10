@@ -60,11 +60,11 @@ class RootObject < BaseObject
         super
         @requires << Requirement.new("root")
         @depends = [Requirement.new("root")]
-        @running = true
+        @running = false 
     end
    
     def type
-        "task"
+        "composition"
     end
     
     def metatype 

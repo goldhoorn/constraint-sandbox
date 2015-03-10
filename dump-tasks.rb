@@ -70,6 +70,12 @@ Roby.app.setup
             o.addDependancy(child.model.name.gsub(" ","").escape)
         end
         
+        cmp.each_fullfilled_model do |service|
+            service.each_fullfilled_model do |model|
+                o.fullfills << model
+            end
+        end
+
         if(objects[o.name])
             STDERR.puts "Warning Cmp #{cmp.name} already added" 
             next
@@ -93,7 +99,11 @@ Roby.app.setup
 
     #Test for start
     objects['root'].addDependancy("BatteryWatcher::Task")
-    objects['root'].addDependancy("Base::SonarScanProviderSrv")
+    objects['root'].addDependancy("Base::SonarScanProviderSrv",true)
+    objects['root'].addDependancy("Pipeline::Follower")
+    objects['root'].addDependancy("PoseAuv::IKFOrientationEstimatorCmp",true)
+    objects['root'].addDependancy("BatteryWatcher::Task",true)
+    objects['root'].addDependancy("Base::SonarScanProviderSrv",true)
     #test for shutdown
     objects['DepthReader::Task'].running = true
 
