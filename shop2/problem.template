@@ -1,0 +1,69 @@
+(defproblem problem network
+    (; Startzustand begin
+
+
+<% objects.each do |o| %>
+    <% if o.type %>
+        (<%= o.type %>  <%= o.name %>)
+    <% end %>
+    <%if o.is_running? %>
+        (is-running <%= o.name %>)
+    <% end %>
+<% end %>
+
+<% objects.each do |o| %>
+    <% o.depends.each do |d| %>
+        <%if d.disabled? %>
+;            (depends <%= o.name %>  <%= d.name %>)
+        <% else %>
+            (depends <%= o.name %>  <%= d.name %>)
+        <% end %>
+    <% end %>
+<% end %>
+            
+; Begin fullfillments 
+<% objects.each do |o| %>
+    <% o.each_fullfillment do |f| %>
+            (fullfills <%= o.name %>  <%= f %>)
+    <% end %>
+<% end %>
+
+; Begin inputs 
+<% objects.each do |o| %>
+    <% o.input_ports.each do |p| %>
+            (has_input <%= o.name %> <%=o.name %>.<%= p.name %>)
+    <% end %>
+<% end %>
+
+; Begin outputs 
+<% objects.each do |o| %>
+    <% o.output_ports.each do |p| %>
+            (has_output <%= o.name %> <%=o.name %>.<%= p.name %>)
+    <% end %>
+<% end %>
+; Fix encoded knoeledge
+            (is-root root)
+
+; Begin requirements
+<% objects.each do |o| %>
+    <% o.requires.each do |d| %>
+            (depends <%= o.name %>  <%= d.name %>)
+    <% end %>
+<% end %>
+    
+
+    ); Startzustand ende
+    (and(
+        (is-running root)
+
+        (forall (?t - instance_req)
+        (exists (?r - instance_req)
+                (imply
+                (is-running ?t)
+                (requests ?r ?t)
+                ;(depends ?r ?t)
+                )
+                )
+                )
+    ))
+)
