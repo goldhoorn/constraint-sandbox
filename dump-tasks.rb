@@ -108,6 +108,8 @@ Roby.app.setup
 #    objects['DepthReader::Task'].running = true
 
 
+
+
 if(File.exists?("problem.pddl.template"))
     binding.render("problem.pddl.template","problem.pddl")
 end
