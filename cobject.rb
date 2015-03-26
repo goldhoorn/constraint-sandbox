@@ -1,4 +1,10 @@
 
+class String
+    def escape
+        pattern = /(\'|\"|\*|\/|\-|\\|\)|\$|\+|\(|\^|\?|\!|\~|\`|\[|\]|<|>)/
+        self.gsub(pattern){|match| "_"}
+    end
+end
 
 class Requirement
 
