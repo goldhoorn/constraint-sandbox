@@ -22,16 +22,37 @@ def invalid(name)
     name.include?("Syskit::Composition") ||
     name.include?("Syskit::Component") ||
     name.include?("Roby::Task") ||
-    name.include?("ControlLoop") ||
+#    name.include?("ControlLoop") ||
     name.include?("Syskit::ComBus") ||
     name.include?("Syskit::Device") ||
-    name.include?("Base::ControlledSystemSrv") ||
-    name.include?("Base::ControllerSrv") ||
-    name.include?("Controller") ||
-    name.include?("Controlled") ||
+#    name.include?("Base::ControlledSystemSrv") ||
+#    name.include?("Base::ControllerSrv") ||
+#    name.include?("Controller") ||
+#    name.include?("Controlled") ||
+#    name.include?("is_a") ||
     false
 end
 
+def base_name(name)
+    name.to_s.split("/").first
+end
+
+def generate_specialized_if_needed(name, ir, dump, extra_args = [])
+    model = ir.model
+    action = ir.action
+
+    if action.arguments.each.to_a.any?{|k,v| v} 
+        dump.puts "\tauto #{name} = pool->getComponent(\"#{base_name(model.to_s)}\")->getSpecialized();"
+        action.arguments.each do |k,v|
+            dump.puts "\t #{name}->addConfig(\""+ k.to_s + "\",\"" + v.to_s + "\");"
+        end
+    else
+        dump.puts "\tauto #{name} = pool->getComponent(\"#{base_name(model.to_s)}\");"
+    end
+    extra_args.each do |a|
+        dump.puts a
+    end
+end
 
 
 Roby.app.robot 'avalon'
@@ -61,6 +82,7 @@ Roby.app.setup
         #Preevaluate if we have processed each child
         cmp.each_child do |child_name,child|
             next if invalid(child.model.name)
+
             service = nil
             service_name = child.model.fullfilled_model.first.name
             if (service = @data_services[service_name]).nil?
@@ -83,12 +105,19 @@ Roby.app.setup
         end
 
         @compositions[cmp.name] = CONSTRAINED_BASED_NETWORKS::Composition.new(cmp.name)
+        
+        if cmp.name != base_name(cmp.name)
+            #cmp got already added as a more-abstract one
+            return true
+        end
 
         @dump.puts  "{"
-        @dump.puts  "auto c = new Composition(\"#{cmp.name}\");"
+        
+
+        @dump.puts  "auto c = new Composition(\"#{base_name(cmp.name)}\");"
         
         cmp.each_event do |symbol,object|
-            @dump.puts "c->addEvent(\"#{symbol.to_s}\")"
+            @dump.puts "c->addEvent(\"#{symbol.to_s}\");"
         end
 
         cmp.each_child do |child_name,child|
@@ -116,7 +145,7 @@ Roby.app.setup
             end
 
                         
-            @dump.puts "c->addChild(pool->getComponent(\"#{service_name}\"),\"#{child_name}\");" 
+            @dump.puts "c->addChild(pool->getComponent(\"#{base_name(service_name)}\"),\"#{child_name}\");" 
             @compositions[cmp.name].add_child(service, child_name)#child.model.name.gsub(" ","").escape)
 #            o.addDependancy(child.model.name.gsub(" ","").escape)
         end
@@ -125,7 +154,7 @@ Roby.app.setup
             service.each_fullfilled_model do |model|
                 next if invalid(model.name)
                 @compositions[cmp.name].add_fullfillment model.name
-                @dump.puts "c->addFullfillment(\"#{model.name}\");" 
+                @dump.puts "c->addFullfillment(\"#{base_name(model.name)}\");" 
                 #o.fullfills << model
             end
         end
@@ -137,29 +166,62 @@ Roby.app.setup
 
 #    binding.pry
 #    exit 0
-#    ::Main.each_action do |a|
-#        if !a.coordination_model 
-#            #We taking respect only to things thare a re repesent somehow a mission
-#            next
-#        end
-#        a.coordination_model.each_task do |t|
+
+    dump = File.new("state_machines.hpp",File::CREAT|File::TRUNC|File::RDWR, 0644)
+    dump.puts "void load_state_machines(){"
+    dump.puts "using namespace constrained_based_networks;"
+    dump.puts "auto pool = Pool::getInstance();"
+    ::Main.each_action do |a|
+        #TODO hier weiter
+        if !a.coordination_model 
+            #We taking respect only to things thare a re repesent somehow a mission
+            next
+        end
+        if !a.coordination_model.respond_to?("starting_state")
+            #Only catching the name got a unsupported action_script
+            dump.puts "\tnew StateMachine(\"" + a.returned_type.to_s + "\",pool);"
+            next
+        end
+       
+        dump.puts "\ttry{"
+        dump.puts "\tauto sm = new StateMachine(\"" + a.returned_type.to_s + "\",pool);"
+
+        a.coordination_model.each_task do |t|
+#            dump.puts "\tsm->setStart(\"#{t.model}\");"
 #            name = t.name
 #            model = t.model
-#        end
-#        #instance of start state might double
-#        start_state = a.coordination_model.starting_state
-#
-#        a.coordination_model.transitions.each do |source,trigger,target|
-#            source_state = source
-#            trigger_object = trigger.task #.model ?
-#            trigger_event = trigger.symbol
-#            target_state = target
-#        end
-#
-#    end
+        end
+        #instance of start state might double
+        start_state = a.coordination_model.starting_state
+        generate_specialized_if_needed("start_state",start_state,dump, ['sm->setStart(start_state);'])
+
+        a.coordination_model.transitions.each do |source,trigger,target|
+            dump.puts "{"
+            source_state = source
+            trigger_object = trigger.task #.model ?
+            trigger_event = trigger.symbol
+            target_state = target
+            
+            #binding.pry if a.name.include?("blind_forward_and_back")
+            #TODO build real models of states
+            generate_specialized_if_needed("source",source,dump)
+            generate_specialized_if_needed("target",target,dump)
+            generate_specialized_if_needed("trigger",trigger_object,dump)
+            
+            dump.puts "\tsm->addTransition(source,target,trigger,\"" + trigger_event.to_s + "\");"
+            #dump.puts "\t}catch(...){printf(\"cannot get something\");}"
+            dump.puts "}"
+
+        end
+        dump.puts "\t}catch(...){printf(\"cannot (2) get #{base_name(start_state.model)}\");}"
+        
+    end
+    dump.puts "\t}"
+
 
     begin
         dump = File.new("constraints.hpp",File::CREAT|File::TRUNC|File::RDWR, 0644)
+        dump.puts "#include \"state_machines.hpp\"";
         dump.puts "void load_constraints(){"
         dump.puts "using namespace constrained_based_networks;"
         dump.puts "auto pool = Pool::getInstance();"
@@ -185,7 +247,7 @@ Roby.app.setup
                     target = values[j].name
                 end
                 dump.puts "\t{"
-                dump.puts "\tauto c = pool->getComponent(\"" + name + "\");"
+                dump.puts "\tauto c = pool->getComponent(\"" + base_name( name) + "\");"
                 dump.puts "\tif(auto cmp = dynamic_cast<Composition*>(c)){"
                 dump.puts "\t\tcmp->addConstraint(\"" + keys[j] + "\",\"" + target + "\");"
                 dump.puts "\t}else{ std::cerr << \"FATAL cannot cast to composition\" << std::endl;}"
@@ -195,6 +257,7 @@ Roby.app.setup
             end
             i=i+2
         end
+        dump.puts "load_state_machines();"
         dump.puts "}"
     end
 
@@ -253,7 +316,7 @@ Roby.app.setup
         dump.puts  "auto t = new Task(\"#{task.name}\");" 
         dump.puts  "(void)t;"
         task.each_event do |symbol,object|
-            dump.puts "t->addEvent(\"#{symbol.to_s}\")"
+            dump.puts "t->addEvent(\"#{symbol.to_s}\");"
         end
 
 #        task.each_port do |port|
@@ -267,7 +330,7 @@ Roby.app.setup
             service.each_fullfilled_model do |model|
                 next if invalid(model.name)
                 tasks[task.name].add_fullfillment model.name
-                dump.puts  "t->addFullfillment(\"#{model.name}\");" 
+                dump.puts  "t->addFullfillment(\"#{base_name model.name}\");" 
             end
         end
         dump.puts "}"
