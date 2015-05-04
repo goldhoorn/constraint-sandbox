@@ -120,6 +120,35 @@ Roby.app.setup
             @dump.puts "c->addEvent(\"#{symbol.to_s}\");"
         end
 
+        cmp.arguments.each do |arg|
+            type = cmp.argument_types[arg]
+            if type == :double
+                @dump.puts  "\tc->addProperty(\"#{arg.to_s}\", ConfigurationModel::DOUBLE);"
+            elsif type == :string
+                @dump.puts  "\tc->addProperty(\"#{arg.to_s}\", ConfigurationModel::STRING);"
+            elsif type == :bool
+                @dump.puts  "\tc->addProperty(\"#{arg.to_s}\", ConfigurationModel::BOOL);"
+            elsif type == :int
+                @dump.puts  "\tc->addProperty(\"#{arg.to_s}\", ConfigurationModel::INT);"
+            elsif type == :config
+                #TODO handle configs *WARGH*
+            elsif type == :ignore
+                #TODO nothing
+            elsif type.nil?
+                STDERR.puts "WTF nil type for #{arg} of #{cmp.name}"
+            else
+                raise ArgumentError, "Unknown type #{type} for #{arg} of #{cmp.name}"
+            end
+        end
+
+        if(cmp.respond_to?(:argument_forwards))
+            cmp.argument_forwards.each do |child, events|
+                events.each do |source,target|
+                    #TODO handle forwards
+                end
+            end
+        end
+
         cmp.each_child do |child_name,child|
             service = nil
             #Todo hacky assume first is the least abstract one
@@ -273,7 +302,7 @@ Roby.app.setup
 #    binding.pry
 
     dump = File.new("dump.hpp",File::CREAT|File::TRUNC|File::RDWR, 0644)
-    dump.puts "#include \"constraints.hpp\";"
+    dump.puts "#include \"constraints.hpp\""
     dump.puts "std::string create_model(){"
     dump.puts "using namespace constrained_based_networks;"
     dump.puts "auto pool = Pool::getInstance();"
