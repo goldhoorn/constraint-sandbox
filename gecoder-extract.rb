@@ -144,7 +144,15 @@ Roby.app.setup
         if(cmp.respond_to?(:argument_forwards))
             cmp.argument_forwards.each do |child, events|
                 events.each do |source,target|
-                    #TODO handle forwards
+                    @dump.puts "c->addArgumentForwards(\"#{child.to_s}\", \"#{source.to_s}\", \"#{target.to_s}\");"
+                end
+            end
+        end
+        
+        if(cmp.respond_to?(:event_forwards))
+            cmp.argument_forwards.each do |child, events|
+                events.each do |source,target|
+                    @dump.puts "c->addEventForwards(\"#{child.to_s}\", \"#{source.to_s}\", \"#{target.to_s}\");"
                 end
             end
         end
