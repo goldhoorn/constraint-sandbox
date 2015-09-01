@@ -2,7 +2,7 @@ require 'orocos'
 #require 'erubis'
 require 'roby'
 require 'syskit'
-require 'constrained_based_networks'
+#require 'constrained_based_networks'
 
 require_relative 'cobject'
 
@@ -104,7 +104,7 @@ Roby.app.setup
             return true 
         end
 
-        @compositions[cmp.name] = CONSTRAINED_BASED_NETWORKS::Composition.new(cmp.name)
+        @compositions[cmp.name] = cmp.name # CONSTRAINED_BASED_NETWORKS::Composition.new(cmp.name)
         
         if cmp.name != base_name(cmp.name)
             #cmp got already added as a more-abstract one
@@ -115,6 +115,7 @@ Roby.app.setup
         
 
         @dump.puts  "auto c = new Composition(\"#{base_name(cmp.name)}\");"
+            
         
         cmp.each_event do |symbol,object|
             @dump.puts "c->addEvent(\"#{symbol.to_s}\");"
@@ -141,21 +142,6 @@ Roby.app.setup
             end
         end
 
-        if(cmp.respond_to?(:argument_forwards))
-            cmp.argument_forwards.each do |child, events|
-                events.each do |source,target|
-                    @dump.puts "c->addArgumentForwards(\"#{child.to_s}\", \"#{source.to_s}\", \"#{target.to_s}\");"
-                end
-            end
-        end
-        
-        if(cmp.respond_to?(:event_forwards))
-            cmp.argument_forwards.each do |child, events|
-                events.each do |source,target|
-                    @dump.puts "c->addEventForwards(\"#{child.to_s}\", \"#{source.to_s}\", \"#{target.to_s}\");"
-                end
-            end
-        end
 
         cmp.each_child do |child_name,child|
             service = nil
@@ -183,14 +169,30 @@ Roby.app.setup
 
                         
             @dump.puts "c->addChild(pool->getComponent(\"#{base_name(service_name)}\"),\"#{child_name}\");" 
-            @compositions[cmp.name].add_child(service, child_name)#child.model.name.gsub(" ","").escape)
+            #@compositions[cmp.name].add_child(service, child_name)#child.model.name.gsub(" ","").escape)
 #            o.addDependancy(child.model.name.gsub(" ","").escape)
+        end
+        
+        if(cmp.respond_to?(:argument_forwards))
+            cmp.argument_forwards.each do |child, events|
+                events.each do |source,target|
+                    @dump.puts "c->addArgumentForwards(\"#{child.to_s}\", \"#{source.to_s}\", \"#{target.to_s}\");"
+                end
+            end
+        end
+        
+        if(cmp.respond_to?(:event_forwards))
+            cmp.event_forwards.each do |child, events|
+                events.each do |source,target|
+                    @dump.puts "c->addEventForwards(\"#{child.to_s}\", \"#{source.to_s}\", \"#{target.to_s}\");"
+                end
+            end
         end
         
         cmp.each_fullfilled_model do |service|
             service.each_fullfilled_model do |model|
                 next if invalid(model.name)
-                @compositions[cmp.name].add_fullfillment model.name
+                #@compositions[cmp.name].add_fullfillment model.name
                 @dump.puts "c->addFullfillment(\"#{base_name(model.name)}\");" 
                 #o.fullfills << model
             end
@@ -330,7 +332,7 @@ Roby.app.setup
 
 #        constrained_based_networks::Task 
 
-        data_services[name] = CONSTRAINED_BASED_NETWORKS::DataService.new(name)
+        data_services[name] = name #CONSTRAINED_BASED_NETWORKS::DataService.new(name)
         dump.puts "new DataService(\"#{name}\");" 
 
         #STDOUT.puts "Adding DataService #{name}"
@@ -348,12 +350,22 @@ Roby.app.setup
         end
         object = CObject.new(task)
         
-        tasks[task.name] = CONSTRAINED_BASED_NETWORKS::Task.new(task.name)
+        #binding.pry if base_name(task.name).include? "DepthReader"
+        
+        tasks[task.name] = task.name #CONSTRAINED_BASED_NETWORKS::Task.new(task.name)
         dump.puts  "{"
         dump.puts  "auto t = new Task(\"#{task.name}\");" 
         dump.puts  "(void)t;"
         task.each_event do |symbol,object|
             dump.puts "t->addEvent(\"#{symbol.to_s}\");"
+        end
+
+        if c = Orocos.conf.conf[task.orogen_model.name]
+            c.sections.each do |n,s|
+                    s.each do |k,v|
+                        dump.puts "t->addConfFileProperty(\"" + n.to_s + "\",\"" + k.to_s + "\",\"" + v.to_s + "\");"
+                    end
+            end
         end
 
 #        task.each_port do |port|
@@ -366,10 +378,44 @@ Roby.app.setup
         task.each_data_service do |name,service|
             service.each_fullfilled_model do |model|
                 next if invalid(model.name)
-                tasks[task.name].add_fullfillment model.name
+                #tasks[task.name].add_fullfillment model.name
                 dump.puts  "t->addFullfillment(\"#{base_name model.name}\");" 
             end
         end
+
+#        binding.pry
+
+        task.orogen_model.each_property do |prop|
+            type = nil 
+            begin
+                type = prop.type.convertion_to_ruby[0]
+            rescue Exception => e
+                STDERR.puts "Cannot handle #{prop} with type #{prop.type} of #{task.name}"
+#                binding.pry
+                next
+            end
+
+            if type <= Float
+                @dump.puts  "\tt->addProperty(\"#{prop.name.to_s}\", ConfigurationModel::DOUBLE);"
+            elsif type <= String 
+                @dump.puts  "\tt->addProperty(\"#{prop.name.to_s}\", ConfigurationModel::STRING);"
+            elsif prop.type.name == "/bool" 
+                @dump.puts  "\tt->addProperty(\"#{prop.name.to_s}\", ConfigurationModel::BOOL);"
+            elsif type <= Integer || prop.type.name <= "/int32_t"
+                @dump.puts  "\tt->addProperty(\"#{prop.name.to_s}\", ConfigurationModel::INT);"
+#            elsif type == "/config"
+#                #TODO handle configs *WARGH*
+#            elsif type == :ignore
+#                #TODO nothing
+            elsif type.nil?
+                STDERR.puts "WTF nil type for #{prop} of #{task.name}"
+            else
+                STDERR.puts "Cannot handle #{prop} with type #{prop.type} of #{task.name}"
+                #binding.pry
+                #raise ArgumentError, "Unknown type #{type} for #{prop.name} of #{task.name}"
+            end
+        end
+
         dump.puts "}"
         objects << object
     end
