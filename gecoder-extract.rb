@@ -114,7 +114,7 @@ Roby.app.setup
         @dump.puts  "{"
         
 
-        @dump.puts  "auto c = new Composition(\"#{base_name(cmp.name)}\");"
+        @dump.puts  "auto c = new Composition(\"#{base_name(cmp.name)}\",pool);"
             
         
         cmp.each_event do |symbol,object|
@@ -181,6 +181,12 @@ Roby.app.setup
             end
         end
         
+        if(cmp.respond_to?(:emits))
+            cmp.emits.each do |e|
+                @dump.puts "c->addSelfEmitations(\"#{e.to_s}\");"
+            end
+        end
+        
         if(cmp.respond_to?(:event_forwards))
             cmp.event_forwards.each do |child, events|
                 events.each do |source,target|
@@ -207,9 +213,8 @@ Roby.app.setup
 #    exit 0
 
     dump = File.new("state_machines.hpp",File::CREAT|File::TRUNC|File::RDWR, 0644)
-    dump.puts "void load_state_machines(){"
+    dump.puts "void load_state_machines(constrained_based_networks::Pool *pool){"
     dump.puts "using namespace constrained_based_networks;"
-    dump.puts "auto pool = Pool::getInstance();"
     ::Main.each_action do |a|
         #TODO hier weiter
         if !a.coordination_model 
@@ -261,9 +266,8 @@ Roby.app.setup
     begin
         dump = File.new("constraints.hpp",File::CREAT|File::TRUNC|File::RDWR, 0644)
         dump.puts "#include \"state_machines.hpp\"";
-        dump.puts "void load_constraints(){"
+        dump.puts "void load_constraints(constrained_based_networks::Pool *pool){"
         dump.puts "using namespace constrained_based_networks;"
-        dump.puts "auto pool = Pool::getInstance();"
 
         dep = Syskit::Actions::Profile.profiles.find{|p| p.name == "Avalon::Profiles::Avalon"}.dependency_injection.each.to_a
         i=0
@@ -296,7 +300,7 @@ Roby.app.setup
             end
             i=i+2
         end
-        dump.puts "load_state_machines();"
+        dump.puts "load_state_machines(pool);"
         dump.puts "}"
     end
 
@@ -313,9 +317,8 @@ Roby.app.setup
 
     dump = File.new("dump.hpp",File::CREAT|File::TRUNC|File::RDWR, 0644)
     dump.puts "#include \"constraints.hpp\""
-    dump.puts "std::string create_model(){"
+    dump.puts "std::string create_model(constrained_based_networks::Pool *pool){"
     dump.puts "using namespace constrained_based_networks;"
-    dump.puts "auto pool = Pool::getInstance();"
     
     @dump = dump
 
@@ -333,7 +336,7 @@ Roby.app.setup
 #        constrained_based_networks::Task 
 
         data_services[name] = name #CONSTRAINED_BASED_NETWORKS::DataService.new(name)
-        dump.puts "new DataService(\"#{name}\");" 
+        dump.puts "new DataService(\"#{name}\",pool);" 
 
         #STDOUT.puts "Adding DataService #{name}"
 
@@ -354,7 +357,7 @@ Roby.app.setup
         
         tasks[task.name] = task.name #CONSTRAINED_BASED_NETWORKS::Task.new(task.name)
         dump.puts  "{"
-        dump.puts  "auto t = new Task(\"#{task.name}\");" 
+        dump.puts  "auto t = new Task(\"#{task.name}\",pool);" 
         dump.puts  "(void)t;"
         task.each_event do |symbol,object|
             dump.puts "t->addEvent(\"#{symbol.to_s}\");"
@@ -438,7 +441,7 @@ Roby.app.setup
         STDOUT.puts "Size old: #{prunedCmps2.size} new: #{prunedCmps.size}"
     end
 
-    dump.puts "load_constraints();" 
+    dump.puts "load_constraints(pool);" 
     dump.puts "return \"\";" 
     dump.puts "}"
 
