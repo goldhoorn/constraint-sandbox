@@ -1,0 +1,177 @@
+Bundles[INFO]: Active bundles: avalon, rock, rock.dfki, auv, sauce
+[0mpose_estimator_blind.depth == DFKI::Profiles::PoseEstimation.depth_tag
+pose_estimator_blind.ori == DFKI::Profiles::PoseEstimation.orientation_tag
+pose_estimator_blind.model == DFKI::Profiles::PoseEstimation.motion_model_tag
+pose_estimator_blind.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_estimator_gps.depth == DFKI::Profiles::PoseEstimation.depth_tag
+pose_estimator_gps.ori == DFKI::Profiles::PoseEstimation.orientation_tag
+pose_estimator_gps.model == DFKI::Profiles::PoseEstimation.motion_model_tag
+pose_estimator_gps.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_estimator_gps.localization == DFKI::Profiles::PoseEstimation.gps_tag
+hough_detector.Base::OrientationSrv == DFKI::Profiles::PoseEstimation.orientation_tag.m0
+hough_detector.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+localization.Base::OrientationWithZSrv == DFKI::Profiles::PoseEstimation.orientation_tag.m0
+localization.hough == Localization::HoughDetector.use(Base::OrientationSrv => DFKI::Profiles::PoseEstimation.orientation_tag.m0, dvl => DFKI::Profiles::PoseEstimation.dvl_tag)
+localization.hb == DFKI::Profiles::PoseEstimation.thruster_feedback_tag
+localization.altimeter == DFKI::Profiles::PoseEstimation.altimeter_tag
+localization.Base::DVLSrv == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_estimator.depth == DFKI::Profiles::PoseEstimation.depth_tag
+pose_estimator.ori == DFKI::Profiles::PoseEstimation.orientation_tag
+pose_estimator.model == DFKI::Profiles::PoseEstimation.motion_model_tag
+pose_estimator.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_estimator.localization == Localization::ParticleDetector.use(DFKI::Profiles::PoseEstimation.dvl_tag, Base::OrientationWithZSrv => DFKI::Profiles::PoseEstimation.orientation_tag.m0, altimeter => DFKI::Profiles::PoseEstimation.altimeter_tag, hb => DFKI::Profiles::PoseEstimation.thruster_feedback_tag, hough => Localization::HoughDetector.use(Base::OrientationSrv => DFKI::Profiles::PoseEstimation.orientation_tag.m0, dvl => DFKI::Profiles::PoseEstimation.dvl_tag))
+pose.depth == DFKI::Profiles::PoseEstimation.depth_tag
+pose.ori == DFKI::Profiles::PoseEstimation.orientation_tag
+pose.model == DFKI::Profiles::PoseEstimation.motion_model_tag
+pose.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_blind.depth == DFKI::Profiles::PoseEstimation.depth_tag
+pose_blind.ori == DFKI::Profiles::PoseEstimation.orientation_tag
+pose_blind.model == DFKI::Profiles::PoseEstimation.motion_model_tag
+pose_blind.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_blind.localization == Localization::ParticleDetector.use(DFKI::Profiles::PoseEstimation.dvl_tag, Base::OrientationWithZSrv => DFKI::Profiles::PoseEstimation.orientation_tag.m0, altimeter => DFKI::Profiles::PoseEstimation.altimeter_tag, hb => DFKI::Profiles::PoseEstimation.thruster_feedback_tag, hough => Localization::HoughDetector.use(Base::OrientationSrv => DFKI::Profiles::PoseEstimation.orientation_tag.m0, dvl => DFKI::Profiles::PoseEstimation.dvl_tag))
+pose_gps.depth == DFKI::Profiles::PoseEstimation.depth_tag
+pose_gps.ori == DFKI::Profiles::PoseEstimation.orientation_tag
+pose_gps.model == DFKI::Profiles::PoseEstimation.motion_model_tag
+pose_gps.dvl == DFKI::Profiles::PoseEstimation.dvl_tag
+pose_gps.localization == DFKI::Profiles::PoseEstimation.gps_tag
+base_loop.Base::OrientationWithZSrv == DFKI::Profiles::AUV.orientation_with_z_tag.m0
+base_loop.dist == DFKI::Profiles::AUV.altimeter_tag
+base_loop.controller == AvalonControl::MotionControlTask
+base_loop.controlled_system == DFKI::Profiles::AUV.thruster_tag
+relative_control_loop.controller == AuvRelPosController::Task
+relative_control_loop.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+relative_heading_loop.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+relative_heading_loop.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+relative_heading_loop.controller == AuvRelPosController::Task.with_arguments([conf => [default, relative_heading]])
+world_and_xy_velo_controller.joint == DFKI::Profiles::AUV.thruster_tag
+relative_loop.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+relative_loop.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+relative_loop.controller == AuvRelPosController::Task.with_arguments([conf => [default, relative_heading]])
+absolute_loop.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+absolute_loop.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+absolute_loop.controller == AuvRelPosController::Task.with_arguments([conf => [default, absolute_heading]])
+buoy.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AuvRelPosController::Task), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AuvRelPosController::Task.with_arguments([conf => [default, absolute_heading]]), orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+drive_simple.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+drive_simple.AuvControl::JoystickCommandCmp == AuvControl::JoystickCommandCmp.use(dist => DFKI::Profiles::AUV.altimeter_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+drive_simple.Base::AUVMotionControllerSrv == AuvControl::JoystickCommandCmp.use(dist => DFKI::Profiles::AUV.altimeter_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+drive_simple.Base::ControllerSrv == AuvControl::JoystickCommandCmp.use(dist => DFKI::Profiles::AUV.altimeter_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+drive_simple.Base::WorldXYVelocityControllerSrv == AuvControl::JoystickCommandCmp.use(dist => DFKI::Profiles::AUV.altimeter_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+position_control_loop.controller == AvalonControl::PositionControlTask
+position_control_loop.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+position_control_loop.pose == DFKI::Profiles::AUV.pose_tag
+target_move.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AvalonControl::PositionControlTask, pose => DFKI::Profiles::AUV.pose_tag)
+target_move.pose == DFKI::Profiles::AUV.pose_tag
+simple_move.reading == DFKI::Profiles::AUV.orientation_with_z_tag
+simple_move.Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)] == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+simple_move.Base::AUVMotionControlledSystemSrv == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+simple_move.Base::AUVMotionCommandConsumerSrv == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+simple_move.Base::ControlledSystemSrv == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+simple_move.Base::ControlLoop == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag)
+wall_detector.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+wall_detector.dead_reckoning == DFKI::Profiles::AUV.motion_model_tag
+wall_detector_new.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+wall_detector_new.dead_reckoning == DFKI::Profiles::AUV.motion_model_tag
+wall_right.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AuvRelPosController::Task), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AuvRelPosController::Task.with_arguments([conf => [default, relative_heading]]), orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+wall_right.Wall::Detector == Wall::Detector.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]])
+wall_right.Base::AUVRelativeMotionControllerSrv == Wall::Detector.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]])
+wall_right.Base::ControllerSrv == Wall::Detector.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]])
+sonar_structure_detector.pose_blind == DFKI::Profiles::AUV.pose_blind_tag
+sonar_structure_servoing.pose == DFKI::Profiles::AUV.pose_blind_tag
+sonar_structure_servoing.controller == Structure::SonarStructureServoingComp.use(pose_blind => DFKI::Profiles::AUV.pose_blind_tag)
+sonar_structure_servoing.joint == DFKI::Profiles::AUV.thruster_tag
+trajectory_move.Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)] == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AvalonControl::PositionControlTask, pose => DFKI::Profiles::AUV.pose_tag)
+trajectory_move.Base::AUVRelativeMotionControlledSystemSrv == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AvalonControl::PositionControlTask, pose => DFKI::Profiles::AUV.pose_tag)
+trajectory_move.Base::AUVRelativeMotionCommandConsumerSrv == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AvalonControl::PositionControlTask, pose => DFKI::Profiles::AUV.pose_tag)
+trajectory_move.Base::ControlledSystemSrv == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AvalonControl::PositionControlTask, pose => DFKI::Profiles::AUV.pose_tag)
+trajectory_move.Base::ControlLoop == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::PositionControlTask), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AvalonControl::PositionControlTask, pose => DFKI::Profiles::AUV.pose_tag)
+trajectory_move.Base::PoseSrv == DFKI::Profiles::AUV.pose_tag
+trajectory_move.Base::PositionSrv == DFKI::Profiles::AUV.pose_tag
+buoy_detector.camera == DFKI::Profiles::AUV.forward_looking_camera_tag
+buoy_detector.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+buoy_detector_bottom.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+buoy_detector_bottom.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+white_buoy_detector_bottom.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+white_buoy_detector_bottom.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+orange_buoy_detector_bottom.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+orange_buoy_detector_bottom.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+double_buoy.main == DFKI::Profiles::AUV.map_tag
+double_buoy.white == Buoy::DetectorCmp2.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+double_buoy.orange == Buoy::DetectorCmp.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+simple_move_new.pose == DFKI::Profiles::AUV.pose_blind_tag
+simple_move_new.joint == DFKI::Profiles::AUV.thruster_tag
+target_move_new.pose == DFKI::Profiles::AUV.pose_tag
+target_move_new.command == AuvControl::ConstantCommand
+target_move_new.joint == DFKI::Profiles::AUV.thruster_tag
+drive_simple_new.pose == DFKI::Profiles::AUV.pose_blind_tag
+drive_simple_new.joint == DFKI::Profiles::AUV.thruster_tag
+drive_simple_new.controller == AuvControl::JoystickCommandCmp.use(dist => DFKI::Profiles::AUV.altimeter_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+structure_detector.camera == DFKI::Profiles::AUV.forward_looking_camera_tag
+structure_detector.ori == DFKI::Profiles::AUV.orientation_with_z_tag
+structure_detector_down.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+structure_detector_down.ori == DFKI::Profiles::AUV.orientation_with_z_tag
+structure_align_detector.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+structure_inspection.pose == DFKI::Profiles::AUV.pose_tag
+structure_inspection.joint == DFKI::Profiles::AUV.thruster_tag
+structure_inspection.controller == Structure::Detector.use(camera => DFKI::Profiles::AUV.forward_looking_camera_tag, ori => DFKI::Profiles::AUV.orientation_with_z_tag)
+structure_inspection.main == Structure::Detector.use(camera => DFKI::Profiles::AUV.forward_looking_camera_tag, ori => DFKI::Profiles::AUV.orientation_with_z_tag)
+structure_alignment.pose == DFKI::Profiles::AUV.pose_tag
+structure_alignment.joint == DFKI::Profiles::AUV.thruster_tag
+structure_alignment.main == Structure::Alignment.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag)
+structure_alignment.controller == Structure::Alignment.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag)
+structure_reconstruction.front_camera == DFKI::Profiles::AUV.forward_looking_camera_tag
+structure_reconstruction.bottom_camera == DFKI::Profiles::AUV.down_looking_camera_tag
+pipeline_detector.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+pipeline_detector.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+pipeline_detector_new.camera == DFKI::Profiles::AUV.down_looking_camera_tag
+pipeline_detector_new.orientation_with_z == DFKI::Profiles::AUV.orientation_with_z_tag
+pipeline.controlled_system == Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AuvRelPosController::Task), controlled_system.is_a?(Base::AUVMotionControlledSystemSrv)]].use(controlled_system => Base::ControlLoop[narrowed to Base::ControlLoop/[controller.is_a?(AvalonControl::MotionControlTask), controlled_system.is_a?(Base::JointsControlledSystemSrv)]].use(Base::OrientationWithZSrv => DFKI::Profiles::AUV.orientation_with_z_tag.m0, controlled_system => DFKI::Profiles::AUV.thruster_tag, controller => AvalonControl::MotionControlTask, dist => DFKI::Profiles::AUV.altimeter_tag), controller => AuvRelPosController::Task.with_arguments([conf => [default, relative_heading]]), orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+pipeline.Pipeline::Detector == Pipeline::Detector.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+pipeline.Base::AUVRelativeMotionControllerSrv == Pipeline::Detector.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+pipeline.Base::ControllerSrv == Pipeline::Detector.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+pipeline_new.pose == DFKI::Profiles::AUV.pose_tag
+pipeline_new.controller == Pipeline::Detector_new.use(camera => DFKI::Profiles::AUV.down_looking_camera_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag)
+pipeline_new.joint == DFKI::Profiles::AUV.thruster_tag
+wall_right_new.pose == DFKI::Profiles::AUV.pose_tag
+wall_right_new.controller == Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]])
+wall_right_new.joint == DFKI::Profiles::AUV.thruster_tag
+wall_left_new.pose == DFKI::Profiles::AUV.pose_tag
+wall_left_new.controller == Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_left]])
+wall_left_new.joint == DFKI::Profiles::AUV.thruster_tag
+wall_front_left_new.pose == DFKI::Profiles::AUV.pose_tag
+wall_front_left_new.controller == Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_front_left]])
+wall_front_left_new.joint == DFKI::Profiles::AUV.thruster_tag
+wall_front_right_new.pose == DFKI::Profiles::AUV.pose_tag
+wall_front_right_new.controller == Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_front_right]])
+wall_front_right_new.joint == DFKI::Profiles::AUV.thruster_tag
+trajectory.joint == DFKI::Profiles::AUV.thruster_tag
+trajectory.pose == DFKI::Profiles::AUV.pose_tag
+trajectory.AvalonControl::TrajectoryFollower == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, hall_cool]])
+trajectory.Base::WorldXYZRollPitchYawControllerSrv == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, hall_cool]])
+trajectory.Base::AUVRelativeMotionControllerSrv == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, hall_cool]])
+trajectory.Base::ControllerSrv == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, hall_cool]])
+trajectory.RTT::TaskContext == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, hall_cool]])
+blind_circle.joint == DFKI::Profiles::AUV.thruster_tag
+blind_circle.pose == DFKI::Profiles::AUV.pose_blind_tag
+blind_circle.AvalonControl::TrajectoryFollower == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, circle]])
+blind_circle.Base::WorldXYZRollPitchYawControllerSrv == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, circle]])
+blind_circle.Base::AUVRelativeMotionControllerSrv == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, circle]])
+blind_circle.Base::ControllerSrv == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, circle]])
+blind_circle.RTT::TaskContext == AvalonControl::TrajectoryFollower.with_arguments([conf => [default, circle]])
+wall_buoy_detector.front_camera == DFKI::Profiles::AUV.forward_looking_camera_tag
+wall_buoy_controller.detector == Buoy::DetectorNewCmp.use(front_camera => DFKI::Profiles::AUV.forward_looking_camera_tag)
+wall_buoy_controller.pose == DFKI::Profiles::AUV.pose_tag
+wall_buoy_controller.wall == Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]])
+wall_buoy_survey.pose == DFKI::Profiles::AUV.pose_tag
+wall_buoy_survey.controller == Buoy::ControllerNewCmp.use(detector => Buoy::DetectorNewCmp.use(front_camera => DFKI::Profiles::AUV.forward_looking_camera_tag), pose => DFKI::Profiles::AUV.pose_tag, wall => Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]]))
+wall_buoy_survey.joint == DFKI::Profiles::AUV.thruster_tag
+wall_right_hold_pos.pose == DFKI::Profiles::AUV.pose_tag
+wall_right_hold_pos.controller == Wall::DetectorNew.use(dead_reckoning => DFKI::Profiles::AUV.motion_model_tag, orientation_with_z => DFKI::Profiles::AUV.orientation_with_z_tag).with_arguments([conf => [wall_right]])
+wall_right_hold_pos.joint == DFKI::Profiles::AUV.thruster_tag
+sonar_target_move.pose == DFKI::Profiles::AUV.pose_tag
+sonar_target_move.controller == Localization::SonarFeatureDetectorCmp
+sonar_target_move.joint == DFKI::Profiles::AUV.thruster_tag
+gps_controller.pose == DFKI::Profiles::AUV.pose_gps_tag
+gps_controller.gps == DFKI::Profiles::AUV.gps_tag
+gps_waypoints.pose == DFKI::Profiles::AUV.pose_gps_tag
+gps_waypoints.controller == GPSHelper::GPSWaypointsCmp.use(gps => DFKI::Profiles::AUV.gps_tag, pose => DFKI::Profiles::AUV.pose_gps_tag)
+gps_waypoints.joint == DFKI::Profiles::AUV.thruster_tag

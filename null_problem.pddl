@@ -1,0 +1,5 @@
+(define (problem network001)
+  (:domain network)
+  (:init)
+  (:goal)
+)

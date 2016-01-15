@@ -1,0 +1,60 @@
+var0:
+  0: Atom is-running(root)
+  1: <none of those>
+var1:
+  0: Atom new-axiom@0(mars-imu)
+  1: <none of those>
+var2:
+  0: Atom is-running(mars-camera)
+  1: <none of those>
+var3:
+  0: Atom new-axiom@0(mars-camera)
+  1: <none of those>
+var4:
+  0: Atom depends(root, mars-camera)
+  1: <none of those>
+var5:
+  0: Atom new-axiom@3()
+  1: <none of those>
+var6:
+  0: Atom new-axiom@1(mars-task)
+  1: <none of those>
+var7:
+  0: Atom is-running(testcmp)
+  1: <none of those>
+var8:
+  0: Atom new-axiom@1(testcmp)
+  1: <none of those>
+var9:
+  0: Atom new-axiom@1(mars-altimeter)
+  1: <none of those>
+var10:
+  0: Atom is-running(mars-imu)
+  1: <none of those>
+var11:
+  0: Atom depends(root, root)
+  1: <none of those>
+var12:
+  0: Atom depends(testcmp, mars-task)
+  1: <none of those>
+var13:
+  0: Atom depends(testcmp, mars-imu)
+  1: <none of those>
+var14:
+  0: Atom new-axiom@1(mars-imu)
+  1: <none of those>
+var15:
+  0: Atom new-axiom@0(root)
+  1: <none of those>
+var16:
+  0: Atom new-axiom@1(root)
+  1: <none of those>
+var17:
+  0: Atom new-axiom@2()
+  1: <none of those>
+var18:
+  0: Atom new-axiom@1(mars-camera)
+  1: <none of those>
+var19:
+  0: Atom is-running(mars-altimeter)
+  1: <none of those>

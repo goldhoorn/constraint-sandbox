@@ -232,25 +232,64 @@ builder = Nokogiri::XML::Builder.new do |xml|
             @xml.state_machine(name: a.returned_type.to_s, start_state: 0){
 
                 start_state = a.coordination_model.starting_state
+                states = Set.new
+                state_map = Hash.new
+                
+                @xml.states{
+                    id = 0
+#                    id = 1+ generate_specialized_if_needed("start_state",start_state, id)
+                    
+                    a.coordination_model.transitions.each do |source,trigger,target|
+                        states << source
+                        states << target
+                    end
 
-                id = 0
-                st = generate_specialized_if_needed("start_state",start_state, id)
-                id = st+1 
+                    #It is not part of the transitions by default 
+                    states << start_state
+
+                    #First export the start-state
+                    states.each do |state|
+                        if(state == start_state)
+                            state_map[state] = id 
+                            id = 1 + generate_specialized_if_needed("id",state,id)
+                        end
+                    end
+
+                    if(id == 0)
+                        raise "Cannot get Startig state this is horroble #{a.returned_type.to_s}" 
+                    end
+
+                    states.each do |state|
+                        if(state != start_state)
+                            state_map[state] = id 
+                            id = 1 + generate_specialized_if_needed("id",state,id)
+                        end
+                    end
+                }
+
                 a.coordination_model.transitions.each do |source,trigger,target|
-                    source_state = source
-                    trigger_object = trigger.task #.model ?
-                    trigger_event = trigger.symbol
-                    target_state = target
+                    if(trigger.task != source)
+                        STDOUT.puts source
+                        STDOUT.puts trigger.task 
+#                        raise ArgumentError, "Unsupported if emmiting child is nont the source"
+                        STDERR.puts "It is unsupported that the emmiting child does not equal the source state"
+                    end
+                    @xml.transition(source: state_map[source], target: state_map[target], event: trigger.symbol.to_s)
 
-                    #binding.pry if a.name.include?("blind_forward_and_back")
-                    #TODO build real models of states
-                    so = generate_specialized_if_needed("source",source,id)
-                    id = so+1 
-                    ta = generate_specialized_if_needed("target",target,id)
-                    id = ta+1 
-                    tr = generate_specialized_if_needed("trigger",trigger_object,id)
-                    id = tr+1 
-                    @xml.transition(source: so, target: ta, trigger: tr, event: trigger_event.to_s)
+#                    source_state = source
+#                    trigger_object = trigger.task #.model ?
+#                    trigger_event = trigger.symbol
+#                    target_state = target
+#
+#                    #binding.pry if a.name.include?("blind_forward_and_back")
+#                    #TODO build real models of states
+#                    so = generate_specialized_if_needed("source",source,id)
+#                    id = so+1 
+#                    ta = generate_specialized_if_needed("target",target,id)
+#                    id = ta+1 
+#                    tr = generate_specialized_if_needed("trigger",trigger_object,id)
+#                    id = tr+1 
+#                    @xml.transition(source: so, target: ta, trigger: tr, event: trigger_event.to_s)
 
                 end
             }
