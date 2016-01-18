@@ -2320,29 +2320,14 @@
             (fullfills GPSHelper__GPSWaypointsCmp  Base__WorldXYZRollPitchYawControllerSrv)
             (fullfills GPSHelper__GPSWaypointsCmp  Base__WorldXYZRollPitchYawControllerSrv)
 
-; Begin inputs 
-
-; Begin outputs 
-; Fix encoded knoeledge
             (is-root root)
 
-; Begin requirements
-;            (depends root  Pipeline__Follower)
     
 
     ); Startzustand ende
     (
         (is-running root)
 
-;        (forall (?t)
-;        (exists (?r)
-;                (imply
-;                (is-running ?t)
-;                (requests ?r ?t)
-;                ;(depends ?r ?t)
-;                )
-;                )
-;                )
     )
 )
 )

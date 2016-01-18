@@ -2426,6 +2426,11 @@ public class problem
 		thread = new SolverThread(tl, 1);
 		thread.start();
 
+try{
+		Thread.sleep(5000);
+
+		} catch (InterruptedException e) {
+		}
 		try {
 			while (thread.isAlive())
 				Thread.sleep(500);

@@ -50,9 +50,9 @@
       (depends TestCmp mars-Task)
 
 ;;Testfall composition läft aber keiner da
-      (is-running TestCmp)
-      (is-running mars-IMU)
-      (requests TestCmp mars-IMU)
+;      (is-running TestCmp)
+;      (is-running mars-IMU)
+;      (requests TestCmp mars-IMU)
 ;;Testfall cmp starten
       (requests root TestCmp)
   )
@@ -84,6 +84,6 @@
 ;    )
       	 (is-running root)
 ;      	 (depends root mars-Camera)
-      	 (depends root TestCmp)
+;      	 (depends root TestCmp)
   ))
 )
