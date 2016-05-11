@@ -3700,6 +3700,7 @@
             (has_output FrameDemultiplexer::Task FrameDemultiplexer::Task.state)
 ; Fix encoded knoeledge
             (is-root root)
+            (depends root AuvControl::DepthFusionCmp)
 
 ; Begin requirements
 
@@ -3712,32 +3713,11 @@
             (imply
             (is-running ?t)
             (requests ?r ?t)
-            ;(depends ?r ?t)
             )
             )
             )
     
     (is-running root)
   
-;    (forall (?t - instance_req)
-;    (forall (?r - instance_req)
-;            (imply
-;            (requests ?r ?t)
-;            (is-running ?t)
-;            )
-;            )
-;            )
-;
-;    (forall (?t - instance_req)
-;        (imply (is-running ?t)
-;            (depends ?x ?t)
-;            (is-running ?t)
-;        )
-;    )
-;      	 (is-running root)
-;      	 (depends root shouldRunning)
-;        (requests root TestCmp)
-;        (depends root TestCmp)
-;     	 (requests root TestCmp2)
   ))
 )

@@ -2,757 +2,127 @@
   (:domain network)
   (:objects
         root - instance_req
-        SonarWallHough::Task.lines - output_port
-        SonarWallHough::Task.peaks - output_port
-        SonarWallHough::Task.houghspace - output_port
-        SonarWallHough::Task.position - output_port
-        SonarWallHough::Task.position_quality - output_port
-        SonarWallHough::Task.state - output_port
-        SonarWallHough::Task.sonar_samples - input_port
-        SonarWallHough::Task.reset - input_port
-        SonarWallHough::Task.orientation_samples - input_port
-        SonarWallHough::Task.pose_samples - input_port
         SonarWallHough::Task - instance_req
-        Gps::MB500Task.solution - output_port
-        Gps::MB500Task.position_samples - output_port
-        Gps::MB500Task.state - output_port
-        Gps::MB500Task.constellation - output_port
-        Gps::MB500Task.time - output_port
         Gps::MB500Task - instance_req
-        Gps::GPSDTask.solution - output_port
-        Gps::GPSDTask.position_samples - output_port
-        Gps::GPSDTask.state - output_port
         Gps::GPSDTask - instance_req
-        Gps::BaseTask.solution - output_port
-        Gps::BaseTask.position_samples - output_port
-        Gps::BaseTask.state - output_port
         Gps::BaseTask - instance_req
-        Canbus::InterfaceTask.can_out - output_port
-        Canbus::InterfaceTask.state - output_port
-        Canbus::InterfaceTask.can_in - input_port
         Canbus::InterfaceTask - instance_req
-        VideoStreamerVlc::Streamer{1}.state - output_port
-        VideoStreamerVlc::Streamer{1}.frame_bottom_camera - input_port
-        VideoStreamerVlc::Streamer{1}.frame_front_camera - input_port
-        VideoStreamerVlc::Streamer{1}.frame_blueview - input_port
         VideoStreamerVlc::Streamer{1} - instance_req
-        Canbus::Task.stats - output_port
-        Canbus::Task.can_status - output_port
-        Canbus::Task.log_message - output_port
-        Canbus::Task.state - output_port
-        Canbus::Task.in - input_port
         Canbus::Task - instance_req
-        Transformer::Task.configuration_state - output_port
-        Transformer::Task.state - output_port
         Transformer::Task - instance_req
-        VideoStreamerVlc::Capturer.state - output_port
         VideoStreamerVlc::Capturer - instance_req
-        Buoy::ServoingOnWall.world_cmd - output_port
-        Buoy::ServoingOnWall.aligned_position_cmd - output_port
-        Buoy::ServoingOnWall.state - output_port
-        Buoy::ServoingOnWall.buoy_samples - input_port
-        Buoy::ServoingOnWall.wall_samples - input_port
-        Buoy::ServoingOnWall.orientation_samples - input_port
         Buoy::ServoingOnWall - instance_req
-        Buoy::Detector2.state - output_port
-        Buoy::Detector2.buoy - output_port
-        Buoy::Detector2.light - output_port
-        Buoy::Detector2.h_image - output_port
-        Buoy::Detector2.s_image - output_port
-        Buoy::Detector2.v_image - output_port
-        Buoy::Detector2.binary_debug_image - output_port
-        Buoy::Detector2.gray_debug_image - output_port
-        Buoy::Detector2.hough_debug_image - output_port
-        Buoy::Detector2.other_buoys - output_port
-        Buoy::Detector2.debug_image - output_port
-        Buoy::Detector2.frame - input_port
         Buoy::Detector2 - instance_req
-        VideoStreamerVlc::Streamer.state - output_port
-        VideoStreamerVlc::Streamer.frame_bottom_camera - input_port
-        VideoStreamerVlc::Streamer.frame_front_camera - input_port
-        VideoStreamerVlc::Streamer.frame_blueview - input_port
         VideoStreamerVlc::Streamer - instance_req
-        XsensImu::Task.orientation_samples - output_port
-        XsensImu::Task.calibrated_sensors - output_port
-        XsensImu::Task.timestamp_estimator_status - output_port
-        XsensImu::Task.state - output_port
-        XsensImu::Task.hard_timestamps - input_port
         XsensImu::Task - instance_req
-        PipelineInspection::LaserSimulation.laserPoints - output_port
-        PipelineInspection::LaserSimulation.laserPointCloud - output_port
-        PipelineInspection::LaserSimulation.vehiclePos - output_port
-        PipelineInspection::LaserSimulation.state - output_port
         PipelineInspection::LaserSimulation - instance_req
-        Buoy::Detector.state - output_port
-        Buoy::Detector.buoy - output_port
-        Buoy::Detector.light - output_port
-        Buoy::Detector.h_image - output_port
-        Buoy::Detector.s_image - output_port
-        Buoy::Detector.v_image - output_port
-        Buoy::Detector.binary_debug_image - output_port
-        Buoy::Detector.gray_debug_image - output_port
-        Buoy::Detector.hough_debug_image - output_port
-        Buoy::Detector.other_buoys - output_port
-        Buoy::Detector.debug_image - output_port
-        Buoy::Detector.frame - input_port
         Buoy::Detector - instance_req
-        PipelineInspection::Inspection.inspectionStatus - output_port
-        PipelineInspection::Inspection.pipePoints - output_port
-        PipelineInspection::Inspection.debugFrame - output_port
-        PipelineInspection::Inspection.pipeMap - output_port
-        PipelineInspection::Inspection.state - output_port
-        PipelineInspection::Inspection.laserSamples - input_port
-        PipelineInspection::Inspection.laserPoints - input_port
-        PipelineInspection::Inspection.laserPointCloud - input_port
-        PipelineInspection::Inspection.pipeline - input_port
-        PipelineInspection::Inspection.dead_reckoning - input_port
         PipelineInspection::Inspection - instance_req
-        Logger::Logger.state - output_port
         Logger::Logger - instance_req
-        PipelineInspection::ColorFilter.frame_out - output_port
-        PipelineInspection::ColorFilter.green_frame - output_port
-        PipelineInspection::ColorFilter.diff_frame - output_port
-        PipelineInspection::ColorFilter.state - output_port
-        PipelineInspection::ColorFilter.frame_in - input_port
         PipelineInspection::ColorFilter - instance_req
         Syskit::ROS::Node - instance_req
-        Buoy::Survey.state - output_port
-        Buoy::Survey.strafed_angle - output_port
-        Buoy::Survey.relative_position - output_port
-        Buoy::Survey.position - output_port
-        Buoy::Survey.orientation_samples - input_port
-        Buoy::Survey.force_cutting - input_port
-        Buoy::Survey.input_buoy - input_port
-        Buoy::Survey.motion_command - input_port
-        Buoy::Survey.light - input_port
-        Buoy::Survey.target_angle_input - input_port
         Buoy::Survey - instance_req
-        FogKvh::Dsp3000Task.rotation - output_port
-        FogKvh::Dsp3000Task.orientation_samples - output_port
-        FogKvh::Dsp3000Task.timestamp_estimator_status - output_port
-        FogKvh::Dsp3000Task.state - output_port
-        FogKvh::Dsp3000Task.config - input_port
         FogKvh::Dsp3000Task - instance_req
-        OrientationEstimator::IKF.transformer_stream_aligner_status - output_port
-        OrientationEstimator::IKF.transformer_status - output_port
-        OrientationEstimator::IKF.attitude_b_g - output_port
-        OrientationEstimator::IKF.state - output_port
-        OrientationEstimator::IKF.imu_samples - input_port
-        OrientationEstimator::IKF.fog_samples - input_port
-        OrientationEstimator::IKF.initial_orientation - input_port
-        OrientationEstimator::IKF.dynamic_transformations - input_port
         OrientationEstimator::IKF - instance_req
-        UwParticleLocalization::FastFusion.pose_samples - output_port
-        UwParticleLocalization::FastFusion.state - output_port
-        UwParticleLocalization::FastFusion.position_samples - input_port
-        UwParticleLocalization::FastFusion.depth_samples - input_port
-        UwParticleLocalization::FastFusion.orientation_samples - input_port
-        UwParticleLocalization::FastFusion.velocity_samples - input_port
         UwParticleLocalization::FastFusion - instance_req
-        UwParticleLocalization::MotionModel.pose_samples - output_port
-        UwParticleLocalization::MotionModel.stream_aligner_status - output_port
-        UwParticleLocalization::MotionModel.state - output_port
-        UwParticleLocalization::MotionModel.thruster_samples - input_port
-        UwParticleLocalization::MotionModel.orientation_samples - input_port
         UwParticleLocalization::MotionModel - instance_req
-        LowLevelDriver::LowLevelTask.state - output_port
-        LowLevelDriver::LowLevelTask.depth_samples - input_port
-        LowLevelDriver::LowLevelTask.ShortExposure - input_port
-        LowLevelDriver::LowLevelTask.LongExposure - input_port
-        LowLevelDriver::LowLevelTask.LightValue - input_port
-        LowLevelDriver::LowLevelTask.DebugLED - input_port
-        LowLevelDriver::LowLevelTask.LaserRate - input_port
         LowLevelDriver::LowLevelTask - instance_req
-        OrientationEstimator::BaseEstimator.stream_aligner_status - output_port
-        OrientationEstimator::BaseEstimator.attitude_b_g - output_port
-        OrientationEstimator::BaseEstimator.state - output_port
-        OrientationEstimator::BaseEstimator.imu_orientation - input_port
-        OrientationEstimator::BaseEstimator.fog_samples - input_port
-        OrientationEstimator::BaseEstimator.heading_correction - input_port
         OrientationEstimator::BaseEstimator - instance_req
-        StructureReconstruction::Task.transformer_stream_aligner_status - output_port
-        StructureReconstruction::Task.transformer_status - output_port
-        StructureReconstruction::Task.state - output_port
-        StructureReconstruction::Task.front_camera - input_port
-        StructureReconstruction::Task.bottom_camera - input_port
-        StructureReconstruction::Task.dynamic_transformations - input_port
         StructureReconstruction::Task - instance_req
-        UwParticleLocalization::OrientationCorrection.orientation_output - output_port
-        UwParticleLocalization::OrientationCorrection.orientation_offset_corrected - output_port
-        UwParticleLocalization::OrientationCorrection.state - output_port
-        UwParticleLocalization::OrientationCorrection.orientation_input - input_port
-        UwParticleLocalization::OrientationCorrection.orientation_offset - input_port
         UwParticleLocalization::OrientationCorrection - instance_req
-        LineScanner::Task.state - output_port
-        LineScanner::Task.pointcloud - output_port
-        LineScanner::Task.debug - output_port
-        LineScanner::Task.frame - input_port
         LineScanner::Task - instance_req
         Syskit::RubyTaskContext - instance_req
-        AuvRelPosController::Task.motion_command - output_port
-        AuvRelPosController::Task.state - output_port
-        AuvRelPosController::Task.position_command - input_port
-        AuvRelPosController::Task.position_sample - input_port
         AuvRelPosController::Task - instance_req
-        UwParticleLocalization::Task.pose_samples - output_port
-        UwParticleLocalization::Task.environment - output_port
-        UwParticleLocalization::Task.dead_reckoning_samples - output_port
-        UwParticleLocalization::Task.full_dead_reckoning - output_port
-        UwParticleLocalization::Task.particles - output_port
-        UwParticleLocalization::Task.debug_sonar_beam - output_port
-        UwParticleLocalization::Task.stats - output_port
-        UwParticleLocalization::Task.depth_grid - output_port
-        UwParticleLocalization::Task.grid_map - output_port
-        UwParticleLocalization::Task.debug_filtered_obstacles - output_port
-        UwParticleLocalization::Task.stream_aligner_status - output_port
-        UwParticleLocalization::Task.state - output_port
-        UwParticleLocalization::Task.laser_samples - input_port
-        UwParticleLocalization::Task.speed_samples - input_port
-        UwParticleLocalization::Task.pipeline_samples - input_port
-        UwParticleLocalization::Task.pose_update - input_port
-        UwParticleLocalization::Task.gps_pose_samples - input_port
-        UwParticleLocalization::Task.buoy_samples_orange - input_port
-        UwParticleLocalization::Task.buoy_samples_white - input_port
-        UwParticleLocalization::Task.thruster_samples - input_port
-        UwParticleLocalization::Task.orientation_samples - input_port
-        UwParticleLocalization::Task.echosounder_samples - input_port
-        UwParticleLocalization::Task.obstacle_samples - input_port
-        UwParticleLocalization::Task.structur_samples - input_port
         UwParticleLocalization::Task - instance_req
-        ModemCan::Task.modem_out - output_port
-        ModemCan::Task.canOut - output_port
-        ModemCan::Task.motion_command - output_port
-        ModemCan::Task.state - output_port
-        ModemCan::Task.modem_in - input_port
-        ModemCan::Task.canModem - input_port
-        ModemCan::Task.light_value - input_port
-        ModemCan::Task.position_samples - input_port
         ModemCan::Task - instance_req
-        DepthReader::Task.depthOut - output_port
-        DepthReader::Task.depth_samples - output_port
-        DepthReader::Task.canOut - output_port
-        DepthReader::Task.state - output_port
-        DepthReader::Task.canIn - input_port
         DepthReader::Task - instance_req
-        SonarStructureServoing::Task.position_command - output_port
-        SonarStructureServoing::Task.aligned_position_command - output_port
-        SonarStructureServoing::Task.world_command - output_port
-        SonarStructureServoing::Task.debug_data - output_port
-        SonarStructureServoing::Task.transformer_stream_aligner_status - output_port
-        SonarStructureServoing::Task.transformer_status - output_port
-        SonarStructureServoing::Task.state - output_port
-        SonarStructureServoing::Task.sonarbeam_feature - input_port
-        SonarStructureServoing::Task.odometry_samples - input_port
-        SonarStructureServoing::Task.dynamic_transformations - input_port
         SonarStructureServoing::Task - instance_req
         RTT::TaskContext - instance_req
-        Lights::Lights.light_value - output_port
-        Lights::Lights.state - output_port
-        Lights::Lights.int_in - input_port
-        Lights::Lights.can_in - input_port
         Lights::Lights - instance_req
-        WallServoing::DualSonarServoing.state - output_port
-        WallServoing::DualSonarServoing.position_command - output_port
-        WallServoing::DualSonarServoing.aligned_command - output_port
-        WallServoing::DualSonarServoing.wall_servoing_debug - output_port
-        WallServoing::DualSonarServoing.sonarbeam_feature_front - input_port
-        WallServoing::DualSonarServoing.sonarbeam_feature_rear - input_port
-        WallServoing::DualSonarServoing.orientation_sample - input_port
         WallServoing::DualSonarServoing - instance_req
-        AvalonControl::MotionFeedbackTask.hbridge_status - output_port
-        AvalonControl::MotionFeedbackTask.state - output_port
-        AvalonControl::MotionFeedbackTask.hbridge_feedback - input_port
         AvalonControl::MotionFeedbackTask - instance_req
-        BatteryWatcher::Task.can_out - output_port
-        BatteryWatcher::Task.state - output_port
-        BatteryWatcher::Task.battery_info - output_port
-        BatteryWatcher::Task.can_in - input_port
         BatteryWatcher::Task - instance_req
-        ImagePreprocessing::DepthImage2Pointcloud.pointcloud - output_port
-        ImagePreprocessing::DepthImage2Pointcloud.stream_aligner_status - output_port
-        ImagePreprocessing::DepthImage2Pointcloud.transformer_stream_aligner_status - output_port
-        ImagePreprocessing::DepthImage2Pointcloud.transformer_status - output_port
-        ImagePreprocessing::DepthImage2Pointcloud.state - output_port
-        ImagePreprocessing::DepthImage2Pointcloud.color_frame - input_port
-        ImagePreprocessing::DepthImage2Pointcloud.frame - input_port
-        ImagePreprocessing::DepthImage2Pointcloud.dynamic_transformations - input_port
         ImagePreprocessing::DepthImage2Pointcloud - instance_req
-        AuvControl::AccelerationController.state - output_port
-        AuvControl::AccelerationController.cmd_out - output_port
-        AuvControl::AccelerationController.cmd_in - input_port
-        AuvControl::AccelerationController.cmd_cascade - input_port
         AuvControl::AccelerationController - instance_req
-        SonarTritech::Micron.ground_distance - output_port
-        SonarTritech::Micron.sonar_beam - output_port
-        SonarTritech::Micron.state - output_port
         SonarTritech::Micron - instance_req
-        WallServoing::SingleSonarServoing.state - output_port
-        WallServoing::SingleSonarServoing.position_command - output_port
-        WallServoing::SingleSonarServoing.aligned_position_command - output_port
-        WallServoing::SingleSonarServoing.world_command - output_port
-        WallServoing::SingleSonarServoing.wall_servoing_debug - output_port
-        WallServoing::SingleSonarServoing.wall - output_port
-        WallServoing::SingleSonarServoing.sonarbeam_feature - input_port
-        WallServoing::SingleSonarServoing.orientation_sample - input_port
-        WallServoing::SingleSonarServoing.position_sample - input_port
         WallServoing::SingleSonarServoing - instance_req
-        SonarFeatureEstimator::Task.new_feature - output_port
-        SonarFeatureEstimator::Task.features_out - output_port
-        SonarFeatureEstimator::Task.debug_output - output_port
-        SonarFeatureEstimator::Task.2d_debug_output - output_port
-        SonarFeatureEstimator::Task.state - output_port
-        SonarFeatureEstimator::Task.sonar_input - input_port
-        SonarFeatureEstimator::Task.orientation_sample - input_port
         SonarFeatureEstimator::Task - instance_req
-        AvalonControl::TrajectoryFollower.next_position - output_port
-        AvalonControl::TrajectoryFollower.position_command - output_port
-        AvalonControl::TrajectoryFollower.next_pos_on_spline - output_port
-        AvalonControl::TrajectoryFollower.last_pos_on_spline - output_port
-        AvalonControl::TrajectoryFollower.segment_dist - output_port
-        AvalonControl::TrajectoryFollower.world_command - output_port
-        AvalonControl::TrajectoryFollower.state - output_port
-        AvalonControl::TrajectoryFollower.pose_samples - input_port
         AvalonControl::TrajectoryFollower - instance_req
-        WallServoing::SonarServoing.state - output_port
         WallServoing::SonarServoing - instance_req
-        ImagePreprocessing::BaseTask.state - output_port
         ImagePreprocessing::BaseTask - instance_req
-        PoseEstimation::BaseTask.pose_samples - output_port
-        PoseEstimation::BaseTask.state - output_port
         PoseEstimation::BaseTask - instance_req
-        AuvControl::AlignedToBody.state - output_port
-        AuvControl::AlignedToBody.cmd_out - output_port
-        AuvControl::AlignedToBody.cmd_in - input_port
-        AuvControl::AlignedToBody.cmd_cascade - input_port
-        AuvControl::AlignedToBody.orientation_samples - input_port
         AuvControl::AlignedToBody - instance_req
-        PoseEstimation::UWPoseEstimator.pose_samples - output_port
-        PoseEstimation::UWPoseEstimator.state - output_port
-        PoseEstimation::UWPoseEstimator.transformer_stream_aligner_status - output_port
-        PoseEstimation::UWPoseEstimator.transformer_status - output_port
-        PoseEstimation::UWPoseEstimator.orientation_samples - input_port
-        PoseEstimation::UWPoseEstimator.depth_samples - input_port
-        PoseEstimation::UWPoseEstimator.dvl_velocity_samples - input_port
-        PoseEstimation::UWPoseEstimator.model_velocity_samples - input_port
-        PoseEstimation::UWPoseEstimator.lbl_position_samples - input_port
-        PoseEstimation::UWPoseEstimator.xy_position_samples - input_port
-        PoseEstimation::UWPoseEstimator.gps_position_samples - input_port
-        PoseEstimation::UWPoseEstimator.xyz_position_samples - input_port
-        PoseEstimation::UWPoseEstimator.dynamic_transformations - input_port
         PoseEstimation::UWPoseEstimator - instance_req
-        PoseEstimation::HighDelayPoseEstimator.pose_samples - output_port
-        PoseEstimation::HighDelayPoseEstimator.state - output_port
-        PoseEstimation::HighDelayPoseEstimator.transformer_stream_aligner_status - output_port
-        PoseEstimation::HighDelayPoseEstimator.transformer_status - output_port
-        PoseEstimation::HighDelayPoseEstimator.pose_samples_fast - input_port
-        PoseEstimation::HighDelayPoseEstimator.pose_samples_slow - input_port
-        PoseEstimation::HighDelayPoseEstimator.xy_position_samples - input_port
-        PoseEstimation::HighDelayPoseEstimator.dynamic_transformations - input_port
         PoseEstimation::HighDelayPoseEstimator - instance_req
-        PoseEstimation::VehiclePoseEstimator.pose_samples - output_port
-        PoseEstimation::VehiclePoseEstimator.state - output_port
-        PoseEstimation::VehiclePoseEstimator.transformer_stream_aligner_status - output_port
-        PoseEstimation::VehiclePoseEstimator.transformer_status - output_port
-        PoseEstimation::VehiclePoseEstimator.orientation_samples - input_port
-        PoseEstimation::VehiclePoseEstimator.velocity_samples - input_port
-        PoseEstimation::VehiclePoseEstimator.position_samples - input_port
-        PoseEstimation::VehiclePoseEstimator.dynamic_transformations - input_port
         PoseEstimation::VehiclePoseEstimator - instance_req
-        WallServoing::WallServoing.motion_command - output_port
-        WallServoing::WallServoing.world_command - output_port
-        WallServoing::WallServoing.aligned_velocity_command - output_port
-        WallServoing::WallServoing.state - output_port
-        WallServoing::WallServoing.orientation_sample - input_port
-        WallServoing::WallServoing.servoing_wall - input_port
-        WallServoing::WallServoing.obstacle_wall - input_port
         WallServoing::WallServoing - instance_req
-        CameraProsilica::Task.frame - output_port
-        CameraProsilica::Task.frame_raw - output_port
-        CameraProsilica::Task.state - output_port
         CameraProsilica::Task - instance_req
-        WallServoing::WallDetector.point_cloud - output_port
-        WallServoing::WallDetector.wall - output_port
-        WallServoing::WallDetector.state - output_port
-        WallServoing::WallDetector.sonarbeam_feature - input_port
-        WallServoing::WallDetector.orientation_sample - input_port
-        WallServoing::WallDetector.position_sample - input_port
         WallServoing::WallDetector - instance_req
-        SonarTritech::Echosounder.ground_distance - output_port
-        SonarTritech::Echosounder.state - output_port
         SonarTritech::Echosounder - instance_req
-        SonarTritech::Profiling.profiling_scan - output_port
-        SonarTritech::Profiling.state - output_port
         SonarTritech::Profiling - instance_req
-        Interfaces::Servo.upper2lower - output_port
-        Interfaces::Servo.angle - output_port
-        Interfaces::Servo.state - output_port
-        Interfaces::Servo.cmd_angle - input_port
         Interfaces::Servo - instance_req
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.hbridge_commands - output_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.joint_commands - output_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.debug - output_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.estimated_ground_pos - output_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.state - output_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.command_out - output_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.dummy_feedback - input_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.ground_distance - input_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.pose_samples - input_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.motion_commands - input_port
-        AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.joints_in - input_port
         AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ - instance_req
-        AuvControl::WorldToAligned.state - output_port
-        AuvControl::WorldToAligned.cmd_out - output_port
-        AuvControl::WorldToAligned.cmd_in - input_port
-        AuvControl::WorldToAligned.cmd_cascade - input_port
-        AuvControl::WorldToAligned.pose_samples - input_port
         AuvControl::WorldToAligned - instance_req
-        CameraBase::Preprocess.state - output_port
-        CameraBase::Preprocess.oframe - output_port
-        CameraBase::Preprocess.iframe - input_port
         CameraBase::Preprocess - instance_req
-        AuvControl::PIDController.state - output_port
-        AuvControl::PIDController.cmd_out - output_port
-        AuvControl::PIDController.pid_state - output_port
-        AuvControl::PIDController.cmd_in - input_port
-        AuvControl::PIDController.cmd_cascade - input_port
-        AuvControl::PIDController.pose_samples - input_port
         AuvControl::PIDController - instance_req
-        AvalonControl::RelFakeWriter.position_command - output_port
-        AvalonControl::RelFakeWriter.state - output_port
         AvalonControl::RelFakeWriter - instance_req
-        AvalonControl::FakeWriter.motion_commands - output_port
-        AvalonControl::FakeWriter.state - output_port
         AvalonControl::FakeWriter - instance_req
-        AvalonControl::MotionControlTask.hbridge_commands - output_port
-        AvalonControl::MotionControlTask.joint_commands - output_port
-        AvalonControl::MotionControlTask.debug - output_port
-        AvalonControl::MotionControlTask.estimated_ground_pos - output_port
-        AvalonControl::MotionControlTask.state - output_port
-        AvalonControl::MotionControlTask.dummy_feedback - input_port
-        AvalonControl::MotionControlTask.ground_distance - input_port
-        AvalonControl::MotionControlTask.pose_samples - input_port
-        AvalonControl::MotionControlTask.motion_commands - input_port
-        AvalonControl::MotionControlTask.joints_in - input_port
         AvalonControl::MotionControlTask - instance_req
-        AuvControl::BasePIDController.state - output_port
-        AuvControl::BasePIDController.cmd_out - output_port
-        AuvControl::BasePIDController.pid_state - output_port
-        AuvControl::BasePIDController.cmd_in - input_port
-        AuvControl::BasePIDController.cmd_cascade - input_port
-        AuvControl::BasePIDController.pose_samples - input_port
         AuvControl::BasePIDController - instance_req
-        Modemdriver::ModemCanbus.data_out - output_port
-        Modemdriver::ModemCanbus.distance - output_port
-        Modemdriver::ModemCanbus.out_modem_substates - output_port
-        Modemdriver::ModemCanbus.state - output_port
-        Modemdriver::ModemCanbus.can_out - output_port
-        Modemdriver::ModemCanbus.stats - output_port
-        Modemdriver::ModemCanbus.data_in - input_port
-        Modemdriver::ModemCanbus.can_in - input_port
         Modemdriver::ModemCanbus - instance_req
-        Hbridge::CommandWriter.state - output_port
-        Hbridge::CommandWriter.can_out - output_port
-        Hbridge::CommandWriter.speedCtrlDebug - output_port
-        Hbridge::CommandWriter.fakeReader - output_port
-        Hbridge::CommandWriter.can_in - input_port
-        Hbridge::CommandWriter.command - input_port
         Hbridge::CommandWriter - instance_req
-        Modemdriver::ModemSerial.data_out - output_port
-        Modemdriver::ModemSerial.distance - output_port
-        Modemdriver::ModemSerial.out_modem_substates - output_port
-        Modemdriver::ModemSerial.state - output_port
-        Modemdriver::ModemSerial.data_in - input_port
         Modemdriver::ModemSerial - instance_req
-        WallOrientationCorrection::Task.orientation_in_world - output_port
-        WallOrientationCorrection::Task.angle_in_world - output_port
-        WallOrientationCorrection::Task.debug_data - output_port
-        WallOrientationCorrection::Task.transformer_stream_aligner_status - output_port
-        WallOrientationCorrection::Task.transformer_status - output_port
-        WallOrientationCorrection::Task.state - output_port
-        WallOrientationCorrection::Task.sonarbeam_feature - input_port
-        WallOrientationCorrection::Task.orientation_samples - input_port
-        WallOrientationCorrection::Task.dynamic_transformations - input_port
         WallOrientationCorrection::Task - instance_req
-        AvalonControl::PositionControlTask.motion_commands - output_port
-        AvalonControl::PositionControlTask.state - output_port
-        AvalonControl::PositionControlTask.pose_samples - input_port
-        AvalonControl::PositionControlTask.position_commands - input_port
         AvalonControl::PositionControlTask - instance_req
-        HsvMosaicing::Task.result - output_port
-        HsvMosaicing::Task.state - output_port
-        HsvMosaicing::Task.frame - input_port
         HsvMosaicing::Task - instance_req
-        Modemdriver::Modem.data_out - output_port
-        Modemdriver::Modem.distance - output_port
-        Modemdriver::Modem.out_modem_substates - output_port
-        Modemdriver::Modem.state - output_port
-        Modemdriver::Modem.data_in - input_port
         Modemdriver::Modem - instance_req
-        AuvHelper::DepthAndOrientationFusion.pose_samples - output_port
-        AuvHelper::DepthAndOrientationFusion.stream_aligner_status - output_port
-        AuvHelper::DepthAndOrientationFusion.state - output_port
-        AuvHelper::DepthAndOrientationFusion.orientation_samples - input_port
-        AuvHelper::DepthAndOrientationFusion.depth_samples - input_port
-        AuvHelper::DepthAndOrientationFusion.ground_distance - input_port
         AuvHelper::DepthAndOrientationFusion - instance_req
-        GpsHelper::GPSFaker.position_samples - output_port
-        GpsHelper::GPSFaker.state - output_port
         GpsHelper::GPSFaker - instance_req
-        WallOrientationCorrection::OrientationInMap.orientation_in_map - output_port
-        WallOrientationCorrection::OrientationInMap.transformer_stream_aligner_status - output_port
-        WallOrientationCorrection::OrientationInMap.transformer_status - output_port
-        WallOrientationCorrection::OrientationInMap.state - output_port
-        WallOrientationCorrection::OrientationInMap.orientation_in_world - input_port
-        WallOrientationCorrection::OrientationInMap.dynamic_transformations - input_port
         WallOrientationCorrection::OrientationInMap - instance_req
-        OffshorePipelineDetector::Task.state - output_port
-        OffshorePipelineDetector::Task.pipeline - output_port
-        OffshorePipelineDetector::Task.world_command - output_port
-        OffshorePipelineDetector::Task.aligned_position_command - output_port
-        OffshorePipelineDetector::Task.position_command - output_port
-        OffshorePipelineDetector::Task.debug - output_port
-        OffshorePipelineDetector::Task.debug_frame - output_port
-        OffshorePipelineDetector::Task.frame - input_port
-        OffshorePipelineDetector::Task.orientation_sample - input_port
-        OffshorePipelineDetector::Task.altitude_samples - input_port
         OffshorePipelineDetector::Task - instance_req
-        AuvControl::Base.state - output_port
-        AuvControl::Base.cmd_in - input_port
-        AuvControl::Base.cmd_cascade - input_port
         AuvControl::Base - instance_req
-        CameraBase::Task.frame - output_port
-        CameraBase::Task.frame_raw - output_port
-        CameraBase::Task.state - output_port
         CameraBase::Task - instance_req
-        Hbridge::SensorReader.state - output_port
-        Hbridge::SensorReader.can_out - output_port
-        Hbridge::SensorReader.status_samples - output_port
-        Hbridge::SensorReader.can_in - input_port
         Hbridge::SensorReader - instance_req
-        AuvControl::OptimalHeadingController.state - output_port
-        AuvControl::OptimalHeadingController.cmd_out - output_port
-        AuvControl::OptimalHeadingController.cmd_in - input_port
-        AuvControl::OptimalHeadingController.cmd_cascade - input_port
-        AuvControl::OptimalHeadingController.orientation_samples - input_port
         AuvControl::OptimalHeadingController - instance_req
-        OffshorePipelineDetector::SonarDetector.frame - output_port
-        OffshorePipelineDetector::SonarDetector.state - output_port
-        OffshorePipelineDetector::SonarDetector.sonar_beam - input_port
         OffshorePipelineDetector::SonarDetector - instance_req
-        StructureServoing::Alignment.world_command - output_port
-        StructureServoing::Alignment.aligned_speed_command - output_port
-        StructureServoing::Alignment.left - output_port
-        StructureServoing::Alignment.right - output_port
-        StructureServoing::Alignment.top - output_port
-        StructureServoing::Alignment.bottom - output_port
-        StructureServoing::Alignment.size - output_port
-        StructureServoing::Alignment.x - output_port
-        StructureServoing::Alignment.y - output_port
-        StructureServoing::Alignment.state - output_port
-        StructureServoing::Alignment.input - input_port
         StructureServoing::Alignment - instance_req
-        SonarBlueview::Task.frame - output_port
-        SonarBlueview::Task.state - output_port
         SonarBlueview::Task - instance_req
-        StructureServoing::Task.servoed_angle - output_port
-        StructureServoing::Task.angle_speed - output_port
-        StructureServoing::Task.world_command - output_port
-        StructureServoing::Task.aligned_speed_command - output_port
-        StructureServoing::Task.found_structure - output_port
-        StructureServoing::Task.state - output_port
-        StructureServoing::Task.left - output_port
-        StructureServoing::Task.right - output_port
-        StructureServoing::Task.top - output_port
-        StructureServoing::Task.bottom - output_port
-        StructureServoing::Task.size - output_port
-        StructureServoing::Task.heading - output_port
-        StructureServoing::Task.cnt_left - output_port
-        StructureServoing::Task.cnt_right - output_port
-        StructureServoing::Task.cnt_top - output_port
-        StructureServoing::Task.cnt_bottom - output_port
-        StructureServoing::Task.rbs - input_port
-        StructureServoing::Task.input - input_port
         StructureServoing::Task - instance_req
-        GpsHelper::WaypointNavigation.target_waypoint - output_port
-        GpsHelper::WaypointNavigation.heading_offset - output_port
-        GpsHelper::WaypointNavigation.distance_delta - output_port
-        GpsHelper::WaypointNavigation.state - output_port
-        GpsHelper::WaypointNavigation.gps_position_samples - input_port
-        GpsHelper::WaypointNavigation.pose_samples - input_port
         GpsHelper::WaypointNavigation - instance_req
-        AuvControl::MotionCommand2DConverter.cmd_out - output_port
-        AuvControl::MotionCommand2DConverter.state - output_port
-        AuvControl::MotionCommand2DConverter.cmd_in - input_port
         AuvControl::MotionCommand2DConverter - instance_req
-        Sysmon::Task.ocu_markers - output_port
-        Sysmon::Task.annotations - output_port
-        Sysmon::Task.system_status - output_port
-        Sysmon::Task.state - output_port
-        Sysmon::Task.can_in_system_status - input_port
-        Sysmon::Task.can_in_experiment_markers - input_port
-        Sysmon::Task.in_experiment_markers - input_port
-        Sysmon::Task.in_modem_substates - input_port
         Sysmon::Task - instance_req
-        GpsHelper::MapToGPS.gps_position - output_port
-        GpsHelper::MapToGPS.transformer_stream_aligner_status - output_port
-        GpsHelper::MapToGPS.transformer_status - output_port
-        GpsHelper::MapToGPS.state - output_port
-        GpsHelper::MapToGPS.position_samples - input_port
-        GpsHelper::MapToGPS.dynamic_transformations - input_port
         GpsHelper::MapToGPS - instance_req
-        AuvControl::WaypointNavigator.cmd_out - output_port
-        AuvControl::WaypointNavigator.waypoint_info - output_port
-        AuvControl::WaypointNavigator.state - output_port
-        AuvControl::WaypointNavigator.trajectory - input_port
-        AuvControl::WaypointNavigator.pose_sample - input_port
         AuvControl::WaypointNavigator - instance_req
-        Controldev::GenericTask.raw_command - output_port
-        Controldev::GenericTask.state - output_port
         Controldev::GenericTask - instance_req
-        Controldev::Remote.raw_command - output_port
-        Controldev::Remote.state - output_port
-        Controldev::Remote.canInputDevice - input_port
         Controldev::Remote - instance_req
-        SonarFeatureDetector::Task.features - output_port
-        SonarFeatureDetector::Task.next_target - output_port
-        SonarFeatureDetector::Task.next_target_feature - output_port
-        SonarFeatureDetector::Task.next_target_command - output_port
-        SonarFeatureDetector::Task.state - output_port
-        SonarFeatureDetector::Task.grid_maps - input_port
-        SonarFeatureDetector::Task.pose_samples - input_port
         SonarFeatureDetector::Task - instance_req
-        Controldev::JoystickTask.raw_command - output_port
-        Controldev::JoystickTask.state - output_port
         Controldev::JoystickTask - instance_req
-        RawControlCommandConverter::Position.position_command - output_port
-        RawControlCommandConverter::Position.world_command - output_port
-        RawControlCommandConverter::Position.state - output_port
-        RawControlCommandConverter::Position.raw_command - input_port
-        RawControlCommandConverter::Position.pose_samples - input_port
         RawControlCommandConverter::Position - instance_req
-        AuvControl::ConstantCommandGroundAvoidance.floor_position - output_port
-        AuvControl::ConstantCommandGroundAvoidance.state - output_port
-        AuvControl::ConstantCommandGroundAvoidance.cmd_out - output_port
-        AuvControl::ConstantCommandGroundAvoidance.altimeter - input_port
-        AuvControl::ConstantCommandGroundAvoidance.depth - input_port
-        AuvControl::ConstantCommandGroundAvoidance.cmd_in - input_port
         AuvControl::ConstantCommandGroundAvoidance - instance_req
-        Controldev::GenericRawToMotion2D.motion_command - output_port
-        Controldev::GenericRawToMotion2D.state - output_port
-        Controldev::GenericRawToMotion2D.raw_command - input_port
         Controldev::GenericRawToMotion2D - instance_req
-        ImagePreprocessing::StereoTask.state - output_port
-        ImagePreprocessing::StereoTask.oframe_pair - output_port
-        ImagePreprocessing::StereoTask.frame_left - input_port
-        ImagePreprocessing::StereoTask.frame_right - input_port
         ImagePreprocessing::StereoTask - instance_req
-        Controldev::JoyPadTask.raw_command - output_port
-        Controldev::JoyPadTask.state - output_port
         Controldev::JoyPadTask - instance_req
-        RawControlCommandConverter::Movement.motion_command - output_port
-        RawControlCommandConverter::Movement.world_command - output_port
-        RawControlCommandConverter::Movement.world_command_depth - output_port
-        RawControlCommandConverter::Movement.aligned_velocity_command - output_port
-        RawControlCommandConverter::Movement.state - output_port
-        RawControlCommandConverter::Movement.raw_command - input_port
-        RawControlCommandConverter::Movement.orientation_readings - input_port
-        RawControlCommandConverter::Movement.ground_distance - input_port
         RawControlCommandConverter::Movement - instance_req
-        Controldev::Mouse3DTask.raw_command - output_port
-        Controldev::Mouse3DTask.state - output_port
         Controldev::Mouse3DTask - instance_req
-        Controldev::RawWheelToMotion2D.motion_command - output_port
-        Controldev::RawWheelToMotion2D.state - output_port
-        Controldev::RawWheelToMotion2D.raw_command - input_port
         Controldev::RawWheelToMotion2D - instance_req
-        ImagePreprocessing::HSVSegmentationAndBlur.oframe - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.binary_result - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.hDebug - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.hDebugGray - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.vDebug - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.vDebugGray - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.sDebug - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.sDebugGray - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.hsv_v_frame - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.state - output_port
-        ImagePreprocessing::HSVSegmentationAndBlur.frame - input_port
         ImagePreprocessing::HSVSegmentationAndBlur - instance_req
-        Interfaces::IMU.orientation_samples - output_port
-        Interfaces::IMU.calibrated_sensors - output_port
-        Interfaces::IMU.state - output_port
         Interfaces::IMU - instance_req
-        Controldev::SteeringWheelTask.raw_command - output_port
-        Controldev::SteeringWheelTask.state - output_port
         Controldev::SteeringWheelTask - instance_req
-        AuvControl::ConstantCommandGroundFollower.floor_position - output_port
-        AuvControl::ConstantCommandGroundFollower.state - output_port
-        AuvControl::ConstantCommandGroundFollower.cmd_out - output_port
-        AuvControl::ConstantCommandGroundFollower.altimeter - input_port
-        AuvControl::ConstantCommandGroundFollower.depth - input_port
-        AuvControl::ConstantCommandGroundFollower.cmd_in - input_port
         AuvControl::ConstantCommandGroundFollower - instance_req
-        Controldev::RawJoystickToMotion2D.motion_command - output_port
-        Controldev::RawJoystickToMotion2D.state - output_port
-        Controldev::RawJoystickToMotion2D.raw_command - input_port
         Controldev::RawJoystickToMotion2D - instance_req
-        Interfaces::LaserRangeFinder.scans - output_port
-        Interfaces::LaserRangeFinder.state - output_port
         Interfaces::LaserRangeFinder - instance_req
-        Controldev::SliderboxTask.raw_command - output_port
-        Controldev::SliderboxTask.state - output_port
         Controldev::SliderboxTask - instance_req
-        AuvControl::ConstantCommand.cmd_out - output_port
-        AuvControl::ConstantCommand.state - output_port
         AuvControl::ConstantCommand - instance_req
-        ImagePreprocessing::MonoTask.state - output_port
-        ImagePreprocessing::MonoTask.oframe - output_port
-        ImagePreprocessing::MonoTask.frame - input_port
         ImagePreprocessing::MonoTask - instance_req
-        Interfaces::ActuatorSensorReader.state - output_port
         Interfaces::ActuatorSensorReader - instance_req
-        Interfaces::ActuatorCommandWriter.state - output_port
         Interfaces::ActuatorCommandWriter - instance_req
-        AuvWaypointNavigator::Task.relative_position_command - output_port
-        AuvWaypointNavigator::Task.current_delta - output_port
-        AuvWaypointNavigator::Task.current_waypoint - output_port
-        AuvWaypointNavigator::Task.queue_size - output_port
-        AuvWaypointNavigator::Task.state - output_port
-        AuvWaypointNavigator::Task.trajectory - input_port
-        AuvWaypointNavigator::Task.pose_samples - input_port
         AuvWaypointNavigator::Task - instance_req
-        RearSonarDistanceEstimator::Task.ground_distance - output_port
-        RearSonarDistanceEstimator::Task.state - output_port
-        RearSonarDistanceEstimator::Task.BaseScan - input_port
-        RearSonarDistanceEstimator::Task.depth_samples - input_port
         RearSonarDistanceEstimator::Task - instance_req
-        Taskmon::Task.stats - output_port
-        Taskmon::Task.state - output_port
         Taskmon::Task - instance_req
-        Dynamixel::Task.upper2lower - output_port
-        Dynamixel::Task.angle - output_port
-        Dynamixel::Task.lowerDynamixel2UpperDynamixel - output_port
-        Dynamixel::Task.state - output_port
-        Dynamixel::Task.cmd_angle - input_port
         Dynamixel::Task - instance_req
-        StructuredLight::Calibration.stream_aligner_status - output_port
-        StructuredLight::Calibration.state - output_port
-        StructuredLight::Calibration.laser_scan - input_port
-        StructuredLight::Calibration.calibration - input_port
         StructuredLight::Calibration - instance_req
-        StructuredLight::Task.laser_scan - output_port
-        StructuredLight::Task.candidates - output_port
-        StructuredLight::Task.debug_frame - output_port
-        StructuredLight::Task.state - output_port
-        StructuredLight::Task.frame_pair - input_port
-        StructuredLight::Task.frame - input_port
         StructuredLight::Task - instance_req
-        CameraUnicap::CameraTask.frame - output_port
-        CameraUnicap::CameraTask.state - output_port
         CameraUnicap::CameraTask - instance_req
-        FrameDemultiplexer::Task.oframe_pair - output_port
-        FrameDemultiplexer::Task.oframe - output_port
-        FrameDemultiplexer::Task.state - output_port
-        FrameDemultiplexer::Task.iframe - input_port
         FrameDemultiplexer::Task - instance_req
         Pipeline::Follower__controller.is_a__Base::AUVRelativeMotionControlledSystemSrv__ - instance_req
         Pipeline::Follower__controller.is_a__Base::AUVMotionControllerSrv_,controlled_system.is_a__Base::AUVMotionControlledSystemSrv__ - instance_req
@@ -3065,641 +2435,9 @@
             (fullfills Pipeline::Follower__controller.is_a__Base::RawCommandControlledSystemSrv__  Base::ControlLoop)
             (fullfills Pipeline::Follower__controller.is_a__Base::RawCommandControlledSystemSrv__  Base::ControlLoop)
 
-; Begin inputs 
-            (has_input SonarWallHough::Task SonarWallHough::Task.sonar_samples)
-            (has_input SonarWallHough::Task SonarWallHough::Task.reset)
-            (has_input SonarWallHough::Task SonarWallHough::Task.orientation_samples)
-            (has_input SonarWallHough::Task SonarWallHough::Task.pose_samples)
-            (has_input Canbus::InterfaceTask Canbus::InterfaceTask.can_in)
-            (has_input VideoStreamerVlc::Streamer{1} VideoStreamerVlc::Streamer{1}.frame_bottom_camera)
-            (has_input VideoStreamerVlc::Streamer{1} VideoStreamerVlc::Streamer{1}.frame_front_camera)
-            (has_input VideoStreamerVlc::Streamer{1} VideoStreamerVlc::Streamer{1}.frame_blueview)
-            (has_input Canbus::Task Canbus::Task.in)
-            (has_input Buoy::ServoingOnWall Buoy::ServoingOnWall.buoy_samples)
-            (has_input Buoy::ServoingOnWall Buoy::ServoingOnWall.wall_samples)
-            (has_input Buoy::ServoingOnWall Buoy::ServoingOnWall.orientation_samples)
-            (has_input Buoy::Detector2 Buoy::Detector2.frame)
-            (has_input VideoStreamerVlc::Streamer VideoStreamerVlc::Streamer.frame_bottom_camera)
-            (has_input VideoStreamerVlc::Streamer VideoStreamerVlc::Streamer.frame_front_camera)
-            (has_input VideoStreamerVlc::Streamer VideoStreamerVlc::Streamer.frame_blueview)
-            (has_input XsensImu::Task XsensImu::Task.hard_timestamps)
-            (has_input Buoy::Detector Buoy::Detector.frame)
-            (has_input PipelineInspection::Inspection PipelineInspection::Inspection.laserSamples)
-            (has_input PipelineInspection::Inspection PipelineInspection::Inspection.laserPoints)
-            (has_input PipelineInspection::Inspection PipelineInspection::Inspection.laserPointCloud)
-            (has_input PipelineInspection::Inspection PipelineInspection::Inspection.pipeline)
-            (has_input PipelineInspection::Inspection PipelineInspection::Inspection.dead_reckoning)
-            (has_input PipelineInspection::ColorFilter PipelineInspection::ColorFilter.frame_in)
-            (has_input Buoy::Survey Buoy::Survey.orientation_samples)
-            (has_input Buoy::Survey Buoy::Survey.force_cutting)
-            (has_input Buoy::Survey Buoy::Survey.input_buoy)
-            (has_input Buoy::Survey Buoy::Survey.motion_command)
-            (has_input Buoy::Survey Buoy::Survey.light)
-            (has_input Buoy::Survey Buoy::Survey.target_angle_input)
-            (has_input FogKvh::Dsp3000Task FogKvh::Dsp3000Task.config)
-            (has_input OrientationEstimator::IKF OrientationEstimator::IKF.imu_samples)
-            (has_input OrientationEstimator::IKF OrientationEstimator::IKF.fog_samples)
-            (has_input OrientationEstimator::IKF OrientationEstimator::IKF.initial_orientation)
-            (has_input OrientationEstimator::IKF OrientationEstimator::IKF.dynamic_transformations)
-            (has_input UwParticleLocalization::FastFusion UwParticleLocalization::FastFusion.position_samples)
-            (has_input UwParticleLocalization::FastFusion UwParticleLocalization::FastFusion.depth_samples)
-            (has_input UwParticleLocalization::FastFusion UwParticleLocalization::FastFusion.orientation_samples)
-            (has_input UwParticleLocalization::FastFusion UwParticleLocalization::FastFusion.velocity_samples)
-            (has_input UwParticleLocalization::MotionModel UwParticleLocalization::MotionModel.thruster_samples)
-            (has_input UwParticleLocalization::MotionModel UwParticleLocalization::MotionModel.orientation_samples)
-            (has_input LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.depth_samples)
-            (has_input LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.ShortExposure)
-            (has_input LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.LongExposure)
-            (has_input LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.LightValue)
-            (has_input LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.DebugLED)
-            (has_input LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.LaserRate)
-            (has_input OrientationEstimator::BaseEstimator OrientationEstimator::BaseEstimator.imu_orientation)
-            (has_input OrientationEstimator::BaseEstimator OrientationEstimator::BaseEstimator.fog_samples)
-            (has_input OrientationEstimator::BaseEstimator OrientationEstimator::BaseEstimator.heading_correction)
-            (has_input StructureReconstruction::Task StructureReconstruction::Task.front_camera)
-            (has_input StructureReconstruction::Task StructureReconstruction::Task.bottom_camera)
-            (has_input StructureReconstruction::Task StructureReconstruction::Task.dynamic_transformations)
-            (has_input UwParticleLocalization::OrientationCorrection UwParticleLocalization::OrientationCorrection.orientation_input)
-            (has_input UwParticleLocalization::OrientationCorrection UwParticleLocalization::OrientationCorrection.orientation_offset)
-            (has_input LineScanner::Task LineScanner::Task.frame)
-            (has_input AuvRelPosController::Task AuvRelPosController::Task.position_command)
-            (has_input AuvRelPosController::Task AuvRelPosController::Task.position_sample)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.laser_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.speed_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.pipeline_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.pose_update)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.gps_pose_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.buoy_samples_orange)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.buoy_samples_white)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.thruster_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.orientation_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.echosounder_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.obstacle_samples)
-            (has_input UwParticleLocalization::Task UwParticleLocalization::Task.structur_samples)
-            (has_input ModemCan::Task ModemCan::Task.modem_in)
-            (has_input ModemCan::Task ModemCan::Task.canModem)
-            (has_input ModemCan::Task ModemCan::Task.light_value)
-            (has_input ModemCan::Task ModemCan::Task.position_samples)
-            (has_input DepthReader::Task DepthReader::Task.canIn)
-            (has_input SonarStructureServoing::Task SonarStructureServoing::Task.sonarbeam_feature)
-            (has_input SonarStructureServoing::Task SonarStructureServoing::Task.odometry_samples)
-            (has_input SonarStructureServoing::Task SonarStructureServoing::Task.dynamic_transformations)
-            (has_input Lights::Lights Lights::Lights.int_in)
-            (has_input Lights::Lights Lights::Lights.can_in)
-            (has_input WallServoing::DualSonarServoing WallServoing::DualSonarServoing.sonarbeam_feature_front)
-            (has_input WallServoing::DualSonarServoing WallServoing::DualSonarServoing.sonarbeam_feature_rear)
-            (has_input WallServoing::DualSonarServoing WallServoing::DualSonarServoing.orientation_sample)
-            (has_input AvalonControl::MotionFeedbackTask AvalonControl::MotionFeedbackTask.hbridge_feedback)
-            (has_input BatteryWatcher::Task BatteryWatcher::Task.can_in)
-            (has_input ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.color_frame)
-            (has_input ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.frame)
-            (has_input ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.dynamic_transformations)
-            (has_input AuvControl::AccelerationController AuvControl::AccelerationController.cmd_in)
-            (has_input AuvControl::AccelerationController AuvControl::AccelerationController.cmd_cascade)
-            (has_input WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.sonarbeam_feature)
-            (has_input WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.orientation_sample)
-            (has_input WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.position_sample)
-            (has_input SonarFeatureEstimator::Task SonarFeatureEstimator::Task.sonar_input)
-            (has_input SonarFeatureEstimator::Task SonarFeatureEstimator::Task.orientation_sample)
-            (has_input AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.pose_samples)
-            (has_input AuvControl::AlignedToBody AuvControl::AlignedToBody.cmd_in)
-            (has_input AuvControl::AlignedToBody AuvControl::AlignedToBody.cmd_cascade)
-            (has_input AuvControl::AlignedToBody AuvControl::AlignedToBody.orientation_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.orientation_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.depth_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.dvl_velocity_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.model_velocity_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.lbl_position_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.xy_position_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.gps_position_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.xyz_position_samples)
-            (has_input PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.dynamic_transformations)
-            (has_input PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.pose_samples_fast)
-            (has_input PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.pose_samples_slow)
-            (has_input PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.xy_position_samples)
-            (has_input PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.dynamic_transformations)
-            (has_input PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.orientation_samples)
-            (has_input PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.velocity_samples)
-            (has_input PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.position_samples)
-            (has_input PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.dynamic_transformations)
-            (has_input WallServoing::WallServoing WallServoing::WallServoing.orientation_sample)
-            (has_input WallServoing::WallServoing WallServoing::WallServoing.servoing_wall)
-            (has_input WallServoing::WallServoing WallServoing::WallServoing.obstacle_wall)
-            (has_input WallServoing::WallDetector WallServoing::WallDetector.sonarbeam_feature)
-            (has_input WallServoing::WallDetector WallServoing::WallDetector.orientation_sample)
-            (has_input WallServoing::WallDetector WallServoing::WallDetector.position_sample)
-            (has_input Interfaces::Servo Interfaces::Servo.cmd_angle)
-            (has_input AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.dummy_feedback)
-            (has_input AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.ground_distance)
-            (has_input AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.pose_samples)
-            (has_input AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.motion_commands)
-            (has_input AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.joints_in)
-            (has_input AuvControl::WorldToAligned AuvControl::WorldToAligned.cmd_in)
-            (has_input AuvControl::WorldToAligned AuvControl::WorldToAligned.cmd_cascade)
-            (has_input AuvControl::WorldToAligned AuvControl::WorldToAligned.pose_samples)
-            (has_input CameraBase::Preprocess CameraBase::Preprocess.iframe)
-            (has_input AuvControl::PIDController AuvControl::PIDController.cmd_in)
-            (has_input AuvControl::PIDController AuvControl::PIDController.cmd_cascade)
-            (has_input AuvControl::PIDController AuvControl::PIDController.pose_samples)
-            (has_input AvalonControl::MotionControlTask AvalonControl::MotionControlTask.dummy_feedback)
-            (has_input AvalonControl::MotionControlTask AvalonControl::MotionControlTask.ground_distance)
-            (has_input AvalonControl::MotionControlTask AvalonControl::MotionControlTask.pose_samples)
-            (has_input AvalonControl::MotionControlTask AvalonControl::MotionControlTask.motion_commands)
-            (has_input AvalonControl::MotionControlTask AvalonControl::MotionControlTask.joints_in)
-            (has_input AuvControl::BasePIDController AuvControl::BasePIDController.cmd_in)
-            (has_input AuvControl::BasePIDController AuvControl::BasePIDController.cmd_cascade)
-            (has_input AuvControl::BasePIDController AuvControl::BasePIDController.pose_samples)
-            (has_input Modemdriver::ModemCanbus Modemdriver::ModemCanbus.data_in)
-            (has_input Modemdriver::ModemCanbus Modemdriver::ModemCanbus.can_in)
-            (has_input Hbridge::CommandWriter Hbridge::CommandWriter.can_in)
-            (has_input Hbridge::CommandWriter Hbridge::CommandWriter.command)
-            (has_input Modemdriver::ModemSerial Modemdriver::ModemSerial.data_in)
-            (has_input WallOrientationCorrection::Task WallOrientationCorrection::Task.sonarbeam_feature)
-            (has_input WallOrientationCorrection::Task WallOrientationCorrection::Task.orientation_samples)
-            (has_input WallOrientationCorrection::Task WallOrientationCorrection::Task.dynamic_transformations)
-            (has_input AvalonControl::PositionControlTask AvalonControl::PositionControlTask.pose_samples)
-            (has_input AvalonControl::PositionControlTask AvalonControl::PositionControlTask.position_commands)
-            (has_input HsvMosaicing::Task HsvMosaicing::Task.frame)
-            (has_input Modemdriver::Modem Modemdriver::Modem.data_in)
-            (has_input AuvHelper::DepthAndOrientationFusion AuvHelper::DepthAndOrientationFusion.orientation_samples)
-            (has_input AuvHelper::DepthAndOrientationFusion AuvHelper::DepthAndOrientationFusion.depth_samples)
-            (has_input AuvHelper::DepthAndOrientationFusion AuvHelper::DepthAndOrientationFusion.ground_distance)
-            (has_input WallOrientationCorrection::OrientationInMap WallOrientationCorrection::OrientationInMap.orientation_in_world)
-            (has_input WallOrientationCorrection::OrientationInMap WallOrientationCorrection::OrientationInMap.dynamic_transformations)
-            (has_input OffshorePipelineDetector::Task OffshorePipelineDetector::Task.frame)
-            (has_input OffshorePipelineDetector::Task OffshorePipelineDetector::Task.orientation_sample)
-            (has_input OffshorePipelineDetector::Task OffshorePipelineDetector::Task.altitude_samples)
-            (has_input AuvControl::Base AuvControl::Base.cmd_in)
-            (has_input AuvControl::Base AuvControl::Base.cmd_cascade)
-            (has_input Hbridge::SensorReader Hbridge::SensorReader.can_in)
-            (has_input AuvControl::OptimalHeadingController AuvControl::OptimalHeadingController.cmd_in)
-            (has_input AuvControl::OptimalHeadingController AuvControl::OptimalHeadingController.cmd_cascade)
-            (has_input AuvControl::OptimalHeadingController AuvControl::OptimalHeadingController.orientation_samples)
-            (has_input OffshorePipelineDetector::SonarDetector OffshorePipelineDetector::SonarDetector.sonar_beam)
-            (has_input StructureServoing::Alignment StructureServoing::Alignment.input)
-            (has_input StructureServoing::Task StructureServoing::Task.rbs)
-            (has_input StructureServoing::Task StructureServoing::Task.input)
-            (has_input GpsHelper::WaypointNavigation GpsHelper::WaypointNavigation.gps_position_samples)
-            (has_input GpsHelper::WaypointNavigation GpsHelper::WaypointNavigation.pose_samples)
-            (has_input AuvControl::MotionCommand2DConverter AuvControl::MotionCommand2DConverter.cmd_in)
-            (has_input Sysmon::Task Sysmon::Task.can_in_system_status)
-            (has_input Sysmon::Task Sysmon::Task.can_in_experiment_markers)
-            (has_input Sysmon::Task Sysmon::Task.in_experiment_markers)
-            (has_input Sysmon::Task Sysmon::Task.in_modem_substates)
-            (has_input GpsHelper::MapToGPS GpsHelper::MapToGPS.position_samples)
-            (has_input GpsHelper::MapToGPS GpsHelper::MapToGPS.dynamic_transformations)
-            (has_input AuvControl::WaypointNavigator AuvControl::WaypointNavigator.trajectory)
-            (has_input AuvControl::WaypointNavigator AuvControl::WaypointNavigator.pose_sample)
-            (has_input Controldev::Remote Controldev::Remote.canInputDevice)
-            (has_input SonarFeatureDetector::Task SonarFeatureDetector::Task.grid_maps)
-            (has_input SonarFeatureDetector::Task SonarFeatureDetector::Task.pose_samples)
-            (has_input RawControlCommandConverter::Position RawControlCommandConverter::Position.raw_command)
-            (has_input RawControlCommandConverter::Position RawControlCommandConverter::Position.pose_samples)
-            (has_input AuvControl::ConstantCommandGroundAvoidance AuvControl::ConstantCommandGroundAvoidance.altimeter)
-            (has_input AuvControl::ConstantCommandGroundAvoidance AuvControl::ConstantCommandGroundAvoidance.depth)
-            (has_input AuvControl::ConstantCommandGroundAvoidance AuvControl::ConstantCommandGroundAvoidance.cmd_in)
-            (has_input Controldev::GenericRawToMotion2D Controldev::GenericRawToMotion2D.raw_command)
-            (has_input ImagePreprocessing::StereoTask ImagePreprocessing::StereoTask.frame_left)
-            (has_input ImagePreprocessing::StereoTask ImagePreprocessing::StereoTask.frame_right)
-            (has_input RawControlCommandConverter::Movement RawControlCommandConverter::Movement.raw_command)
-            (has_input RawControlCommandConverter::Movement RawControlCommandConverter::Movement.orientation_readings)
-            (has_input RawControlCommandConverter::Movement RawControlCommandConverter::Movement.ground_distance)
-            (has_input Controldev::RawWheelToMotion2D Controldev::RawWheelToMotion2D.raw_command)
-            (has_input ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.frame)
-            (has_input AuvControl::ConstantCommandGroundFollower AuvControl::ConstantCommandGroundFollower.altimeter)
-            (has_input AuvControl::ConstantCommandGroundFollower AuvControl::ConstantCommandGroundFollower.depth)
-            (has_input AuvControl::ConstantCommandGroundFollower AuvControl::ConstantCommandGroundFollower.cmd_in)
-            (has_input Controldev::RawJoystickToMotion2D Controldev::RawJoystickToMotion2D.raw_command)
-            (has_input ImagePreprocessing::MonoTask ImagePreprocessing::MonoTask.frame)
-            (has_input AuvWaypointNavigator::Task AuvWaypointNavigator::Task.trajectory)
-            (has_input AuvWaypointNavigator::Task AuvWaypointNavigator::Task.pose_samples)
-            (has_input RearSonarDistanceEstimator::Task RearSonarDistanceEstimator::Task.BaseScan)
-            (has_input RearSonarDistanceEstimator::Task RearSonarDistanceEstimator::Task.depth_samples)
-            (has_input Dynamixel::Task Dynamixel::Task.cmd_angle)
-            (has_input StructuredLight::Calibration StructuredLight::Calibration.laser_scan)
-            (has_input StructuredLight::Calibration StructuredLight::Calibration.calibration)
-            (has_input StructuredLight::Task StructuredLight::Task.frame_pair)
-            (has_input StructuredLight::Task StructuredLight::Task.frame)
-            (has_input FrameDemultiplexer::Task FrameDemultiplexer::Task.iframe)
-
-; Begin outputs 
-            (has_output SonarWallHough::Task SonarWallHough::Task.lines)
-            (has_output SonarWallHough::Task SonarWallHough::Task.peaks)
-            (has_output SonarWallHough::Task SonarWallHough::Task.houghspace)
-            (has_output SonarWallHough::Task SonarWallHough::Task.position)
-            (has_output SonarWallHough::Task SonarWallHough::Task.position_quality)
-            (has_output SonarWallHough::Task SonarWallHough::Task.state)
-            (has_output Gps::MB500Task Gps::MB500Task.solution)
-            (has_output Gps::MB500Task Gps::MB500Task.position_samples)
-            (has_output Gps::MB500Task Gps::MB500Task.state)
-            (has_output Gps::MB500Task Gps::MB500Task.constellation)
-            (has_output Gps::MB500Task Gps::MB500Task.time)
-            (has_output Gps::GPSDTask Gps::GPSDTask.solution)
-            (has_output Gps::GPSDTask Gps::GPSDTask.position_samples)
-            (has_output Gps::GPSDTask Gps::GPSDTask.state)
-            (has_output Gps::BaseTask Gps::BaseTask.solution)
-            (has_output Gps::BaseTask Gps::BaseTask.position_samples)
-            (has_output Gps::BaseTask Gps::BaseTask.state)
-            (has_output Canbus::InterfaceTask Canbus::InterfaceTask.can_out)
-            (has_output Canbus::InterfaceTask Canbus::InterfaceTask.state)
-            (has_output VideoStreamerVlc::Streamer{1} VideoStreamerVlc::Streamer{1}.state)
-            (has_output Canbus::Task Canbus::Task.stats)
-            (has_output Canbus::Task Canbus::Task.can_status)
-            (has_output Canbus::Task Canbus::Task.log_message)
-            (has_output Canbus::Task Canbus::Task.state)
-            (has_output Transformer::Task Transformer::Task.configuration_state)
-            (has_output Transformer::Task Transformer::Task.state)
-            (has_output VideoStreamerVlc::Capturer VideoStreamerVlc::Capturer.state)
-            (has_output Buoy::ServoingOnWall Buoy::ServoingOnWall.world_cmd)
-            (has_output Buoy::ServoingOnWall Buoy::ServoingOnWall.aligned_position_cmd)
-            (has_output Buoy::ServoingOnWall Buoy::ServoingOnWall.state)
-            (has_output Buoy::Detector2 Buoy::Detector2.state)
-            (has_output Buoy::Detector2 Buoy::Detector2.buoy)
-            (has_output Buoy::Detector2 Buoy::Detector2.light)
-            (has_output Buoy::Detector2 Buoy::Detector2.h_image)
-            (has_output Buoy::Detector2 Buoy::Detector2.s_image)
-            (has_output Buoy::Detector2 Buoy::Detector2.v_image)
-            (has_output Buoy::Detector2 Buoy::Detector2.binary_debug_image)
-            (has_output Buoy::Detector2 Buoy::Detector2.gray_debug_image)
-            (has_output Buoy::Detector2 Buoy::Detector2.hough_debug_image)
-            (has_output Buoy::Detector2 Buoy::Detector2.other_buoys)
-            (has_output Buoy::Detector2 Buoy::Detector2.debug_image)
-            (has_output VideoStreamerVlc::Streamer VideoStreamerVlc::Streamer.state)
-            (has_output XsensImu::Task XsensImu::Task.orientation_samples)
-            (has_output XsensImu::Task XsensImu::Task.calibrated_sensors)
-            (has_output XsensImu::Task XsensImu::Task.timestamp_estimator_status)
-            (has_output XsensImu::Task XsensImu::Task.state)
-            (has_output PipelineInspection::LaserSimulation PipelineInspection::LaserSimulation.laserPoints)
-            (has_output PipelineInspection::LaserSimulation PipelineInspection::LaserSimulation.laserPointCloud)
-            (has_output PipelineInspection::LaserSimulation PipelineInspection::LaserSimulation.vehiclePos)
-            (has_output PipelineInspection::LaserSimulation PipelineInspection::LaserSimulation.state)
-            (has_output Buoy::Detector Buoy::Detector.state)
-            (has_output Buoy::Detector Buoy::Detector.buoy)
-            (has_output Buoy::Detector Buoy::Detector.light)
-            (has_output Buoy::Detector Buoy::Detector.h_image)
-            (has_output Buoy::Detector Buoy::Detector.s_image)
-            (has_output Buoy::Detector Buoy::Detector.v_image)
-            (has_output Buoy::Detector Buoy::Detector.binary_debug_image)
-            (has_output Buoy::Detector Buoy::Detector.gray_debug_image)
-            (has_output Buoy::Detector Buoy::Detector.hough_debug_image)
-            (has_output Buoy::Detector Buoy::Detector.other_buoys)
-            (has_output Buoy::Detector Buoy::Detector.debug_image)
-            (has_output PipelineInspection::Inspection PipelineInspection::Inspection.inspectionStatus)
-            (has_output PipelineInspection::Inspection PipelineInspection::Inspection.pipePoints)
-            (has_output PipelineInspection::Inspection PipelineInspection::Inspection.debugFrame)
-            (has_output PipelineInspection::Inspection PipelineInspection::Inspection.pipeMap)
-            (has_output PipelineInspection::Inspection PipelineInspection::Inspection.state)
-            (has_output Logger::Logger Logger::Logger.state)
-            (has_output PipelineInspection::ColorFilter PipelineInspection::ColorFilter.frame_out)
-            (has_output PipelineInspection::ColorFilter PipelineInspection::ColorFilter.green_frame)
-            (has_output PipelineInspection::ColorFilter PipelineInspection::ColorFilter.diff_frame)
-            (has_output PipelineInspection::ColorFilter PipelineInspection::ColorFilter.state)
-            (has_output Buoy::Survey Buoy::Survey.state)
-            (has_output Buoy::Survey Buoy::Survey.strafed_angle)
-            (has_output Buoy::Survey Buoy::Survey.relative_position)
-            (has_output Buoy::Survey Buoy::Survey.position)
-            (has_output FogKvh::Dsp3000Task FogKvh::Dsp3000Task.rotation)
-            (has_output FogKvh::Dsp3000Task FogKvh::Dsp3000Task.orientation_samples)
-            (has_output FogKvh::Dsp3000Task FogKvh::Dsp3000Task.timestamp_estimator_status)
-            (has_output FogKvh::Dsp3000Task FogKvh::Dsp3000Task.state)
-            (has_output OrientationEstimator::IKF OrientationEstimator::IKF.transformer_stream_aligner_status)
-            (has_output OrientationEstimator::IKF OrientationEstimator::IKF.transformer_status)
-            (has_output OrientationEstimator::IKF OrientationEstimator::IKF.attitude_b_g)
-            (has_output OrientationEstimator::IKF OrientationEstimator::IKF.state)
-            (has_output UwParticleLocalization::FastFusion UwParticleLocalization::FastFusion.pose_samples)
-            (has_output UwParticleLocalization::FastFusion UwParticleLocalization::FastFusion.state)
-            (has_output UwParticleLocalization::MotionModel UwParticleLocalization::MotionModel.pose_samples)
-            (has_output UwParticleLocalization::MotionModel UwParticleLocalization::MotionModel.stream_aligner_status)
-            (has_output UwParticleLocalization::MotionModel UwParticleLocalization::MotionModel.state)
-            (has_output LowLevelDriver::LowLevelTask LowLevelDriver::LowLevelTask.state)
-            (has_output OrientationEstimator::BaseEstimator OrientationEstimator::BaseEstimator.stream_aligner_status)
-            (has_output OrientationEstimator::BaseEstimator OrientationEstimator::BaseEstimator.attitude_b_g)
-            (has_output OrientationEstimator::BaseEstimator OrientationEstimator::BaseEstimator.state)
-            (has_output StructureReconstruction::Task StructureReconstruction::Task.transformer_stream_aligner_status)
-            (has_output StructureReconstruction::Task StructureReconstruction::Task.transformer_status)
-            (has_output StructureReconstruction::Task StructureReconstruction::Task.state)
-            (has_output UwParticleLocalization::OrientationCorrection UwParticleLocalization::OrientationCorrection.orientation_output)
-            (has_output UwParticleLocalization::OrientationCorrection UwParticleLocalization::OrientationCorrection.orientation_offset_corrected)
-            (has_output UwParticleLocalization::OrientationCorrection UwParticleLocalization::OrientationCorrection.state)
-            (has_output LineScanner::Task LineScanner::Task.state)
-            (has_output LineScanner::Task LineScanner::Task.pointcloud)
-            (has_output LineScanner::Task LineScanner::Task.debug)
-            (has_output AuvRelPosController::Task AuvRelPosController::Task.motion_command)
-            (has_output AuvRelPosController::Task AuvRelPosController::Task.state)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.pose_samples)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.environment)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.dead_reckoning_samples)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.full_dead_reckoning)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.particles)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.debug_sonar_beam)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.stats)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.depth_grid)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.grid_map)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.debug_filtered_obstacles)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.stream_aligner_status)
-            (has_output UwParticleLocalization::Task UwParticleLocalization::Task.state)
-            (has_output ModemCan::Task ModemCan::Task.modem_out)
-            (has_output ModemCan::Task ModemCan::Task.canOut)
-            (has_output ModemCan::Task ModemCan::Task.motion_command)
-            (has_output ModemCan::Task ModemCan::Task.state)
-            (has_output DepthReader::Task DepthReader::Task.depthOut)
-            (has_output DepthReader::Task DepthReader::Task.depth_samples)
-            (has_output DepthReader::Task DepthReader::Task.canOut)
-            (has_output DepthReader::Task DepthReader::Task.state)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.position_command)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.aligned_position_command)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.world_command)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.debug_data)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.transformer_stream_aligner_status)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.transformer_status)
-            (has_output SonarStructureServoing::Task SonarStructureServoing::Task.state)
-            (has_output Lights::Lights Lights::Lights.light_value)
-            (has_output Lights::Lights Lights::Lights.state)
-            (has_output WallServoing::DualSonarServoing WallServoing::DualSonarServoing.state)
-            (has_output WallServoing::DualSonarServoing WallServoing::DualSonarServoing.position_command)
-            (has_output WallServoing::DualSonarServoing WallServoing::DualSonarServoing.aligned_command)
-            (has_output WallServoing::DualSonarServoing WallServoing::DualSonarServoing.wall_servoing_debug)
-            (has_output AvalonControl::MotionFeedbackTask AvalonControl::MotionFeedbackTask.hbridge_status)
-            (has_output AvalonControl::MotionFeedbackTask AvalonControl::MotionFeedbackTask.state)
-            (has_output BatteryWatcher::Task BatteryWatcher::Task.can_out)
-            (has_output BatteryWatcher::Task BatteryWatcher::Task.state)
-            (has_output BatteryWatcher::Task BatteryWatcher::Task.battery_info)
-            (has_output ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.pointcloud)
-            (has_output ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.stream_aligner_status)
-            (has_output ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.transformer_stream_aligner_status)
-            (has_output ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.transformer_status)
-            (has_output ImagePreprocessing::DepthImage2Pointcloud ImagePreprocessing::DepthImage2Pointcloud.state)
-            (has_output AuvControl::AccelerationController AuvControl::AccelerationController.state)
-            (has_output AuvControl::AccelerationController AuvControl::AccelerationController.cmd_out)
-            (has_output SonarTritech::Micron SonarTritech::Micron.ground_distance)
-            (has_output SonarTritech::Micron SonarTritech::Micron.sonar_beam)
-            (has_output SonarTritech::Micron SonarTritech::Micron.state)
-            (has_output WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.state)
-            (has_output WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.position_command)
-            (has_output WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.aligned_position_command)
-            (has_output WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.world_command)
-            (has_output WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.wall_servoing_debug)
-            (has_output WallServoing::SingleSonarServoing WallServoing::SingleSonarServoing.wall)
-            (has_output SonarFeatureEstimator::Task SonarFeatureEstimator::Task.new_feature)
-            (has_output SonarFeatureEstimator::Task SonarFeatureEstimator::Task.features_out)
-            (has_output SonarFeatureEstimator::Task SonarFeatureEstimator::Task.debug_output)
-            (has_output SonarFeatureEstimator::Task SonarFeatureEstimator::Task.2d_debug_output)
-            (has_output SonarFeatureEstimator::Task SonarFeatureEstimator::Task.state)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.next_position)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.position_command)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.next_pos_on_spline)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.last_pos_on_spline)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.segment_dist)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.world_command)
-            (has_output AvalonControl::TrajectoryFollower AvalonControl::TrajectoryFollower.state)
-            (has_output WallServoing::SonarServoing WallServoing::SonarServoing.state)
-            (has_output ImagePreprocessing::BaseTask ImagePreprocessing::BaseTask.state)
-            (has_output PoseEstimation::BaseTask PoseEstimation::BaseTask.pose_samples)
-            (has_output PoseEstimation::BaseTask PoseEstimation::BaseTask.state)
-            (has_output AuvControl::AlignedToBody AuvControl::AlignedToBody.state)
-            (has_output AuvControl::AlignedToBody AuvControl::AlignedToBody.cmd_out)
-            (has_output PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.pose_samples)
-            (has_output PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.state)
-            (has_output PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.transformer_stream_aligner_status)
-            (has_output PoseEstimation::UWPoseEstimator PoseEstimation::UWPoseEstimator.transformer_status)
-            (has_output PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.pose_samples)
-            (has_output PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.state)
-            (has_output PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.transformer_stream_aligner_status)
-            (has_output PoseEstimation::HighDelayPoseEstimator PoseEstimation::HighDelayPoseEstimator.transformer_status)
-            (has_output PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.pose_samples)
-            (has_output PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.state)
-            (has_output PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.transformer_stream_aligner_status)
-            (has_output PoseEstimation::VehiclePoseEstimator PoseEstimation::VehiclePoseEstimator.transformer_status)
-            (has_output WallServoing::WallServoing WallServoing::WallServoing.motion_command)
-            (has_output WallServoing::WallServoing WallServoing::WallServoing.world_command)
-            (has_output WallServoing::WallServoing WallServoing::WallServoing.aligned_velocity_command)
-            (has_output WallServoing::WallServoing WallServoing::WallServoing.state)
-            (has_output CameraProsilica::Task CameraProsilica::Task.frame)
-            (has_output CameraProsilica::Task CameraProsilica::Task.frame_raw)
-            (has_output CameraProsilica::Task CameraProsilica::Task.state)
-            (has_output WallServoing::WallDetector WallServoing::WallDetector.point_cloud)
-            (has_output WallServoing::WallDetector WallServoing::WallDetector.wall)
-            (has_output WallServoing::WallDetector WallServoing::WallDetector.state)
-            (has_output SonarTritech::Echosounder SonarTritech::Echosounder.ground_distance)
-            (has_output SonarTritech::Echosounder SonarTritech::Echosounder.state)
-            (has_output SonarTritech::Profiling SonarTritech::Profiling.profiling_scan)
-            (has_output SonarTritech::Profiling SonarTritech::Profiling.state)
-            (has_output Interfaces::Servo Interfaces::Servo.upper2lower)
-            (has_output Interfaces::Servo Interfaces::Servo.angle)
-            (has_output Interfaces::Servo Interfaces::Servo.state)
-            (has_output AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.hbridge_commands)
-            (has_output AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.joint_commands)
-            (has_output AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.debug)
-            (has_output AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.estimated_ground_pos)
-            (has_output AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.state)
-            (has_output AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_ AvalonControl::MotionControlTask_Base::AUVMotionControllerSrv_.command_out)
-            (has_output AuvControl::WorldToAligned AuvControl::WorldToAligned.state)
-            (has_output AuvControl::WorldToAligned AuvControl::WorldToAligned.cmd_out)
-            (has_output CameraBase::Preprocess CameraBase::Preprocess.state)
-            (has_output CameraBase::Preprocess CameraBase::Preprocess.oframe)
-            (has_output AuvControl::PIDController AuvControl::PIDController.state)
-            (has_output AuvControl::PIDController AuvControl::PIDController.cmd_out)
-            (has_output AuvControl::PIDController AuvControl::PIDController.pid_state)
-            (has_output AvalonControl::RelFakeWriter AvalonControl::RelFakeWriter.position_command)
-            (has_output AvalonControl::RelFakeWriter AvalonControl::RelFakeWriter.state)
-            (has_output AvalonControl::FakeWriter AvalonControl::FakeWriter.motion_commands)
-            (has_output AvalonControl::FakeWriter AvalonControl::FakeWriter.state)
-            (has_output AvalonControl::MotionControlTask AvalonControl::MotionControlTask.hbridge_commands)
-            (has_output AvalonControl::MotionControlTask AvalonControl::MotionControlTask.joint_commands)
-            (has_output AvalonControl::MotionControlTask AvalonControl::MotionControlTask.debug)
-            (has_output AvalonControl::MotionControlTask AvalonControl::MotionControlTask.estimated_ground_pos)
-            (has_output AvalonControl::MotionControlTask AvalonControl::MotionControlTask.state)
-            (has_output AuvControl::BasePIDController AuvControl::BasePIDController.state)
-            (has_output AuvControl::BasePIDController AuvControl::BasePIDController.cmd_out)
-            (has_output AuvControl::BasePIDController AuvControl::BasePIDController.pid_state)
-            (has_output Modemdriver::ModemCanbus Modemdriver::ModemCanbus.data_out)
-            (has_output Modemdriver::ModemCanbus Modemdriver::ModemCanbus.distance)
-            (has_output Modemdriver::ModemCanbus Modemdriver::ModemCanbus.out_modem_substates)
-            (has_output Modemdriver::ModemCanbus Modemdriver::ModemCanbus.state)
-            (has_output Modemdriver::ModemCanbus Modemdriver::ModemCanbus.can_out)
-            (has_output Modemdriver::ModemCanbus Modemdriver::ModemCanbus.stats)
-            (has_output Hbridge::CommandWriter Hbridge::CommandWriter.state)
-            (has_output Hbridge::CommandWriter Hbridge::CommandWriter.can_out)
-            (has_output Hbridge::CommandWriter Hbridge::CommandWriter.speedCtrlDebug)
-            (has_output Hbridge::CommandWriter Hbridge::CommandWriter.fakeReader)
-            (has_output Modemdriver::ModemSerial Modemdriver::ModemSerial.data_out)
-            (has_output Modemdriver::ModemSerial Modemdriver::ModemSerial.distance)
-            (has_output Modemdriver::ModemSerial Modemdriver::ModemSerial.out_modem_substates)
-            (has_output Modemdriver::ModemSerial Modemdriver::ModemSerial.state)
-            (has_output WallOrientationCorrection::Task WallOrientationCorrection::Task.orientation_in_world)
-            (has_output WallOrientationCorrection::Task WallOrientationCorrection::Task.angle_in_world)
-            (has_output WallOrientationCorrection::Task WallOrientationCorrection::Task.debug_data)
-            (has_output WallOrientationCorrection::Task WallOrientationCorrection::Task.transformer_stream_aligner_status)
-            (has_output WallOrientationCorrection::Task WallOrientationCorrection::Task.transformer_status)
-            (has_output WallOrientationCorrection::Task WallOrientationCorrection::Task.state)
-            (has_output AvalonControl::PositionControlTask AvalonControl::PositionControlTask.motion_commands)
-            (has_output AvalonControl::PositionControlTask AvalonControl::PositionControlTask.state)
-            (has_output HsvMosaicing::Task HsvMosaicing::Task.result)
-            (has_output HsvMosaicing::Task HsvMosaicing::Task.state)
-            (has_output Modemdriver::Modem Modemdriver::Modem.data_out)
-            (has_output Modemdriver::Modem Modemdriver::Modem.distance)
-            (has_output Modemdriver::Modem Modemdriver::Modem.out_modem_substates)
-            (has_output Modemdriver::Modem Modemdriver::Modem.state)
-            (has_output AuvHelper::DepthAndOrientationFusion AuvHelper::DepthAndOrientationFusion.pose_samples)
-            (has_output AuvHelper::DepthAndOrientationFusion AuvHelper::DepthAndOrientationFusion.stream_aligner_status)
-            (has_output AuvHelper::DepthAndOrientationFusion AuvHelper::DepthAndOrientationFusion.state)
-            (has_output GpsHelper::GPSFaker GpsHelper::GPSFaker.position_samples)
-            (has_output GpsHelper::GPSFaker GpsHelper::GPSFaker.state)
-            (has_output WallOrientationCorrection::OrientationInMap WallOrientationCorrection::OrientationInMap.orientation_in_map)
-            (has_output WallOrientationCorrection::OrientationInMap WallOrientationCorrection::OrientationInMap.transformer_stream_aligner_status)
-            (has_output WallOrientationCorrection::OrientationInMap WallOrientationCorrection::OrientationInMap.transformer_status)
-            (has_output WallOrientationCorrection::OrientationInMap WallOrientationCorrection::OrientationInMap.state)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.state)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.pipeline)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.world_command)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.aligned_position_command)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.position_command)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.debug)
-            (has_output OffshorePipelineDetector::Task OffshorePipelineDetector::Task.debug_frame)
-            (has_output AuvControl::Base AuvControl::Base.state)
-            (has_output CameraBase::Task CameraBase::Task.frame)
-            (has_output CameraBase::Task CameraBase::Task.frame_raw)
-            (has_output CameraBase::Task CameraBase::Task.state)
-            (has_output Hbridge::SensorReader Hbridge::SensorReader.state)
-            (has_output Hbridge::SensorReader Hbridge::SensorReader.can_out)
-            (has_output Hbridge::SensorReader Hbridge::SensorReader.status_samples)
-            (has_output AuvControl::OptimalHeadingController AuvControl::OptimalHeadingController.state)
-            (has_output AuvControl::OptimalHeadingController AuvControl::OptimalHeadingController.cmd_out)
-            (has_output OffshorePipelineDetector::SonarDetector OffshorePipelineDetector::SonarDetector.frame)
-            (has_output OffshorePipelineDetector::SonarDetector OffshorePipelineDetector::SonarDetector.state)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.world_command)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.aligned_speed_command)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.left)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.right)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.top)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.bottom)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.size)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.x)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.y)
-            (has_output StructureServoing::Alignment StructureServoing::Alignment.state)
-            (has_output SonarBlueview::Task SonarBlueview::Task.frame)
-            (has_output SonarBlueview::Task SonarBlueview::Task.state)
-            (has_output StructureServoing::Task StructureServoing::Task.servoed_angle)
-            (has_output StructureServoing::Task StructureServoing::Task.angle_speed)
-            (has_output StructureServoing::Task StructureServoing::Task.world_command)
-            (has_output StructureServoing::Task StructureServoing::Task.aligned_speed_command)
-            (has_output StructureServoing::Task StructureServoing::Task.found_structure)
-            (has_output StructureServoing::Task StructureServoing::Task.state)
-            (has_output StructureServoing::Task StructureServoing::Task.left)
-            (has_output StructureServoing::Task StructureServoing::Task.right)
-            (has_output StructureServoing::Task StructureServoing::Task.top)
-            (has_output StructureServoing::Task StructureServoing::Task.bottom)
-            (has_output StructureServoing::Task StructureServoing::Task.size)
-            (has_output StructureServoing::Task StructureServoing::Task.heading)
-            (has_output StructureServoing::Task StructureServoing::Task.cnt_left)
-            (has_output StructureServoing::Task StructureServoing::Task.cnt_right)
-            (has_output StructureServoing::Task StructureServoing::Task.cnt_top)
-            (has_output StructureServoing::Task StructureServoing::Task.cnt_bottom)
-            (has_output GpsHelper::WaypointNavigation GpsHelper::WaypointNavigation.target_waypoint)
-            (has_output GpsHelper::WaypointNavigation GpsHelper::WaypointNavigation.heading_offset)
-            (has_output GpsHelper::WaypointNavigation GpsHelper::WaypointNavigation.distance_delta)
-            (has_output GpsHelper::WaypointNavigation GpsHelper::WaypointNavigation.state)
-            (has_output AuvControl::MotionCommand2DConverter AuvControl::MotionCommand2DConverter.cmd_out)
-            (has_output AuvControl::MotionCommand2DConverter AuvControl::MotionCommand2DConverter.state)
-            (has_output Sysmon::Task Sysmon::Task.ocu_markers)
-            (has_output Sysmon::Task Sysmon::Task.annotations)
-            (has_output Sysmon::Task Sysmon::Task.system_status)
-            (has_output Sysmon::Task Sysmon::Task.state)
-            (has_output GpsHelper::MapToGPS GpsHelper::MapToGPS.gps_position)
-            (has_output GpsHelper::MapToGPS GpsHelper::MapToGPS.transformer_stream_aligner_status)
-            (has_output GpsHelper::MapToGPS GpsHelper::MapToGPS.transformer_status)
-            (has_output GpsHelper::MapToGPS GpsHelper::MapToGPS.state)
-            (has_output AuvControl::WaypointNavigator AuvControl::WaypointNavigator.cmd_out)
-            (has_output AuvControl::WaypointNavigator AuvControl::WaypointNavigator.waypoint_info)
-            (has_output AuvControl::WaypointNavigator AuvControl::WaypointNavigator.state)
-            (has_output Controldev::GenericTask Controldev::GenericTask.raw_command)
-            (has_output Controldev::GenericTask Controldev::GenericTask.state)
-            (has_output Controldev::Remote Controldev::Remote.raw_command)
-            (has_output Controldev::Remote Controldev::Remote.state)
-            (has_output SonarFeatureDetector::Task SonarFeatureDetector::Task.features)
-            (has_output SonarFeatureDetector::Task SonarFeatureDetector::Task.next_target)
-            (has_output SonarFeatureDetector::Task SonarFeatureDetector::Task.next_target_feature)
-            (has_output SonarFeatureDetector::Task SonarFeatureDetector::Task.next_target_command)
-            (has_output SonarFeatureDetector::Task SonarFeatureDetector::Task.state)
-            (has_output Controldev::JoystickTask Controldev::JoystickTask.raw_command)
-            (has_output Controldev::JoystickTask Controldev::JoystickTask.state)
-            (has_output RawControlCommandConverter::Position RawControlCommandConverter::Position.position_command)
-            (has_output RawControlCommandConverter::Position RawControlCommandConverter::Position.world_command)
-            (has_output RawControlCommandConverter::Position RawControlCommandConverter::Position.state)
-            (has_output AuvControl::ConstantCommandGroundAvoidance AuvControl::ConstantCommandGroundAvoidance.floor_position)
-            (has_output AuvControl::ConstantCommandGroundAvoidance AuvControl::ConstantCommandGroundAvoidance.state)
-            (has_output AuvControl::ConstantCommandGroundAvoidance AuvControl::ConstantCommandGroundAvoidance.cmd_out)
-            (has_output Controldev::GenericRawToMotion2D Controldev::GenericRawToMotion2D.motion_command)
-            (has_output Controldev::GenericRawToMotion2D Controldev::GenericRawToMotion2D.state)
-            (has_output ImagePreprocessing::StereoTask ImagePreprocessing::StereoTask.state)
-            (has_output ImagePreprocessing::StereoTask ImagePreprocessing::StereoTask.oframe_pair)
-            (has_output Controldev::JoyPadTask Controldev::JoyPadTask.raw_command)
-            (has_output Controldev::JoyPadTask Controldev::JoyPadTask.state)
-            (has_output RawControlCommandConverter::Movement RawControlCommandConverter::Movement.motion_command)
-            (has_output RawControlCommandConverter::Movement RawControlCommandConverter::Movement.world_command)
-            (has_output RawControlCommandConverter::Movement RawControlCommandConverter::Movement.world_command_depth)
-            (has_output RawControlCommandConverter::Movement RawControlCommandConverter::Movement.aligned_velocity_command)
-            (has_output RawControlCommandConverter::Movement RawControlCommandConverter::Movement.state)
-            (has_output Controldev::Mouse3DTask Controldev::Mouse3DTask.raw_command)
-            (has_output Controldev::Mouse3DTask Controldev::Mouse3DTask.state)
-            (has_output Controldev::RawWheelToMotion2D Controldev::RawWheelToMotion2D.motion_command)
-            (has_output Controldev::RawWheelToMotion2D Controldev::RawWheelToMotion2D.state)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.oframe)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.binary_result)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.hDebug)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.hDebugGray)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.vDebug)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.vDebugGray)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.sDebug)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.sDebugGray)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.hsv_v_frame)
-            (has_output ImagePreprocessing::HSVSegmentationAndBlur ImagePreprocessing::HSVSegmentationAndBlur.state)
-            (has_output Interfaces::IMU Interfaces::IMU.orientation_samples)
-            (has_output Interfaces::IMU Interfaces::IMU.calibrated_sensors)
-            (has_output Interfaces::IMU Interfaces::IMU.state)
-            (has_output Controldev::SteeringWheelTask Controldev::SteeringWheelTask.raw_command)
-            (has_output Controldev::SteeringWheelTask Controldev::SteeringWheelTask.state)
-            (has_output AuvControl::ConstantCommandGroundFollower AuvControl::ConstantCommandGroundFollower.floor_position)
-            (has_output AuvControl::ConstantCommandGroundFollower AuvControl::ConstantCommandGroundFollower.state)
-            (has_output AuvControl::ConstantCommandGroundFollower AuvControl::ConstantCommandGroundFollower.cmd_out)
-            (has_output Controldev::RawJoystickToMotion2D Controldev::RawJoystickToMotion2D.motion_command)
-            (has_output Controldev::RawJoystickToMotion2D Controldev::RawJoystickToMotion2D.state)
-            (has_output Interfaces::LaserRangeFinder Interfaces::LaserRangeFinder.scans)
-            (has_output Interfaces::LaserRangeFinder Interfaces::LaserRangeFinder.state)
-            (has_output Controldev::SliderboxTask Controldev::SliderboxTask.raw_command)
-            (has_output Controldev::SliderboxTask Controldev::SliderboxTask.state)
-            (has_output AuvControl::ConstantCommand AuvControl::ConstantCommand.cmd_out)
-            (has_output AuvControl::ConstantCommand AuvControl::ConstantCommand.state)
-            (has_output ImagePreprocessing::MonoTask ImagePreprocessing::MonoTask.state)
-            (has_output ImagePreprocessing::MonoTask ImagePreprocessing::MonoTask.oframe)
-            (has_output Interfaces::ActuatorSensorReader Interfaces::ActuatorSensorReader.state)
-            (has_output Interfaces::ActuatorCommandWriter Interfaces::ActuatorCommandWriter.state)
-            (has_output AuvWaypointNavigator::Task AuvWaypointNavigator::Task.relative_position_command)
-            (has_output AuvWaypointNavigator::Task AuvWaypointNavigator::Task.current_delta)
-            (has_output AuvWaypointNavigator::Task AuvWaypointNavigator::Task.current_waypoint)
-            (has_output AuvWaypointNavigator::Task AuvWaypointNavigator::Task.queue_size)
-            (has_output AuvWaypointNavigator::Task AuvWaypointNavigator::Task.state)
-            (has_output RearSonarDistanceEstimator::Task RearSonarDistanceEstimator::Task.ground_distance)
-            (has_output RearSonarDistanceEstimator::Task RearSonarDistanceEstimator::Task.state)
-            (has_output Taskmon::Task Taskmon::Task.stats)
-            (has_output Taskmon::Task Taskmon::Task.state)
-            (has_output Dynamixel::Task Dynamixel::Task.upper2lower)
-            (has_output Dynamixel::Task Dynamixel::Task.angle)
-            (has_output Dynamixel::Task Dynamixel::Task.lowerDynamixel2UpperDynamixel)
-            (has_output Dynamixel::Task Dynamixel::Task.state)
-            (has_output StructuredLight::Calibration StructuredLight::Calibration.stream_aligner_status)
-            (has_output StructuredLight::Calibration StructuredLight::Calibration.state)
-            (has_output StructuredLight::Task StructuredLight::Task.laser_scan)
-            (has_output StructuredLight::Task StructuredLight::Task.candidates)
-            (has_output StructuredLight::Task StructuredLight::Task.debug_frame)
-            (has_output StructuredLight::Task StructuredLight::Task.state)
-            (has_output CameraUnicap::CameraTask CameraUnicap::CameraTask.frame)
-            (has_output CameraUnicap::CameraTask CameraUnicap::CameraTask.state)
-            (has_output FrameDemultiplexer::Task FrameDemultiplexer::Task.oframe_pair)
-            (has_output FrameDemultiplexer::Task FrameDemultiplexer::Task.oframe)
-            (has_output FrameDemultiplexer::Task FrameDemultiplexer::Task.state)
 ; Fix encoded knoeledge
             (is-root root)
+            (depends root AuvControl::DepthFusionCmp)
 
 ; Begin requirements
 
@@ -3712,32 +2450,11 @@
             (imply
             (is-running ?t)
             (requests ?r ?t)
-            ;(depends ?r ?t)
             )
             )
             )
     
     (is-running root)
   
-;    (forall (?t - instance_req)
-;    (forall (?r - instance_req)
-;            (imply
-;            (requests ?r ?t)
-;            (is-running ?t)
-;            )
-;            )
-;            )
-;
-;    (forall (?t - instance_req)
-;        (imply (is-running ?t)
-;            (depends ?x ?t)
-;            (is-running ?t)
-;        )
-;    )
-;      	 (is-running root)
-;      	 (depends root shouldRunning)
-;        (requests root TestCmp)
-;        (depends root TestCmp)
-;     	 (requests root TestCmp2)
   ))
 )

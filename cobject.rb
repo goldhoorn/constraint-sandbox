@@ -156,35 +156,38 @@ class CObject < BaseObject
     end
     
     def input_ports
-        begin
+#        begin
+	    return [] if task.class != Class
+#            binding.pry
             if task < Syskit::TaskContext
             #if task.instance_of? OroGen::Spec::TaskContext
                 a = Hash.new
-                task.input_ports.each do |p|
-                    a[p[1].name] = p[1]
+                task.each_input_port do |p|
+                    a[p.name] = p
                 end
                 return a.values
             end
-        rescue Exception => e
+#        rescue Exception => e
             ##Nothing
-        end
+#        end
         
         return []
     end
     
     def output_ports
-        begin
+#        begin
+	    return [] if task.class != Class
             if task < Syskit::TaskContext
     #        if task.instance_of? OroGen::Spec::TaskContext
                 a = Hash.new
-                task.output_ports.each do |p|
-                    a[p[1].name] = p[1]
+                task.each_output_port do |p|
+                    a[p.name] = p
                 end
                 return a.values
             end
-        rescue Exception => e
+#        rescue Exception => e
             #nothing
-        end
+#        end
         return [] 
     end
 

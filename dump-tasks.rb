@@ -100,7 +100,7 @@ Roby.app.setup
     #Test for start
 #    objects['root'].addDependancy("BatteryWatcher::Task")
 #    objects['root'].addDependancy("Base::SonarScanProviderSrv",false)
-    objects['root'].addDependancy("Pipeline::Follower")
+#    objects['root'].addDependancy("Pipeline::Follower")
 #    objects['root'].addDependancy("PoseAuv::IKFOrientationEstimatorCmp",false)
 #    objects['root'].addDependancy("BatteryWatcher::Task",false)
 #    objects['root'].addDependancy("Base::SonarScanProviderSrv",false)
