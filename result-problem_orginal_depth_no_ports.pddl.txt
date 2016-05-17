@@ -1,0 +1,133 @@
+problem_orginal_depth_no_ports.pddl
+################  problem_orginal_depth_no_ports.pddl - BFSF ################################
+/home/goldhoorn/dev-avalon-21/install/bin/bfsf-planner
+
+/tmp/20160513-14:56:55:565605_bfsf/problem.pddl: syntax error in line 10, '1':
+'define' expected
+Planner BFSF:
+
+0.00user 0.00system 0:00.11elapsed 3%CPU (0avgtext+0avgdata 5724maxresident)k
+0inputs+544outputs (0major+1122minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - CEDALION ################################
+/home/goldhoorn/dev-avalon-21/install/bin/cedalion-planner
+No timeout has been set for the portfolio so we take the default of 1800s.
+downward-1: /home/goldhoorn/dev-avalon-21/planning/fd_cedalion/src/search/landmarks/landmark_factory_zhu_givan.cc:74: void LandmarkFactoryZhuGivan::extract_landmarks(const proposition_layer &): Assertion `g_initial_state()[it->first] == it->second || !relaxed_task_solvable(true, node)' failed.
+downward-1: /home/goldhoorn/dev-avalon-21/planning/fd_cedalion/src/search/landmarks/landmark_factory_zhu_givan.cc:74: void LandmarkFactoryZhuGivan::extract_landmarks(const proposition_layer &): Assertion `g_initial_state()[it->first] == it->second || !relaxed_task_solvable(true, node)' failed.
+downward-1: /home/goldhoorn/dev-avalon-21/planning/fd_cedalion/src/search/landmarks/landmark_factory_zhu_givan.cc:74: void LandmarkFactoryZhuGivan::extract_landmarks(const proposition_layer &): Assertion `g_initial_state()[it->first] == it->second || !relaxed_task_solvable(true, node)' failed.
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+Planner CEDALION:
+0	[startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startt base::orientationsrv xsensimu::task][startds auvcontrol::depthfusioncmp base::orientationsrv][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::zprovidersrv][startc root auvcontrol::depthfusioncmp][start_root]
+1	[0 7]
+
+1797.81user 2.32system 32:09.80elapsed 93%CPU (0avgtext+0avgdata 2379308maxresident)k
+23568inputs+10744outputs (79major+1213968minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - FDAUTOTUNE1 ################################
+/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
+Planner FDAUTOTUNE1:
+0	[startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::zprovidersrv][startt base::orientationsrv xsensimu::task][startds auvcontrol::depthfusioncmp base::orientationsrv][startc root auvcontrol::depthfusioncmp][start_root][unit cost)]
+
+0.00user 0.00system 33:20.15elapsed 0%CPU (0avgtext+0avgdata 5556maxresident)k
+0inputs+544outputs (0major+1316minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - FDAUTOTUNE2 ################################
+/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
+Planner FDAUTOTUNE2:
+0	[startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startt base::orientationsrv xsensimu::task][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::orientationsrv][startds auvcontrol::depthfusioncmp base::zprovidersrv][startc root auvcontrol::depthfusioncmp][start_root][unit cost)]
+
+0.00user 0.00system 33:20.08elapsed 0%CPU (0avgtext+0avgdata 5676maxresident)k
+0inputs+544outputs (0major+1119minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - FDSS1 ################################
+/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
+No timeout has been set for the portfolio so we take the default of 1800s.
+Planner FDSS1:
+0	[startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::zprovidersrv][startt base::orientationsrv xsensimu::task][startds auvcontrol::depthfusioncmp base::orientationsrv][startc root auvcontrol::depthfusioncmp][start_root][unit cost)]
+
+1186.59user 3.11system 21:19.82elapsed 92%CPU (0avgtext+0avgdata 4806872maxresident)k
+0inputs+6688outputs (0major+1751232minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - FDSS2 ################################
+/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
+No timeout has been set for the portfolio so we take the default of 1800s.
+Planner FDSS2:
+0	[startt base::orientationsrv xsensimu::task][startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startds auvcontrol::depthfusioncmp base::orientationsrv][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::zprovidersrv][startc root auvcontrol::depthfusioncmp][start_root][unit cost)]
+
+1190.02user 2.80system 21:26.23elapsed 92%CPU (0avgtext+0avgdata 4806824maxresident)k
+0inputs+6688outputs (0major+1536785minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - LAMA ################################
+/home/goldhoorn/dev-avalon-21/install/bin/lama-planner
+Traceback (most recent call last):
+  File "/home/goldhoorn/dev-avalon-21/planning/lama/lama/translate/translate.py", line 592, in <module>
+    sas_task = pddl_to_sas(task)
+  File "/home/goldhoorn/dev-avalon-21/planning/lama/lama/translate/translate.py", line 460, in pddl_to_sas
+    implied_facts)
+  File "/home/goldhoorn/dev-avalon-21/planning/lama/lama/translate/translate.py", line 382, in translate_task
+    assert init_values[var] == ranges[var] - 1, "Inconsistent init facts!"
+AssertionError: Inconsistent init facts!
+/home/goldhoorn/dev-avalon-21/install/bin/lama-planner: 12: /home/goldhoorn/dev-avalon-21/install/bin/lama-planner: cannot open output.sas: No such file
+/home/goldhoorn/dev-avalon-21/install/bin/lama-planner: 14: /home/goldhoorn/dev-avalon-21/install/bin/lama-planner: cannot open output: No such file
+Planner LAMA:
+
+198.46user 0.98system 3:32.49elapsed 93%CPU (0avgtext+0avgdata 1671808maxresident)k
+0inputs+544outputs (0major+650781minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - LAMA2011 ################################
+/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
+Planner LAMA2011:
+0	[startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::zprovidersrv][startt base::orientationsrv xsensimu::task][startds auvcontrol::depthfusioncmp base::orientationsrv][startc root auvcontrol::depthfusioncmp][start_root][unit cost)]
+
+0.00user 0.00system 33:20.15elapsed 0%CPU (0avgtext+0avgdata 5556maxresident)k
+0inputs+544outputs (0major+1116minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - RANDWARD ################################
+/home/goldhoorn/dev-avalon-21/install/bin/randward-planner
+Traceback (most recent call last):
+  File "/home/goldhoorn/dev-avalon-21/install/bin/randward/translate/translate.py", line 590, in <module>
+    sas_task = pddl_to_sas(task)
+  File "/home/goldhoorn/dev-avalon-21/install/bin/randward/translate/translate.py", line 458, in pddl_to_sas
+    implied_facts)
+  File "/home/goldhoorn/dev-avalon-21/install/bin/randward/translate/translate.py", line 382, in translate_task
+    assert init_values[var] == ranges[var] - 1, "Inconsistent init facts!"
+AssertionError: Inconsistent init facts!
+/home/goldhoorn/dev-avalon-21/install/bin/randward-planner: 12: /home/goldhoorn/dev-avalon-21/install/bin/randward-planner: cannot open output.sas: No such file
+/home/goldhoorn/dev-avalon-21/install/bin/randward-planner: 14: /home/goldhoorn/dev-avalon-21/install/bin/randward-planner: cannot open output: No such file
+Planner RANDWARD:
+
+197.74user 0.98system 3:33.53elapsed 93%CPU (0avgtext+0avgdata 1702832maxresident)k
+0inputs+544outputs (0major+643659minor)pagefaults 0swaps
+################  Ende  ################################
+################  problem_orginal_depth_no_ports.pddl - UNIFORM ################################
+/home/goldhoorn/dev-avalon-21/install/bin/uniform-planner
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+Planner UNIFORM:
+0	[startt auvcontrol::depthfusioncmp auvhelper::depthandorientationfusion][startt base::orientationsrv xsensimu::task][startt base::zprovidersrv depthreader::task][startds auvcontrol::depthfusioncmp base::orientationsrv][startds auvcontrol::depthfusioncmp base::zprovidersrv][startc root auvcontrol::depthfusioncmp][start_root]
+1	[0 7]
+
+1797.22user 3.68system 32:04.98elapsed 93%CPU (0avgtext+0avgdata 2300960maxresident)k
+13264inputs+10744outputs (45major+1910256minor)pagefaults 0swaps
+################  Ende  ################################

@@ -1,12 +1,12 @@
 (defdomain network (
 
 
-(:operator 
-    (!startt ?r ?t) ;Signatur Head
-    (and (depends ?r ?t) (fullfills ?t ?r) ) ;precondition
-    () ;delete list
-    ((running ?r) (requsts ?r ?t ) )
-)
+;(:operator 
+;    (!startt ?r ?t) ;Signatur Head
+;    (and (depends ?r ?t) (fullfills ?t ?r) ) ;precondition
+;    () ;delete list
+;    ((running ?r) (requsts ?r ?t ) )
+;)
 
 (:operator 
     (!start_root)

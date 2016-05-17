@@ -570,10 +570,6 @@ public class problem
 		s.add(new Predicate(0, 0, new TermList(TermConstant.getConstant(164), new TermList(TermConstant.getConstant(74), TermList.NIL))));
 		s.add(new Predicate(0, 0, new TermList(TermConstant.getConstant(164), new TermList(TermConstant.getConstant(74), TermList.NIL))));
 		s.add(new Predicate(0, 0, new TermList(TermConstant.getConstant(164), new TermList(TermConstant.getConstant(56), TermList.NIL))));
-		helper_0_createState0(s);
-	}
-
-	private static void helper_0_createState0(State s)	{
 		s.add(new Predicate(0, 0, new TermList(TermConstant.getConstant(164), new TermList(TermConstant.getConstant(63), TermList.NIL))));
 		s.add(new Predicate(0, 0, new TermList(TermConstant.getConstant(165), new TermList(TermConstant.getConstant(331), TermList.NIL))));
 		s.add(new Predicate(0, 0, new TermList(TermConstant.getConstant(165), new TermList(TermConstant.getConstant(330), TermList.NIL))));
@@ -1075,10 +1071,6 @@ public class problem
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(38), new TermList(TermConstant.getConstant(326), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(38), new TermList(TermConstant.getConstant(328), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(38), new TermList(TermConstant.getConstant(363), TermList.NIL))));
-		helper_1_createState0(s);
-	}
-
-	private static void helper_1_createState0(State s)	{
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(38), new TermList(TermConstant.getConstant(335), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(38), new TermList(TermConstant.getConstant(364), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(41), new TermList(TermConstant.getConstant(327), TermList.NIL))));
@@ -1580,10 +1572,6 @@ public class problem
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(181), new TermList(TermConstant.getConstant(364), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(181), new TermList(TermConstant.getConstant(364), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(182), new TermList(TermConstant.getConstant(417), new TermList(TermConstant.getConstant(402), TermList.NIL)))));
-		helper_2_createState0(s);
-	}
-
-	private static void helper_2_createState0(State s)	{
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(182), new TermList(TermConstant.getConstant(272), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(182), new TermList(TermConstant.getConstant(189), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(182), new TermList(TermConstant.getConstant(272), TermList.NIL))));
@@ -2085,10 +2073,6 @@ public class problem
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(247), new TermList(TermConstant.getConstant(363), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(247), new TermList(TermConstant.getConstant(311), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(247), new TermList(TermConstant.getConstant(363), TermList.NIL))));
-		helper_3_createState0(s);
-	}
-
-	private static void helper_3_createState0(State s)	{
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(247), new TermList(TermConstant.getConstant(266), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(247), new TermList(TermConstant.getConstant(189), TermList.NIL))));
 		s.add(new Predicate(1, 0, new TermList(TermConstant.getConstant(247), new TermList(TermConstant.getConstant(189), TermList.NIL))));
@@ -2426,11 +2410,6 @@ public class problem
 		thread = new SolverThread(tl, 1);
 		thread.start();
 
-try{
-		Thread.sleep(5000);
-
-		} catch (InterruptedException e) {
-		}
 		try {
 			while (thread.isAlive())
 				Thread.sleep(500);
