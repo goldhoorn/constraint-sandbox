@@ -31,9 +31,7 @@
 
 ;call:
 ;goldhoorn@mgoldhoorn:~/dev-avalon-21/bundles/diss$ pddl_planner_bin -t 600 -p FDAUTOTUNE2 domain.pddl diss-esamples/problem_start.pddl 
-/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
+;/home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
 ;result:
-Planner FDAUTOTUNE2:
-0   [startt root lights][start_root][unit cost)]
-
-
+;Planner FDAUTOTUNE2:
+;0   [startt root lights][start_root][unit cost)]

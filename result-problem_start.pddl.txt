@@ -1,98 +1,112 @@
 problem_start.pddl
 ################  problem_start.pddl - BFSF ################################
 /home/goldhoorn/dev-avalon-21/install/bin/bfsf-planner
-
-/tmp/20160513-23:18:02:361605_bfsf/problem.pddl: syntax error in line 34, '/':
-'define' expected
 Planner BFSF:
 
-0.00user 0.00system 0:00.10elapsed 0%CPU (0avgtext+0avgdata 5020maxresident)k
-0inputs+16outputs (0major+704minor)pagefaults 0swaps
+0.00user 0.00system 0:00.09elapsed 0%CPU (0avgtext+0avgdata 7192maxresident)k
+0inputs+16outputs (0major+1385minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - CEDALION ################################
 /home/goldhoorn/dev-avalon-21/install/bin/cedalion-planner
-Error: Could not parse task file: /tmp/20160513-23:18:02:481585_cedalion/problem.pddl
-
-/home/goldhoorn/dev-avalon-21/install/bin/cedalion-planner: Zeile 48: output.sas: Datei oder Verzeichnis nicht gefunden
-/home/goldhoorn/dev-avalon-21/install/bin/cedalion-planner: Zeile 52: output: Datei oder Verzeichnis nicht gefunden
+No timeout has been set for the portfolio so we take the default of 1800s.
+downward-1: /home/goldhoorn/dev-avalon-21/planning/fd_cedalion/src/search/landmarks/landmark_factory_zhu_givan.cc:74: void LandmarkFactoryZhuGivan::extract_landmarks(const proposition_layer &): Assertion `g_initial_state()[it->first] == it->second || !relaxed_task_solvable(true, node)' failed.
+downward-1: /home/goldhoorn/dev-avalon-21/planning/fd_cedalion/src/search/landmarks/landmark_factory_zhu_givan.cc:74: void LandmarkFactoryZhuGivan::extract_landmarks(const proposition_layer &): Assertion `g_initial_state()[it->first] == it->second || !relaxed_task_solvable(true, node)' failed.
+downward-1: /home/goldhoorn/dev-avalon-21/planning/fd_cedalion/src/search/landmarks/landmark_factory_zhu_givan.cc:74: void LandmarkFactoryZhuGivan::extract_landmarks(const proposition_layer &): Assertion `g_initial_state()[it->first] == it->second || !relaxed_task_solvable(true, node)' failed.
+cost partitioning does not support axioms
+Tried to use unsupported feature.
 Planner CEDALION:
+0	[startt root lights][start_root]
+1	[0 2]
 
-0.03user 0.01system 0:00.41elapsed 10%CPU (0avgtext+0avgdata 38260maxresident)k
-0inputs+24outputs (0major+6190minor)pagefaults 0swaps
+0.24user 0.04system 0:01.07elapsed 27%CPU (0avgtext+0avgdata 40324maxresident)k
+0inputs+64outputs (0major+24183minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - FDAUTOTUNE1 ################################
 /home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
-Error: Could not parse task file: /tmp/20160513-23:18:02:921622_fd/problem.pddl
-
 Planner FDAUTOTUNE1:
+0	[startt root lights][start_root][unit cost)]
 
-0.03user 0.00system 0:00.20elapsed 21%CPU (0avgtext+0avgdata 9648maxresident)k
-0inputs+16outputs (0major+4988minor)pagefaults 0swaps
+0.06user 0.01system 0:00.08elapsed 87%CPU (0avgtext+0avgdata 10280maxresident)k
+0inputs+40outputs (0major+6240minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - FDAUTOTUNE2 ################################
 /home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
-Error: Could not parse task file: /tmp/20160513-23:18:03:145598_fd/problem.pddl
-
 Planner FDAUTOTUNE2:
+0	[startt root lights][start_root][unit cost)]
 
-0.02user 0.01system 0:00.19elapsed 22%CPU (0avgtext+0avgdata 9588maxresident)k
-0inputs+16outputs (0major+4984minor)pagefaults 0swaps
+0.06user 0.00system 0:00.08elapsed 83%CPU (0avgtext+0avgdata 10436maxresident)k
+0inputs+40outputs (0major+6243minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - FDSS1 ################################
 /home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
-Error: Could not parse task file: /tmp/20160513-23:18:03:357567_fd/problem.pddl
-
+No timeout has been set for the portfolio so we take the default of 1800s.
 Planner FDSS1:
+0	[startt root lights][start_root][unit cost)]
 
-0.04user 0.00system 0:00.22elapsed 19%CPU (0avgtext+0avgdata 9636maxresident)k
-0inputs+16outputs (0major+4983minor)pagefaults 0swaps
+0.10user 0.02system 0:00.16elapsed 75%CPU (0avgtext+0avgdata 10480maxresident)k
+0inputs+40outputs (0major+15005minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - FDSS2 ################################
 /home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
-Error: Could not parse task file: /tmp/20160513-23:18:03:601575_fd/problem.pddl
-
+No timeout has been set for the portfolio so we take the default of 1800s.
 Planner FDSS2:
+0	[startt root lights][start_root][unit cost)]
 
-0.02user 0.02system 0:00.17elapsed 24%CPU (0avgtext+0avgdata 9592maxresident)k
-0inputs+16outputs (0major+4988minor)pagefaults 0swaps
+0.04user 0.02system 0:00.08elapsed 80%CPU (0avgtext+0avgdata 10488maxresident)k
+0inputs+40outputs (0major+6938minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - LAMA ################################
 /home/goldhoorn/dev-avalon-21/install/bin/lama-planner
-Error: Could not parse task file: /tmp/20160513-23:18:03:813602_lama/problem.pddl
-
-/home/goldhoorn/dev-avalon-21/install/bin/lama-planner: 12: /home/goldhoorn/dev-avalon-21/install/bin/lama-planner: cannot open output.sas: No such file
-/home/goldhoorn/dev-avalon-21/install/bin/lama-planner: 14: /home/goldhoorn/dev-avalon-21/install/bin/lama-planner: cannot open output: No such file
 Planner LAMA:
+0	[startt root lights][start_root]
 
-0.01user 0.00system 0:00.19elapsed 8%CPU (0avgtext+0avgdata 8216maxresident)k
-0inputs+16outputs (0major+2116minor)pagefaults 0swaps
+0.02user 0.00system 0:00.04elapsed 78%CPU (0avgtext+0avgdata 9236maxresident)k
+0inputs+56outputs (0major+2594minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - LAMA2011 ################################
 /home/goldhoorn/dev-avalon-21/install/bin/fast_downward-planner
-Error: Could not parse task file: /tmp/20160513-23:18:04:029598_fd/problem.pddl
-
 Planner LAMA2011:
+0	[startt root lights][start_root][unit cost)]
 
-0.03user 0.00system 0:00.20elapsed 21%CPU (0avgtext+0avgdata 9600maxresident)k
-0inputs+16outputs (0major+4985minor)pagefaults 0swaps
+0.06user 0.00system 0:00.08elapsed 81%CPU (0avgtext+0avgdata 10524maxresident)k
+0inputs+40outputs (0major+6253minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - RANDWARD ################################
 /home/goldhoorn/dev-avalon-21/install/bin/randward-planner
-Error: Could not parse task file: /tmp/20160513-23:18:04:249601_randward/problem.pddl
-
-/home/goldhoorn/dev-avalon-21/install/bin/randward-planner: 12: /home/goldhoorn/dev-avalon-21/install/bin/randward-planner: cannot open output.sas: No such file
-/home/goldhoorn/dev-avalon-21/install/bin/randward-planner: 14: /home/goldhoorn/dev-avalon-21/install/bin/randward-planner: cannot open output: No such file
 Planner RANDWARD:
+0	[startt root lights][start_root]
 
-0.01user 0.00system 0:00.25elapsed 6%CPU (0avgtext+0avgdata 8188maxresident)k
-0inputs+16outputs (0major+2458minor)pagefaults 0swaps
+0.02user 0.00system 0:00.04elapsed 62%CPU (0avgtext+0avgdata 8944maxresident)k
+0inputs+56outputs (0major+2920minor)pagefaults 0swaps
 ################  Ende  ################################
 ################  problem_start.pddl - UNIFORM ################################
 /home/goldhoorn/dev-avalon-21/install/bin/uniform-planner
-Error: Could not parse task file: /tmp/20160513-23:18:04:549605_uniform/problem.pddl
-
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+cost partitioning does not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
+H_m_Landmarks do not support axioms
+Tried to use unsupported feature.
 Planner UNIFORM:
+0	[startt root lights][start_root]
+1	[0 2]
 
-0.03user 0.01system 0:00.38elapsed 11%CPU (0avgtext+0avgdata 38328maxresident)k
-0inputs+24outputs (0major+6078minor)pagefaults 0swaps
+0.25user 0.03system 0:00.34elapsed 83%CPU (0avgtext+0avgdata 40124maxresident)k
+0inputs+64outputs (0major+25546minor)pagefaults 0swaps
 ################  Ende  ################################
